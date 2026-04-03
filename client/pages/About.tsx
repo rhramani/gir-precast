@@ -8,7 +8,7 @@ const About = () => {
         subtitle="Learn more about our company and mission"
         bg="white"
       >
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto" >
           <img
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=400&fit=crop"
             alt="About SK Precast"
