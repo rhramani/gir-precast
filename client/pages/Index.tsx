@@ -3,7 +3,14 @@ import { Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import ProductCard from "@/components/ProductCard";
-import { Star, Users, Briefcase, TrendingUp } from "lucide-react";
+import { 
+  Star, 
+  Users, 
+  Briefcase, 
+  TrendingUp, 
+  ChevronLeft, 
+  ChevronRight 
+} from "lucide-react";
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -17,37 +24,37 @@ const Index = () => {
   const products = [
     {
       name: "RCC Compound Wall",
-      image: "https://images.unsplash.com/photo-1565182000575-3dee3f0211f0?w=500&h=300&fit=crop",
+      image: "/images/generated/product-rcc-compound.webp",
       description: "Premium RCC readymade compound walls for residential and industrial properties",
       href: "/products/compound-wall",
     },
     {
       name: "Boundary Wall",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695c952952?w=500&h=300&fit=crop",
+      image: "/images/generated/product-boundary-wall.webp",
       description: "Durable concrete boundary walls engineered for maximum strength",
       href: "/products/boundary-wall",
     },
     {
       name: "Precast Wall",
-      image: "https://images.unsplash.com/photo-1518568947-460ec7e7dd6b?w=500&h=300&fit=crop",
+      image: "/images/generated/product-precast-wall.webp",
       description: "Modern precast wall panels with quick installation",
       href: "/products/precast-wall",
     },
     {
       name: "RCC Wall",
-      image: "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=500&h=300&fit=crop",
+      image: "/images/generated/product-rcc-compound.webp",
       description: "High-strength RCC walls for commercial and industrial applications",
       href: "/products/rcc-wall",
     },
     {
       name: "Cement Wall",
-      image: "https://images.unsplash.com/photo-1617638924702-92d37921f66e?w=500&h=300&fit=crop",
+      image: "/images/generated/cat-cement.webp",
       description: "Prefabricated cement walls offering excellent durability",
       href: "/products/cement-wall",
     },
     {
       name: "Readymade Walls",
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=300&fit=crop",
+      image: "/images/generated/product-precast-wall.webp",
       description: "Complete ready-to-install wall solutions for faster projects",
       href: "/products/other-products",
     },
@@ -56,7 +63,7 @@ const Index = () => {
   const testimonials = [
     {
       name: "Arjun Kharol",
-      text: "The owner of SK Precast, Vivek Patel, is exceptional in his dealings—polite, professional, and trustworthy.",
+      text: "The owner of GIR Precast, Vivek Patel, is exceptional in his dealings—polite, professional, and trustworthy.",
     },
     {
       name: "Dishant",
@@ -93,46 +100,108 @@ const Index = () => {
       <HeroSection />
 
       {/* Product Range Section */}
-      <SectionWrapper
-        title="Our Product Range"
-        subtitle="Comprehensive solutions for all your wall construction needs"
-        bg="concrete"
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[
-            { name: "Compound Wall", href: "/products/compound-wall" },
-            { name: "Boundary Wall", href: "/products/boundary-wall" },
-            { name: "Cement Wall", href: "/products/cement-wall" },
-            { name: "Other Products", href: "/products/other-products" },
-          ].map((category) => (
-            <Link
-              key={category.name}
-              to={category.href}
-              className="group p-6 bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all cursor-pointer"
-            >
-              <h3 className="text-xl font-bold text-sk-dark-blue mb-2 group-hover:text-sk-gold transition-colors">
-                {category.name}
-              </h3>
-              <p className="text-gray-600 text-sm mb-4">Premium quality walls</p>
-              <span className="text-sk-gold font-semibold text-sm">View All →</span>
-            </Link>
-          ))}
+      <section className="concrete-texture py-20 relative">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gir-dark-blue mb-2">
+              Our <span className="text-gir-gold">Product Range</span>
+            </h2>
+            <div className="w-24 h-1 bg-gir-gold mx-auto" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+            {[
+              {
+                name: "Compound Wall",
+                image: "/images/generated/cat-compound.webp",
+                href: "/products/compound-wall",
+                items: [
+                  "Concrete Folding Compound Wall",
+                  "Concrete Precast Single Panel Wall",
+                  "Factory Boundary Wall",
+                  "Heavy Readymade Boundary Wall",
+                ],
+              },
+              {
+                name: "Boundary Wall",
+                image: "/images/generated/cat-boundary.webp",
+                href: "/products/boundary-wall",
+                items: [
+                  "Cement Boundary Wall",
+                  "Concrete Boundary Wall",
+                  "Concrete Prestressed Boundary Walls",
+                  "Precast Boundary Wall",
+                ],
+              },
+              {
+                name: "Cement Wall",
+                image: "/images/generated/cat-cement.webp",
+                href: "/products/cement-wall",
+                items: ["Pre Fabricated Cement Wall", "RCC Cement Wall"],
+              },
+              {
+                name: "Other Products",
+                image: "/images/generated/product-precast-wall.webp",
+                href: "/products/other-products",
+                items: [
+                  "Precast Wall",
+                  "RCC Folding Wall",
+                  "RCC Wall",
+                  "Readymade Walls",
+                ],
+              },
+            ].map((category) => (
+              <div
+                key={category.name}
+                className="bg-white border border-gray-100 rounded-sm p-4 flex flex-col h-full hover:border-gir-gold/30 transitions-all duration-300 shadow-xl"
+              >
+                {/* Framed Image */}
+                <div className="bg-gray-50 p-2 mb-6 border border-gray-100">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full aspect-square object-cover"
+                  />
+                </div>
+
+                <h3 className="text-xl font-bold text-gir-dark-blue text-center mb-6">
+                  {category.name}
+                </h3>
+
+                <ul className="space-y-3 mb-8 flex-grow">
+                  {category.items.map((item) => (
+                    <li key={item} className="flex gap-2 text-gray-600 text-sm leading-snug">
+                      <span className="text-gir-gold mt-1 font-bold">›</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to={category.href}
+                  className="text-gir-gold font-bold text-sm hover:underline mt-auto"
+                >
+                  + View all
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
-      </SectionWrapper>
+      </section>
 
       {/* Welcome Section */}
       <SectionWrapper bg="white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="fade-in-left">
             <img
-              src="https://images.unsplash.com/photo-1581578731548-c64695c952950?w=600&h=400&fit=crop"
-              alt="SK Precast Industries"
+              src="/images/generated/manufacturing-unit.webp"
+              alt="GIR Precast Industries"
               className="rounded-lg shadow-lg"
             />
           </div>
           <div className="fade-in-right">
-            <h2 className="text-4xl font-bold text-sk-dark-blue mb-6">
-              Welcome to SK Precast Industries
+            <h2 className="text-4xl font-bold text-gir-dark-blue mb-6">
+              Welcome to GIR Precast Industries
             </h2>
             <p className="text-lg text-gray-600 mb-4">
               Based in Palwal, Haryana, India, we are a leading manufacturer and supplier of premium RCC and concrete compound walls. Newly established in 2020, we've quickly become a trusted name in the construction industry.
@@ -142,7 +211,7 @@ const Index = () => {
             </p>
             <Link
               to="/about"
-              className="inline-block px-8 py-3 bg-sk-gold text-sk-dark-blue rounded-lg font-bold hover:bg-sk-gold/90 transition-all"
+              className="inline-block px-8 py-3 bg-gir-gold text-gir-dark-blue rounded-lg font-bold hover:bg-gir-gold/90 transition-all"
             >
               Learn More About Us
             </Link>
@@ -150,11 +219,11 @@ const Index = () => {
             {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-6 mt-12">
               <div className="text-center p-6 bg-gray-50 rounded-lg">
-                <p className="text-3xl font-bold text-sk-gold mb-2">₹1 Cr+</p>
+                <p className="text-3xl font-bold text-gir-gold mb-2">₹1 Cr+</p>
                 <p className="text-gray-600 font-semibold">Annual Turnover</p>
               </div>
               <div className="text-center p-6 bg-gray-50 rounded-lg">
-                <p className="text-xl font-bold text-sk-dark-blue mb-2">GST</p>
+                <p className="text-xl font-bold text-gir-dark-blue mb-2">GST</p>
                 <p className="text-gray-600 font-semibold">06AEGFS8126M1ZK</p>
               </div>
             </div>
@@ -164,7 +233,7 @@ const Index = () => {
 
       {/* Why Choose Us */}
       <SectionWrapper
-        title="Why Choose SK Precast?"
+        title="Why Choose GIR Precast?"
         subtitle="Industry-leading quality and service standards"
         bg="concrete"
       >
@@ -174,8 +243,8 @@ const Index = () => {
               key={stat.label}
               className="text-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-all scale-in"
             >
-              <stat.icon size={48} className="text-sk-gold mx-auto mb-4" />
-              <p className="text-3xl font-bold text-sk-dark-blue mb-2">
+              <stat.icon size={48} className="text-gir-gold mx-auto mb-4" />
+              <p className="text-3xl font-bold text-gir-dark-blue mb-2">
                 {stat.value}
               </p>
               <p className="text-gray-600 font-semibold">{stat.label}</p>
@@ -203,27 +272,80 @@ const Index = () => {
         </div>
       </SectionWrapper>
 
-      {/* Gallery Preview */}
-      <SectionWrapper
-        title="Wall Manufacturing Unit"
-        subtitle="State-of-the-art facilities showcasing our production capabilities"
-        bg="concrete"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {[1, 2, 3, 4].map((i) => (
-            <div
-              key={i}
-              className="aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-105"
-            >
-              <img
-                src={`https://images.unsplash.com/photo-158157873${5000 + i}?w=400&h=300&fit=crop`}
-                alt={`Manufacturing Unit ${i}`}
-                className="w-full h-full object-cover hover:scale-110 transition-transform"
-              />
-            </div>
-          ))}
+      {/* Wall Manufacturing Unit Section */}
+      <section className="py-20 bg-concrete-texture overflow-hidden">
+        <div className="container mx-auto px-4 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gir-dark-blue mb-2">
+            Wall <span className="text-gir-gold">Manufacturing Unit</span>
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            State-of-the-art facilities showcasing our high-precision production capabilities
+          </p>
         </div>
-      </SectionWrapper>
+
+        {/* Infinite Scrolling Marquee - Contained Version */}
+        <div className="container mx-auto px-4 relative group/marquee">
+          <div className="relative flex overflow-hidden rounded-xl border border-gray-100 bg-white shadow-inner p-2">
+            
+            {/* Navigation Arrows - Match Reference Image */}
+            <button className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-gir-dark-blue flex items-center justify-center text-white hover:bg-gir-dark-blue/90 transition-all shadow-xl opacity-0 group-hover/marquee:opacity-100">
+              <ChevronLeft size={24} />
+            </button>
+            <button className="absolute right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-gir-dark-blue flex items-center justify-center text-white hover:bg-gir-dark-blue/90 transition-all shadow-xl opacity-0 group-hover/marquee:opacity-100">
+              <ChevronRight size={24} />
+            </button>
+
+            <div className="flex animate-marquee whitespace-nowrap gap-4 py-4">
+              {[
+                "/images/generated/manufacturing-unit.webp",
+                "/images/generated/hero-banner.webp",
+                "/images/generated/gallery-1.webp",
+                "/images/generated/gallery-2.webp",
+                "/images/generated/manufacturing-unit.webp",
+                "/images/generated/hero-banner.webp",
+                "/images/generated/gallery-1.webp",
+                "/images/generated/gallery-2.webp",
+              ].map((img, i) => (
+                <div
+                  key={i}
+                  className="w-[300px] md:w-[450px] aspect-video rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all flex-shrink-0 group"
+                >
+                  <img
+                    src={img}
+                    alt={`Manufacturing Detail ${i + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Duplicated set for seamless loop */}
+            <div className="flex absolute top-2 animate-marquee2 whitespace-nowrap gap-4 py-4 ml-4">
+              {[
+                "/images/generated/manufacturing-unit.webp",
+                "/images/generated/hero-banner.webp",
+                "/images/generated/gallery-1.webp",
+                "/images/generated/gallery-2.webp",
+                "/images/generated/manufacturing-unit.webp",
+                "/images/generated/hero-banner.webp",
+                "/images/generated/gallery-1.webp",
+                "/images/generated/gallery-2.webp",
+              ].map((img, i) => (
+                <div
+                  key={`dup-${i}`}
+                  className="w-[300px] md:w-[450px] aspect-video rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all flex-shrink-0 group"
+                >
+                  <img
+                    src={img}
+                    alt={`Manufacturing Detail Duplicate ${i + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials */}
       <SectionWrapper
@@ -239,11 +361,11 @@ const Index = () => {
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={20} className="text-sk-gold fill-sk-gold" />
+                  <Star key={i} size={20} className="text-gir-gold fill-gir-gold" />
                 ))}
               </div>
               <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-              <p className="font-bold text-sk-dark-blue">— {testimonial.name}</p>
+              <p className="font-bold text-gir-dark-blue">— {testimonial.name}</p>
             </div>
           ))}
         </div>
@@ -259,7 +381,7 @@ const Index = () => {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Product/Service
               </label>
               <input
@@ -269,12 +391,12 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, product: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Your Name
               </label>
               <input
@@ -284,12 +406,12 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Email
               </label>
               <input
@@ -299,12 +421,12 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Phone/Mobile
               </label>
               <input
@@ -314,12 +436,12 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, phone: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Message
               </label>
               <textarea
@@ -329,13 +451,13 @@ const Index = () => {
                   setFormData({ ...formData, message: e.target.value })
                 }
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-sk-gold text-sk-dark-blue rounded-lg font-bold hover:bg-sk-gold/90 transition-all btn-premium"
+              className="w-full px-6 py-3 bg-gir-gold text-gir-dark-blue rounded-lg font-bold hover:bg-gir-gold/90 transition-all btn-premium"
             >
               Send Message
             </button>
@@ -344,27 +466,27 @@ const Index = () => {
           {/* Info */}
           <div className="flex flex-col justify-center">
             <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=500&fit=crop"
+              src="/images/generated/contact-us.webp"
               alt="Contact Us"
               className="rounded-lg shadow-lg mb-8"
             />
             <div className="space-y-6">
               <div>
-                <h3 className="font-bold text-sk-dark-blue mb-2">Location</h3>
+                <h3 className="font-bold text-gir-dark-blue mb-2">Location</h3>
                 <p className="text-gray-600">Palwal, Haryana, India</p>
               </div>
               <div>
-                <h3 className="font-bold text-sk-dark-blue mb-2">Contact</h3>
+                <h3 className="font-bold text-gir-dark-blue mb-2">Contact</h3>
                 <p className="text-gray-600">
-                  <a href="tel:+918238902687" className="hover:text-sk-gold">
+                  <a href="tel:+918238902687" className="hover:text-gir-gold">
                     +91-8238902687
                   </a>
                   <br />
                   <a
-                    href="mailto:info@skprecast-industries.com"
-                    className="hover:text-sk-gold"
+                    href="mailto:info@girprecast-industries.com"
+                    className="hover:text-gir-gold"
                   >
-                    info@skprecast-industries.com
+                    info@girprecast-industries.com
                   </a>
                 </p>
               </div>

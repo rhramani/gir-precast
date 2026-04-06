@@ -23,10 +23,10 @@ const Catalogue = () => {
               className="flex items-center justify-between p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all"
             >
               <div>
-                <h3 className="text-lg font-bold text-sk-dark-blue">{catalogue.name}</h3>
+                <h3 className="text-lg font-bold text-gir-dark-blue">{catalogue.name}</h3>
                 <p className="text-sm text-gray-600">{catalogue.size}</p>
               </div>
-              <button className="px-6 py-2 bg-sk-gold text-sk-dark-blue rounded-lg font-semibold hover:bg-sk-gold/90 transition-all flex items-center gap-2">
+              <button className="px-6 py-2 bg-gir-gold text-gir-dark-blue rounded-lg font-semibold hover:bg-gir-gold/90 transition-all flex items-center gap-2">
                 <Download size={18} />
                 Download
               </button>

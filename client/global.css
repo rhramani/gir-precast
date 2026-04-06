@@ -7,13 +7,13 @@
 
 @layer base {
   /**
-   * SK Precast Industries Color Theme
+   * GIR Precast Industries Color Theme
    * tailwind.config.ts expects the following color variables to be expressed as HSL values.
    * A different format will require also updating the theme in tailwind.config.ts.
   */
   :root {
     --background: 0 0% 100%;
-    --foreground: 201 65% 15%; /* SK Dark Blue */
+    --foreground: 201 65% 15%; /* GIR Dark Blue */
 
     --card: 0 0% 100%;
     --card-foreground: 201 65% 15%;
@@ -21,16 +21,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 201 65% 15%;
 
-    --primary: 201 65% 15%; /* SK Dark Blue #0F2A3F */
+    --primary: 201 65% 15%; /* GIR Dark Blue #0F2A3F */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 41 57% 54%; /* SK Gold #C9A14A */
+    --secondary: 41 57% 54%; /* GIR Gold #C9A14A */
     --secondary-foreground: 201 65% 15%;
 
-    --muted: 0 0% 90%; /* SK Cement #E5E5E5 */
+    --muted: 0 0% 90%; /* GIR Cement #E5E5E5 */
     --muted-foreground: 0 0% 50%;
 
-    --accent: 41 57% 54%; /* SK Gold */
+    --accent: 41 57% 54%; /* GIR Gold */
     --accent-foreground: 201 65% 15%;
 
     --destructive: 0 84.2% 60.2%;
@@ -38,15 +38,15 @@
 
     --border: 0 0% 92%;
     --input: 0 0% 96%;
-    --ring: 41 57% 54%; /* SK Gold */
+    --ring: 41 57% 54%; /* GIR Gold */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 201 65% 15%; /* SK Dark Blue */
+    --sidebar-background: 201 65% 15%; /* GIR Dark Blue */
 
     --sidebar-foreground: 0 0% 100%;
 
-    --sidebar-primary: 41 57% 54%; /* SK Gold */
+    --sidebar-primary: 41 57% 54%; /* GIR Gold */
 
     --sidebar-primary-foreground: 201 65% 15%;
 
@@ -120,7 +120,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-sk-dark-blue font-bold;
+    @apply text-gir-dark-blue font-bold;
   }
 
   h1 {
@@ -194,6 +194,15 @@
   .gold-underline:hover {
     background-size: 100% 2px;
   }
+
+  /* Infinite scrolling marquee */
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-marquee2 {
+    animation: marquee2 40s linear infinite;
+  }
 }
 
 @keyframes fadeIn {
@@ -236,4 +245,14 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0%); }
 }

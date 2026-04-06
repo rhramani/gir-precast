@@ -27,12 +27,12 @@ const ProductCard = ({ name, image, description, href, enquiryHref }: ProductCar
           alt={name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-sk-dark-blue/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gir-dark-blue/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-sk-dark-blue mb-2 line-clamp-2">
+        <h3 className="text-xl font-bold text-gir-dark-blue mb-2 line-clamp-2">
           {name}
         </h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
@@ -43,7 +43,7 @@ const ProductCard = ({ name, image, description, href, enquiryHref }: ProductCar
         <div className="flex gap-3">
           <Link
             to={href}
-            className="flex-1 px-4 py-2 bg-sk-gold text-sk-dark-blue rounded-lg font-semibold hover:bg-sk-gold/90 transition-all text-sm inline-flex items-center justify-center gap-2 group/btn"
+            className="flex-1 px-4 py-2 bg-gir-gold text-gir-dark-blue rounded-lg font-semibold hover:bg-gir-gold/90 transition-all text-sm inline-flex items-center justify-center gap-2 group/btn"
           >
             View More
             <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
@@ -51,7 +51,7 @@ const ProductCard = ({ name, image, description, href, enquiryHref }: ProductCar
           {enquiryHref && (
             <Link
               to={enquiryHref}
-              className="flex-1 px-4 py-2 bg-sk-dark-blue text-white rounded-lg font-semibold hover:bg-sk-dark-blue/90 transition-all text-sm inline-flex items-center justify-center"
+              className="flex-1 px-4 py-2 bg-gir-dark-blue text-white rounded-lg font-semibold hover:bg-gir-dark-blue/90 transition-all text-sm inline-flex items-center justify-center"
             >
               Enquiry
             </Link>
@@ -60,7 +60,7 @@ const ProductCard = ({ name, image, description, href, enquiryHref }: ProductCar
       </div>
 
       {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-12 h-12 bg-sk-gold/20 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute top-0 right-0 w-12 h-12 bg-gir-gold/20 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
 };

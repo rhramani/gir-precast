@@ -4,7 +4,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 interface SectionWrapperProps {
   children: ReactNode;
   className?: string;
-  bg?: "white" | "concrete" | "dark-blue";
+  bg?: "white" | "concrete" | "dark-blue" | "transparent";
   title?: string;
   subtitle?: string;
   id?: string;
@@ -23,10 +23,11 @@ const SectionWrapper = ({
   const bgClass = {
     white: "bg-white",
     concrete: "concrete-texture bg-gray-50",
-    "dark-blue": "bg-sk-dark-blue",
+    "dark-blue": "bg-gir-dark-blue",
+    transparent: "bg-transparent",
   }[bg];
 
-  const textColor = bg === "dark-blue" ? "text-white" : "text-sk-dark-blue";
+  const textColor = (bg === "dark-blue" || bg === "transparent") ? "text-white" : "text-gir-dark-blue";
 
   return (
     <section
@@ -48,12 +49,12 @@ const SectionWrapper = ({
               </h2>
             )}
             {subtitle && (
-              <p className={`text-lg md:text-xl ${bg === "dark-blue" ? "text-gray-300" : "text-gray-600"} max-w-2xl mx-auto`}>
+              <p className={`text-lg md:text-xl ${(bg === "dark-blue" || bg === "transparent") ? "text-gray-300" : "text-gray-600"} max-w-2xl mx-auto`}>
                 {subtitle}
               </p>
             )}
             {title && (
-              <div className={`w-16 h-1 bg-sk-gold mx-auto mt-6 rounded-full transition-all duration-700 ${
+              <div className={`w-16 h-1 bg-gir-gold mx-auto mt-6 rounded-full transition-all duration-700 ${
                 isVisible ? "scale-x-100" : "scale-x-0"
               }`} />
             )}

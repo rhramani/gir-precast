@@ -1,60 +1,133 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const HeroSection = () => {
-  const [animate, setAnimate] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const slides = [
+    {
+      image: "/images/generated/carousel-1.webp",
+      title: "Premium <span className='text-gir-gold'>Precast Solutions</span>",
+      subtitle: "Industry-leading RCC and concrete compound walls engineered for strength and modern design.",
+    },
+    {
+      image: "/images/generated/carousel-2.webp",
+      title: "Durable <span className='text-gir-gold'>Boundary Walls</span>",
+      subtitle: "High-strength concrete boundary walls for maximum security and aesthetic appeal.",
+    },
+    {
+      image: "/images/generated/hero-banner.webp",
+      title: "Advanced <span className='text-gir-gold'>Manufacturing</span>",
+      subtitle: "State-of-the-art facilities delivering consistent quality and precision precast panels.",
+    },
+  ];
+
+  const nextSlide = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsAnimating(false), 1000);
+  }, [isAnimating, slides.length]);
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setTimeout(() => setIsAnimating(false), 1000);
+  };
 
   useEffect(() => {
-    setAnimate(true);
-  }, []);
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
 
   return (
-    <div className="relative w-full h-[500px] md:h-[650px] overflow-hidden bg-sk-dark-blue">
-      {/* Background with overlay */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-r from-sk-dark-blue/90 to-sk-dark-blue/70"
-        style={{
-          backgroundImage: `
-            linear-gradient(135deg, rgba(15, 42, 63, 0.85) 0%, rgba(15, 42, 63, 0.7) 100%),
-            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(201,161,74,0.05)" stroke-width="0.5"/></pattern></defs><rect width="1200" height="600" fill="url(%23grid)"/></svg>')
-          `,
-          backgroundSize: "auto"
-        }}
-      />
+    <div className="relative w-full h-[500px] md:h-[700px] overflow-hidden bg-gir-dark-blue">
+      {/* Slides */}
+      {slides.map((slide, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            index === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
+        >
+          {/* Background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `linear-gradient(135deg, rgba(15, 42, 63, 0.85) 0%, rgba(15, 42, 63, 0.6) 100%), url(${slide.image})`,
+            }}
+          />
+        </div>
+      ))}
 
-      {/* Content */}
-      <div className="relative h-full flex items-center justify-center">
-        <div className={`text-center text-white px-4 max-w-4xl transition-all duration-1000 ${
-          animate ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Premium <span className="text-sk-gold">Precast Solutions</span>
-          </h1>
+      {/* Content Layer (Universal content or per-slide content) */}
+      <div className="relative h-full container mx-auto px-4 flex items-center justify-center">
+        <div className="text-center text-white max-w-4xl">
+          <div className="overflow-hidden">
+            <h1 
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight transition-all duration-700 drop-shadow-2xl text-white"
+              dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}
+            />
+          </div>
           
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
-            Industry-leading RCC and concrete compound walls engineered for strength, durability, and modern design.
+          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto transition-all duration-700 font-medium drop-shadow-md">
+            {slides[currentSlide].subtitle}
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
               to="/contact"
-              className="px-8 py-4 bg-sk-gold text-sk-dark-blue rounded-lg font-bold text-lg hover:bg-sk-gold/90 transition-all btn-premium shadow-lg"
+              className="px-10 py-4 bg-gir-gold text-gir-dark-blue rounded-lg font-bold text-lg hover:bg-gir-gold/90 transition-all btn-premium shadow-xl"
             >
-              Get Quote Now
+              Get Free Quote
             </Link>
             <Link
               to="/products/compound-wall"
-              className="px-8 py-4 bg-transparent border-2 border-sk-gold text-sk-gold rounded-lg font-bold text-lg hover:bg-sk-gold/10 transition-all"
+              className="px-10 py-4 bg-transparent border-2 border-gir-gold text-gir-gold rounded-lg font-bold text-lg hover:bg-gir-gold/20 transition-all"
             >
-              Explore Products
+              Our Products
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent" />
+      {/* Navigation Arrows */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all hidden md:block"
+      >
+        <ChevronLeft size={32} />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all hidden md:block"
+      >
+        <ChevronRight size={32} />
+      </button>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              if (!isAnimating) {
+                setIsAnimating(true);
+                setCurrentSlide(index);
+                setTimeout(() => setIsAnimating(false), 1000);
+              }
+            }}
+            className={`w-12 h-1.5 rounded-full transition-all duration-300 ${
+              index === currentSlide ? "bg-gir-gold w-16" : "bg-white/30"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

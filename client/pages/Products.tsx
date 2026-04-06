@@ -7,26 +7,26 @@ const Products = () => {
 
   const allProducts: Record<string, any[]> = {
     "compound-wall": [
-      { name: "Concrete Folding Compound Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Premium concrete folding walls", href: "#" },
-      { name: "Concrete Precast Single Panel Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "High-quality precast panels", href: "#" },
-      { name: "Factory Boundary Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Industrial-grade boundary walls", href: "#" },
+      { name: "Concrete Folding Compound Wall", image: "/images/generated/product-rcc-compound.webp", description: "Premium concrete folding walls", href: "/product/concrete-folding-compound-wall" },
+      { name: "Concrete Precast Single Panel Wall", image: "/images/generated/product-precast-wall.webp", description: "High-quality precast panels", href: "/product/concrete-precast-single-panel-wall" },
+      { name: "Factory Boundary Wall", image: "/images/generated/product-boundary-wall.webp", description: "Industrial-grade boundary walls", href: "/product/concrete-folding-compound-wall" },
     ],
     "boundary-wall": [
-      { name: "Cement Boundary Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Durable cement walls", href: "#" },
-      { name: "Concrete Boundary Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Strong concrete construction", href: "#" },
+      { name: "Cement Boundary Wall", image: "/images/generated/product-boundary-wall.webp", description: "Durable cement walls", href: "/product/cement-boundary-wall" },
+      { name: "Concrete Boundary Wall", image: "/images/generated/product-boundary-wall.webp", description: "Strong concrete construction", href: "/product/cement-boundary-wall" },
     ],
     "cement-wall": [
-      { name: "Pre Fabricated Cement Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Quick installation cement walls", href: "#" },
+      { name: "Pre Fabricated Cement Wall", image: "/images/generated/product-rcc-compound.webp", description: "Quick installation cement walls", href: "/product/pre-fabricated-cement-wall" },
     ],
     "precast-wall": [
-      { name: "Precast Wall Panels", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Modern precast solutions", href: "#" },
+      { name: "Precast Wall Panels", image: "/images/generated/product-precast-wall.webp", description: "Modern precast solutions", href: "/product/concrete-precast-single-panel-wall" },
     ],
     "rcc-wall": [
-      { name: "RCC Wall Panels", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "High-strength RCC walls", href: "#" },
+      { name: "RCC Wall Panels", image: "/images/generated/product-rcc-compound.webp", description: "High-strength RCC walls", href: "/product/concrete-folding-compound-wall" },
     ],
     "other-products": [
-      { name: "RCC Folding Wall", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Innovative folding design", href: "#" },
-      { name: "Readymade Walls", image: "https://images.unsplash.com/photo-1581578731548-c64695c952950?w=500&h=300&fit=crop", description: "Ready-to-install solutions", href: "#" },
+      { name: "RCC Folding Wall", image: "/images/generated/product-boundary-wall.webp", description: "Innovative folding design", href: "/product/concrete-folding-compound-wall" },
+      { name: "Readymade Walls", image: "/images/generated/product-precast-wall.webp", description: "Ready-to-install solutions", href: "/product/concrete-folding-compound-wall" },
     ],
   };
 
@@ -54,7 +54,7 @@ const Products = () => {
       </div>
       {products.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-gray-600 text-lg">Product details coming soon. Please visit our <a href="/" className="text-sk-gold font-bold">homepage</a> for more information.</p>
+          <p className="text-gray-600 text-lg">Product details coming soon. Please visit our <a href="/" className="text-gir-gold font-bold">homepage</a> for more information.</p>
         </div>
       )}
     </SectionWrapper>

@@ -28,7 +28,7 @@ const Contact = () => {
           {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Name
               </label>
               <input
@@ -39,13 +39,13 @@ const Contact = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+                <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                   Email
                 </label>
                 <input
@@ -56,12 +56,12 @@ const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+                <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                   Phone
                 </label>
                 <input
@@ -72,13 +72,13 @@ const Contact = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Subject
               </label>
               <input
@@ -88,12 +88,12 @@ const Contact = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, subject: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-sk-dark-blue mb-2">
+              <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Message
               </label>
               <textarea
@@ -104,13 +104,13 @@ const Contact = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sk-gold resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-sk-gold text-sk-dark-blue rounded-lg font-bold hover:bg-sk-gold/90 transition-all btn-premium"
+              className="w-full px-6 py-3 bg-gir-gold text-gir-dark-blue rounded-lg font-bold hover:bg-gir-gold/90 transition-all btn-premium"
             >
               Send Message
             </button>
@@ -118,12 +118,12 @@ const Contact = () => {
 
           {/* Contact Info */}
           <div className="space-y-8">
-            <div className="bg-sk-dark-blue text-white p-8 rounded-lg">
+            <div className="bg-gir-dark-blue text-white p-8 rounded-lg">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
 
               <div className="space-y-6">
                 <div className="flex gap-4">
-                  <MapPin size={24} className="text-sk-gold flex-shrink-0" />
+                  <MapPin size={24} className="text-gir-gold flex-shrink-0" />
                   <div>
                     <h4 className="font-bold mb-1">Address</h4>
                     <p className="text-gray-300">Palwal, Haryana, India</p>
@@ -131,15 +131,15 @@ const Contact = () => {
                 </div>
 
                 <div className="flex gap-4">
-                  <Phone size={24} className="text-sk-gold flex-shrink-0" />
+                  <Phone size={24} className="text-gir-gold flex-shrink-0" />
                   <div>
                     <h4 className="font-bold mb-1">Phone</h4>
                     <p className="text-gray-300">
-                      <a href="tel:+918238902687" className="hover:text-sk-gold">
+                      <a href="tel:+918238902687" className="hover:text-gir-gold">
                         +91-8238902687
                       </a>
                       <br />
-                      <a href="tel:+919896908099" className="hover:text-sk-gold">
+                      <a href="tel:+919896908099" className="hover:text-gir-gold">
                         +91-9896908099
                       </a>
                     </p>
@@ -147,22 +147,22 @@ const Contact = () => {
                 </div>
 
                 <div className="flex gap-4">
-                  <Mail size={24} className="text-sk-gold flex-shrink-0" />
+                  <Mail size={24} className="text-gir-gold flex-shrink-0" />
                   <div>
                     <h4 className="font-bold mb-1">Email</h4>
                     <p className="text-gray-300">
                       <a
-                        href="mailto:info@skprecast-industries.com"
-                        className="hover:text-sk-gold"
+                        href="mailto:info@girprecast-industries.com"
+                        className="hover:text-gir-gold"
                       >
-                        info@skprecast-industries.com
+                        info@girprecast-industries.com
                       </a>
                     </p>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
-                  <Clock size={24} className="text-sk-gold flex-shrink-0" />
+                  <Clock size={24} className="text-gir-gold flex-shrink-0" />
                   <div>
                     <h4 className="font-bold mb-1">Working Hours</h4>
                     <p className="text-gray-300">Mon - Sun: 9:00 AM - 6:00 PM</p>

@@ -57,11 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // SK Precast custom colors
-        "sk-dark-blue": "#0F2A3F",
-        "sk-gold": "#C9A14A",
-        "sk-cement": "#E5E5E5",
-        "sk-concrete": "#BFBFBF",
+        // GIR Precast custom colors
+        "gir-dark-blue": "#0F2A3F",
+        "gir-gold": "#C9A14A",
+        "gir-cement": "#E5E5E5",
+        "gir-concrete": "#BFBFBF",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
 import Gallery from "./pages/Gallery";
 import Blog from "./pages/Blog";
 import Testimonials from "./pages/Testimonials";
@@ -31,6 +32,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
+          <Route path="/product/:slug" element={<ProductDetail />} />
+          <Route path="/:slug.htm" element={<ProductDetail />} />
           <Route path="/products/:category" element={<Products />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blog" element={<Blog />} />
