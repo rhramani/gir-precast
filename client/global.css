@@ -13,50 +13,50 @@
   */
   :root {
     --background: 0 0% 100%;
-    --foreground: 201 65% 15%; /* GIR Dark Blue */
+    --foreground: 0 0% 21%; /* Dark Gray */
 
     --card: 0 0% 100%;
-    --card-foreground: 201 65% 15%;
+    --card-foreground: 0 0% 21%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 201 65% 15%;
+    --popover-foreground: 0 0% 21%;
 
-    --primary: 201 65% 15%; /* GIR Dark Blue #0F2A3F */
+    --primary: 225 54% 20%; /* GIR Dark Blue #182650 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 41 57% 54%; /* GIR Gold #C9A14A */
-    --secondary-foreground: 201 65% 15%;
+    --secondary: 20 88% 54%; /* GIR Orange #F16722 */
+    --secondary-foreground: 225 54% 20%;
 
     --muted: 0 0% 90%; /* GIR Cement #E5E5E5 */
     --muted-foreground: 0 0% 50%;
 
-    --accent: 41 57% 54%; /* GIR Gold */
-    --accent-foreground: 201 65% 15%;
+    --accent: 20 88% 54%; /* GIR Orange */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 0 0% 92%;
     --input: 0 0% 96%;
-    --ring: 41 57% 54%; /* GIR Gold */
+    --ring: 20 88% 54%; /* GIR Orange */
 
     --radius: 0.5rem;
 
-    --sidebar-background: 201 65% 15%; /* GIR Dark Blue */
+    --sidebar-background: 225 54% 20%; /* GIR Dark Blue */
 
     --sidebar-foreground: 0 0% 100%;
 
-    --sidebar-primary: 41 57% 54%; /* GIR Gold */
+    --sidebar-primary: 20 88% 54%; /* GIR Orange */
 
-    --sidebar-primary-foreground: 201 65% 15%;
+    --sidebar-primary-foreground: 0 0% 100%;
 
     --sidebar-accent: 0 0% 90%;
 
-    --sidebar-accent-foreground: 201 65% 15%;
+    --sidebar-accent-foreground: 225 54% 20%;
 
     --sidebar-border: 0 0% 85%;
 
-    --sidebar-ring: 41 57% 54%;
+    --sidebar-ring: 20 88% 54%;
   }
 
   .dark {
@@ -145,9 +145,9 @@
       repeating-linear-gradient(90deg, rgba(0,0,0,.02) 0px, transparent 1px, transparent 2px, rgba(0,0,0,.03) 3px);
   }
 
-  /* Gold gradient accent */
-  .gold-gradient {
-    background: linear-gradient(135deg, #C9A14A 0%, #E8D5B7 100%);
+  /* Orange gradient accent */
+  .orange-gradient {
+    background: linear-gradient(135deg, #f16722 0%, #ff8c4f 100%);
   }
 
   /* Smooth fade in animation */
@@ -181,17 +181,17 @@
     transform: translateY(0);
   }
 
-  /* Gold underline effect */
-  .gold-underline {
+  /* Orange underline effect */
+  .orange-underline {
     @apply relative pb-2;
-    background: linear-gradient(90deg, #C9A14A 0%, transparent 100%);
+    background: linear-gradient(90deg, #f16722 0%, transparent 100%);
     background-size: 0% 2px;
     background-position: left bottom;
     background-repeat: no-repeat;
     transition: background-size 0.3s ease;
   }
 
-  .gold-underline:hover {
+  .orange-underline:hover {
     background-size: 100% 2px;
   }
 
@@ -256,3 +256,4 @@
   0% { transform: translateX(100%); }
   100% { transform: translateX(0%); }
 }
+

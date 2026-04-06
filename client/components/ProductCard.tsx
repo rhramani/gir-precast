@@ -7,10 +7,10 @@ interface ProductCardProps {
   image: string;
   description: string;
   href: string;
-  enquiryHref?: string;
+  onEnquiryClick?: () => void;
 }
 
-const ProductCard = ({ name, image, description, href, enquiryHref }: ProductCardProps) => {
+const ProductCard = ({ name, image, description, href, onEnquiryClick }: ProductCardProps) => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
@@ -35,34 +35,33 @@ const ProductCard = ({ name, image, description, href, enquiryHref }: ProductCar
         <h3 className="text-xl font-bold text-gir-dark-blue mb-2 line-clamp-2">
           {name}
         </h3>
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+        <p className="text-gir-dark-gray text-sm mb-4 line-clamp-2">
           {description}
         </p>
 
         {/* Button Group */}
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <Link
             to={href}
-            className="flex-1 px-4 py-2 bg-gir-gold text-gir-dark-blue rounded-lg font-semibold hover:bg-gir-gold/90 transition-all text-sm inline-flex items-center justify-center gap-2 group/btn"
+            className="flex-1 px-4 py-3 border-2 border-gir-dark-blue text-gir-dark-blue rounded hover:bg-gir-dark-blue hover:text-white font-black uppercase tracking-widest text-[10px] italic inline-flex items-center justify-center gap-2 group/btn transition-all active:scale-95"
           >
             View More
-            <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+            <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
           </Link>
-          {enquiryHref && (
-            <Link
-              to={enquiryHref}
-              className="flex-1 px-4 py-2 bg-gir-dark-blue text-white rounded-lg font-semibold hover:bg-gir-dark-blue/90 transition-all text-sm inline-flex items-center justify-center"
-            >
-              Enquiry
-            </Link>
-          )}
+          <button
+            onClick={onEnquiryClick}
+            className="flex-1 px-4 py-3 bg-gir-orange text-white rounded font-black uppercase tracking-widest text-[10px] italic inline-flex items-center justify-center transition-all hover:bg-gir-orange/90 active:scale-95 shadow-lg"
+          >
+            Get Best Price
+          </button>
         </div>
       </div>
 
       {/* Corner accent */}
-      <div className="absolute top-0 right-0 w-12 h-12 bg-gir-gold/20 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute top-0 right-0 w-12 h-12 bg-gir-orange/20 rounded-bl-lg opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
 };
 
 export default ProductCard;
+

@@ -8,11 +8,14 @@ const Sitemap = () => {
       links: [
         { name: "Home", href: "/" },
         { name: "About Us", href: "/about" },
+        { name: "Products", href: "/products" },
         { name: "Gallery", href: "/gallery" },
         { name: "Blog", href: "/blog" },
         { name: "Testimonials", href: "/testimonials" },
         { name: "Contact Us", href: "/contact" },
+        { name: "Wall Manufacturing Unit", href: "/wall-manufacturing-unit" },
         { name: "Catalogue", href: "/catalogue" },
+        { name: "Site Map", href: "/sitemap" },
       ],
     },
     {
@@ -21,8 +24,6 @@ const Sitemap = () => {
         { name: "Compound Wall", href: "/products/compound-wall" },
         { name: "Boundary Wall", href: "/products/boundary-wall" },
         { name: "Cement Wall", href: "/products/cement-wall" },
-        { name: "Precast Wall", href: "/products/precast-wall" },
-        { name: "RCC Wall", href: "/products/rcc-wall" },
         { name: "Other Products", href: "/products/other-products" },
       ],
     },
@@ -46,7 +47,7 @@ const Sitemap = () => {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="text-gray-600 hover:text-gir-gold transition-colors font-medium"
+                      className="text-gir-dark-gray hover:text-gir-orange transition-colors font-medium"
                     >
                       → {link.name}
                     </Link>
@@ -62,3 +63,5 @@ const Sitemap = () => {
 };
 
 export default Sitemap;
+
+

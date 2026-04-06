@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X, ChevronDown, Facebook, Instagram, Search } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +28,7 @@ const Navbar = () => {
         { name: "Factory Boundary Wall", href: "/product/factory-boundary-wall" },
         { name: "Heavy Readymade Boundary Wall", href: "/product/heavy-readymade-boundary-wall" },
         { name: "Industrial Compound Wall", href: "/product/industrial-compound-wall" },
+        { name: "Panel Build RCC Compound Wall", href: "/product/rcc-compound-wall" },
       ],
     },
     {
@@ -35,6 +39,8 @@ const Navbar = () => {
         { name: "Concrete Prestressed Boundary Walls", href: "/product/concrete-prestressed-boundary-walls" },
         { name: "Precast Boundary Wall", href: "/product/precast-boundary-wall" },
         { name: "RCC Boundary Wall", href: "/product/rcc-boundary-wall" },
+        { name: "Readymade Boundary Wall", href: "/product/readymade-boundary-wall" },
+        { name: "Solar Plant Boundary Wall", href: "/product/solar-plant-boundary-wall" },
       ],
     },
     {
@@ -61,19 +67,31 @@ const Navbar = () => {
       <div className={`hidden md:block w-full border-b border-gir-cement transition-colors duration-300 ${isScrolled ? "bg-white" : "bg-white"}`}>
         <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="mailto:info@girprecast-industries.com" className="text-gir-dark-blue hover:text-gir-gold transition-colors">
-              ✉️ info@girprecast-industries.com
+            <a href="mailto:info@skprecast-industries.com" className="text-gir-dark-blue hover:text-gir-orange transition-colors">
+              ✉️ info@skprecast-industries.com
             </a>
             <span className="text-gray-600">GST: 06AEGFS8126M1ZK</span>
           </div>
           <div className="flex items-center gap-4">
-            <span className="text-gray-600">Follow Us:</span>
-            <a href="#" className="text-gir-dark-blue hover:text-gir-gold transition-colors">
-              f
-            </a>
-            <a href="#" className="text-gir-dark-blue hover:text-gir-gold transition-colors">
-              🔗
-            </a>
+            <span className="text-gray-600 font-medium">Follow Us:</span>
+            <div className="flex items-center gap-2">
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-7 h-7 flex items-center justify-center bg-[#1877F2] rounded-md hover:opacity-90 transition-all shadow-sm group"
+              >
+                <Facebook size={16} className="text-white fill-white transition-transform group-hover:scale-110" />
+              </a>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-7 h-7 flex items-center justify-center bg-gradient-to-tr from-[#FFB700] via-[#FF0000] to-[#800080] rounded-md hover:opacity-90 transition-all shadow-sm group"
+              >
+                <Instagram size={16} className="text-white transition-transform group-hover:scale-110" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -89,15 +107,15 @@ const Navbar = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src="/header_logo.webp" alt="GIR Precast Industries" className="h-20 w-auto" />
+            <img src="/logo.webp" alt="GIR PRECAST PVT LTD" className="h-20 w-auto" />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-8">
-            <Link to="/" className="text-gir-dark-blue hover:text-gir-gold transition-colors font-medium gold-underline">
+            <Link to="/" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline">
               Home
             </Link>
-            <Link to="/about" className="text-gir-dark-blue hover:text-gir-gold transition-colors font-medium gold-underline">
+            <Link to="/about" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline">
               About Us
             </Link>
 
@@ -107,7 +125,7 @@ const Navbar = () => {
               onMouseEnter={() => setOpenDropdown("products")}
               onMouseLeave={() => setOpenDropdown(null)}
             >
-              <button className="flex items-center gap-1 text-gir-dark-blue hover:text-gir-gold transition-colors font-medium">
+              <button className="flex items-center gap-1 text-gir-dark-blue hover:text-gir-orange transition-colors font-medium">
                 Products
                 <ChevronDown size={18} className="group-hover:rotate-180 transition-transform" />
               </button>
@@ -124,7 +142,7 @@ const Navbar = () => {
                         <li key={item.name}>
                           <Link
                             to={item.href}
-                            className="text-gray-600 hover:text-gir-gold text-sm transition-colors"
+                            className="text-gray-600 hover:text-gir-orange text-sm transition-colors"
                           >
                             {item.name}
                           </Link>
@@ -136,19 +154,64 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link to="/gallery" className="text-gir-dark-blue hover:text-gir-gold transition-colors font-medium gold-underline">
-              Gallery
-            </Link>
-            <Link to="/blog" className="text-gir-dark-blue hover:text-gir-gold transition-colors font-medium gold-underline">
-              Blog
-            </Link>
-            <Link to="/testimonials" className="text-gir-dark-blue hover:text-gir-gold transition-colors font-medium gold-underline">
-              Testimonials
-            </Link>
-            <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-gold transition-colors font-medium gold-underline">
+            <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline uppercase tracking-tight text-xs">
               Catalogue
             </Link>
-            <Link to="/contact" className="px-6 py-2 bg-gir-gold text-gir-dark-blue rounded-lg hover:bg-gir-gold/90 transition-all btn-premium font-semibold">
+            
+            <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline uppercase tracking-tight text-xs">
+              Blog
+            </Link>
+
+            {/* Search Feature - Dropdown Style */}
+            <div className="relative group flex items-center">
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className={`transition-all p-2 rounded-full hover:bg-gray-100 ${isSearchOpen ? "text-gir-orange" : "text-gir-dark-blue hover:text-gir-orange"}`}
+                aria-label="Toggle search"
+              >
+                <Search size={22} strokeWidth={2.5} />
+              </button>
+
+              {isSearchOpen && (
+                <div className="absolute top-[120%] right-0 z-50 flex items-center bg-[#1a1a1a] rounded-lg overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.3)] animate-in fade-in slide-in-from-top-4 duration-300 border border-gray-800">
+                  <div className="flex items-center min-w-[280px]">
+                    <input
+                      type="text"
+                      placeholder="Search text here..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={(e) => {
+                          if (e.key === "Enter" && searchQuery.trim()) {
+                              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                              setIsSearchOpen(false);
+                          }
+                      }}
+                      className="bg-transparent text-white px-4 py-2.5 text-sm outline-none w-full italic font-sans"
+                      autoFocus
+                    />
+                    <button 
+                      onClick={() => {
+                          if (searchQuery.trim()) {
+                              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                              setIsSearchOpen(false);
+                          }
+                      }}
+                      className="bg-gir-orange hover:bg-gir-orange/90 text-white px-4 py-2.5 text-xs font-bold uppercase transition-colors whitespace-nowrap"
+                    >
+                      GO
+                    </button>
+                    <button 
+                      onClick={() => setIsSearchOpen(false)}
+                      className="text-gray-500 hover:text-white px-3 transition-colors border-l border-gray-800"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link to="/contact" className="px-6 py-2 bg-gir-orange text-white rounded-lg hover:bg-gir-orange/90 transition-all btn-premium font-semibold">
               Contact Us
             </Link>
           </div>
@@ -166,10 +229,10 @@ const Navbar = () => {
         {isOpen && (
           <div className="lg:hidden bg-white border-t border-gir-cement">
             <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <Link to="/" className="text-gir-dark-blue hover:text-gir-gold font-medium py-2" onClick={() => setIsOpen(false)}>
+              <Link to="/" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
                 Home
               </Link>
-              <Link to="/about" className="text-gir-dark-blue hover:text-gir-gold font-medium py-2" onClick={() => setIsOpen(false)}>
+              <Link to="/about" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
                 About Us
               </Link>
 
@@ -177,7 +240,7 @@ const Navbar = () => {
               <div>
                 <button
                   onClick={() => setOpenDropdown(openDropdown === "products" ? null : "products")}
-                  className="flex items-center gap-2 text-gir-dark-blue hover:text-gir-gold font-medium py-2 w-full"
+                  className="flex items-center gap-2 text-gir-dark-blue hover:text-gir-orange font-medium py-2 w-full"
                 >
                   Products
                   <ChevronDown size={18} className={openDropdown === "products" ? "rotate-180" : ""} />
@@ -192,7 +255,7 @@ const Navbar = () => {
                             <li key={item.name}>
                               <Link
                                 to={item.href}
-                                className="text-gray-600 hover:text-gir-gold"
+                                className="text-gray-600 hover:text-gir-orange"
                                 onClick={() => setIsOpen(false)}
                               >
                                 {item.name}
@@ -206,19 +269,41 @@ const Navbar = () => {
                 )}
               </div>
 
-              <Link to="/gallery" className="text-gir-dark-blue hover:text-gir-gold font-medium py-2" onClick={() => setIsOpen(false)}>
-                Gallery
-              </Link>
-              <Link to="/blog" className="text-gir-dark-blue hover:text-gir-gold font-medium py-2" onClick={() => setIsOpen(false)}>
-                Blog
-              </Link>
-              <Link to="/testimonials" className="text-gir-dark-blue hover:text-gir-gold font-medium py-2" onClick={() => setIsOpen(false)}>
-                Testimonials
-              </Link>
-              <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-gold font-medium py-2" onClick={() => setIsOpen(false)}>
+              {/* Mobile Search */}
+              <div className="flex items-center bg-[#1a1a1a] rounded mt-2 px-3 py-2">
+                <input
+                  type="text"
+                  placeholder="Search text here..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && searchQuery.trim()) {
+                        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                        setIsOpen(false);
+                    }
+                  }}
+                  className="bg-transparent text-white text-sm outline-none w-full italic"
+                />
+                <button 
+                  onClick={() => {
+                    if (searchQuery.trim()) {
+                        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                        setIsOpen(false);
+                    }
+                  }}
+                  className="bg-gir-orange hover:bg-gir-orange/90 text-white px-3 py-1 rounded text-xs font-bold font-sans ml-2"
+                >
+                  GO
+                </button>
+              </div>
+
+              <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
                 Catalogue
               </Link>
-              <Link to="/contact" className="px-6 py-2 bg-gir-gold text-gir-dark-blue rounded-lg font-semibold text-center" onClick={() => setIsOpen(false)}>
+              <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
+                Blog
+              </Link>
+              <Link to="/contact" className="px-6 py-2 bg-gir-orange text-white rounded-lg font-semibold text-center" onClick={() => setIsOpen(false)}>
                 Contact Us
               </Link>
             </div>
@@ -230,3 +315,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

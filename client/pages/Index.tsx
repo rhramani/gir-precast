@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import ProductCard from "@/components/ProductCard";
+import InquiryModal from "@/components/InquiryModal";
+import { productsData, ProductDetail } from "@/data/products";
 import { 
   Star, 
   Users, 
@@ -13,6 +15,17 @@ import {
 } from "lucide-react";
 
 const Index = () => {
+  const [selectedInquiryProduct, setSelectedInquiryProduct] = useState<ProductDetail | null>(null);
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
+
+  const handleEnquiryClick = (slug: string) => {
+    const product = productsData.find(p => p.slug === slug);
+    if (product) {
+      setSelectedInquiryProduct(product);
+      setIsInquiryModalOpen(true);
+    }
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,47 +36,53 @@ const Index = () => {
 
   const products = [
     {
+      slug: "concrete-folding-compound-wall",
       name: "RCC Compound Wall",
       image: "/images/generated/product-rcc-compound.webp",
       description: "Premium RCC readymade compound walls for residential and industrial properties",
-      href: "/products/compound-wall",
+      href: "/product/concrete-folding-compound-wall",
     },
     {
+      slug: "concrete-boundary-wall",
       name: "Boundary Wall",
       image: "/images/generated/product-boundary-wall.webp",
       description: "Durable concrete boundary walls engineered for maximum strength",
-      href: "/products/boundary-wall",
+      href: "/product/concrete-boundary-wall",
     },
     {
+      slug: "precast-boundary-wall",
       name: "Precast Wall",
       image: "/images/generated/product-precast-wall.webp",
       description: "Modern precast wall panels with quick installation",
-      href: "/products/precast-wall",
+      href: "/product/precast-boundary-wall",
     },
     {
+      slug: "rcc-industrial-one-piece-compound-wall",
       name: "RCC Wall",
       image: "/images/generated/product-rcc-compound.webp",
       description: "High-strength RCC walls for commercial and industrial applications",
-      href: "/products/rcc-wall",
+      href: "/product/rcc-industrial-one-piece-compound-wall",
     },
     {
+      slug: "pre-fabricated-cement-wall",
       name: "Cement Wall",
       image: "/images/generated/cat-cement.webp",
       description: "Prefabricated cement walls offering excellent durability",
-      href: "/products/cement-wall",
+      href: "/product/pre-fabricated-cement-wall",
     },
     {
+      slug: "readymade-compound-wall",
       name: "Readymade Walls",
       image: "/images/generated/product-precast-wall.webp",
       description: "Complete ready-to-install wall solutions for faster projects",
-      href: "/products/other-products",
+      href: "/product/readymade-compound-wall",
     },
   ];
 
   const testimonials = [
     {
       name: "Arjun Kharol",
-      text: "The owner of GIR Precast, Vivek Patel, is exceptional in his dealings—polite, professional, and trustworthy.",
+      text: "The owner of GIR PRECAST PVT LTD, Vivek Patel, is exceptional in his dealings—polite, professional, and trustworthy.",
     },
     {
       name: "Dishant",
@@ -96,6 +115,13 @@ const Index = () => {
 
   return (
     <>
+      {/* Inquiry Modal */}
+      <InquiryModal 
+        product={selectedInquiryProduct}
+        isOpen={isInquiryModalOpen}
+        onClose={() => setIsInquiryModalOpen(false)}
+      />
+
       {/* Hero Section */}
       <HeroSection />
 
@@ -104,9 +130,9 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gir-dark-blue mb-2">
-              Our <span className="text-gir-gold">Product Range</span>
+              Our <span className="text-gir-orange">Product Range</span>
             </h2>
-            <div className="w-24 h-1 bg-gir-gold mx-auto" />
+            <div className="w-24 h-1 bg-gir-orange mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
@@ -153,7 +179,7 @@ const Index = () => {
             ].map((category) => (
               <div
                 key={category.name}
-                className="bg-white border border-gray-100 rounded-sm p-4 flex flex-col h-full hover:border-gir-gold/30 transitions-all duration-300 shadow-xl"
+                className="bg-white border border-gray-100 rounded-sm p-4 flex flex-col h-full hover:border-gir-orange/30 transitions-all duration-300 shadow-xl"
               >
                 {/* Framed Image */}
                 <div className="bg-gray-50 p-2 mb-6 border border-gray-100">
@@ -170,8 +196,8 @@ const Index = () => {
 
                 <ul className="space-y-3 mb-8 flex-grow">
                   {category.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-gray-600 text-sm leading-snug">
-                      <span className="text-gir-gold mt-1 font-bold">›</span>
+                    <li key={item} className="flex gap-2 text-gir-dark-gray text-sm leading-snug">
+                      <span className="text-gir-orange mt-1 font-bold">›</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -179,7 +205,7 @@ const Index = () => {
 
                 <Link
                   to={category.href}
-                  className="text-gir-gold font-bold text-sm hover:underline mt-auto"
+                  className="text-gir-orange font-bold text-sm hover:underline mt-auto"
                 >
                   + View all
                 </Link>
@@ -195,36 +221,60 @@ const Index = () => {
           <div className="fade-in-left">
             <img
               src="/images/generated/manufacturing-unit.webp"
-              alt="GIR Precast Industries"
+              alt="GIR PRECAST PVT LTD"
               className="rounded-lg shadow-lg"
             />
           </div>
           <div className="fade-in-right">
-            <h2 className="text-4xl font-bold text-gir-dark-blue mb-6">
-              Welcome to GIR Precast Industries
+            <h2 className="text-4xl font-bold text-gir-dark-blue mb-6 border-b-2 border-gir-orange pb-2 inline-block">
+              Welcome to GIR PRECAST PVT LTD
             </h2>
-            <p className="text-lg text-gray-600 mb-4">
-              Based in Palwal, Haryana, India, we are a leading manufacturer and supplier of premium RCC and concrete compound walls. Newly established in 2020, we've quickly become a trusted name in the construction industry.
+            <p className="text-lg text-gir-dark-gray mb-6 leading-relaxed">
+              Deeply rooted in Palwal, Haryana, India, **GIR PRECAST PVT LTD** is a well-known manufacturer and supplier of various types of RCC and concrete Compound Walls. 
             </p>
-            <p className="text-lg text-gray-600 mb-6">
-              Our commitment to quality, innovation, and customer satisfaction has made us the preferred choice for builders, contractors, and developers across India.
+            <p className="text-lg text-gir-dark-gray mb-6 leading-relaxed">
+              Newly established in the year 2020, our company operates under the visionary leadership of **Mr. Vivek Koladiya**, our supervisor and the driving force behind our innovative precast solutions.
+            </p>
+            <p className="text-lg text-gir-dark-gray mb-8 leading-relaxed">
+              With an advanced approach in this field, we have successfully met the demands of a large number of wholesale dealers and retailers across the nation, establishing ourselves as a reliable name in the precast industry.
             </p>
             <Link
               to="/about"
-              className="inline-block px-8 py-3 bg-gir-gold text-gir-dark-blue rounded-lg font-bold hover:bg-gir-gold/90 transition-all"
+              className="inline-block px-8 py-3 bg-gir-orange text-white rounded-lg font-bold hover:bg-gir-orange/90 transition-all font-semibold"
             >
               Learn More About Us
             </Link>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-6 mt-12">
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
-                <p className="text-3xl font-bold text-gir-gold mb-2">₹1 Cr+</p>
-                <p className="text-gray-600 font-semibold">Annual Turnover</p>
+            <div className="grid grid-cols-2 gap-6 mt-12 mb-8">
+              <div className="text-center p-6 bg-gray-50 rounded-lg border-t-2 border-gir-orange">
+                <p className="text-3xl font-bold text-gir-orange mb-1">500+</p>
+                <p className="text-gir-dark-gray text-xs font-bold uppercase tracking-wider">Happy Clients</p>
               </div>
-              <div className="text-center p-6 bg-gray-50 rounded-lg">
-                <p className="text-xl font-bold text-gir-dark-blue mb-2">GST</p>
-                <p className="text-gray-600 font-semibold">06AEGFS8126M1ZK</p>
+              <div className="text-center p-6 bg-gray-50 rounded-lg border-t-2 border-gir-dark-blue">
+                <p className="text-3xl font-bold text-gir-dark-blue mb-1">1000+</p>
+                <p className="text-gir-dark-gray text-xs font-bold uppercase tracking-wider">Projects Completed</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-6 bg-concrete-texture rounded-lg border border-gray-100">
+                <h4 className="font-bold text-gir-dark-blue mb-2 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gir-orange rounded-full" />
+                  Our Vision
+                </h4>
+                <p className="text-sm text-gir-dark-gray italic">
+                  "To be the selected supplier of our dealers and spread across the nation as a prominent manufacturer and exporter."
+                </p>
+              </div>
+              <div className="p-6 bg-concrete-texture rounded-lg border border-gray-100">
+                <h4 className="font-bold text-gir-dark-blue mb-2 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gir-orange rounded-full" />
+                  Our Mission
+                </h4>
+                <p className="text-sm text-gir-dark-gray italic">
+                  "Supply a reliable and high-quality Product & service to the client best proficiently and cost-effectively."
+                </p>
               </div>
             </div>
           </div>
@@ -233,21 +283,27 @@ const Index = () => {
 
       {/* Why Choose Us */}
       <SectionWrapper
-        title="Why Choose GIR Precast?"
+        title="Why Choose GIR PRECAST PVT LTD?"
         subtitle="Industry-leading quality and service standards"
         bg="concrete"
       >
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {stats.map((stat) => (
+          {[
+            { label: "Massive distribution network across the country", icon: TrendingUp },
+            { label: "Large-scale high-tech warehouse facilities", icon: Briefcase },
+            { label: "Wide range of quality-certified equipment", icon: Star },
+            { label: "Well-structured modern infrastructure", icon: Users },
+            { label: "Realistic and competitive price range", icon: TrendingUp },
+            { label: "Expedient and transparent business policies", icon: Star },
+          ].map((feature, idx) => (
             <div
-              key={stat.label}
-              className="text-center p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-all scale-in"
+              key={idx}
+              className="text-center p-8 bg-white rounded-lg shadow-md hover:shadow-xl transition-all border-b-4 border-gir-dark-blue hover:border-gir-orange h-full group"
             >
-              <stat.icon size={48} className="text-gir-gold mx-auto mb-4" />
-              <p className="text-3xl font-bold text-gir-dark-blue mb-2">
-                {stat.value}
+              <feature.icon size={48} className="text-gir-orange mx-auto mb-4 group-hover:scale-110 transition-transform" />
+              <p className="text-gir-dark-blue font-bold text-lg leading-relaxed">
+                {feature.label}
               </p>
-              <p className="text-gray-600 font-semibold">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -267,6 +323,7 @@ const Index = () => {
               image={product.image}
               description={product.description}
               href={product.href}
+              onEnquiryClick={() => handleEnquiryClick(product.slug)}
             />
           ))}
         </div>
@@ -276,9 +333,9 @@ const Index = () => {
       <section className="py-20 bg-concrete-texture overflow-hidden">
         <div className="container mx-auto px-4 mb-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gir-dark-blue mb-2">
-            Wall <span className="text-gir-gold">Manufacturing Unit</span>
+            Wall <span className="text-gir-orange">Manufacturing Unit</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gir-dark-gray max-w-2xl mx-auto">
             State-of-the-art facilities showcasing our high-precision production capabilities
           </p>
         </div>
@@ -361,7 +418,7 @@ const Index = () => {
             >
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={20} className="text-gir-gold fill-gir-gold" />
+                  <Star key={i} size={20} className="text-gir-orange fill-gir-orange" />
                 ))}
               </div>
               <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
@@ -391,7 +448,7 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, product: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-orange"
               />
             </div>
 
@@ -406,7 +463,7 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-orange"
               />
             </div>
 
@@ -421,7 +478,7 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-orange"
               />
             </div>
 
@@ -436,7 +493,7 @@ const Index = () => {
                 onChange={(e) =>
                   setFormData({ ...formData, phone: e.target.value })
                 }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-orange"
               />
             </div>
 
@@ -451,13 +508,13 @@ const Index = () => {
                   setFormData({ ...formData, message: e.target.value })
                 }
                 rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-gold resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-orange resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gir-gold text-gir-dark-blue rounded-lg font-bold hover:bg-gir-gold/90 transition-all btn-premium"
+              className="w-full px-6 py-3 bg-gir-orange text-white rounded-lg font-bold hover:bg-gir-orange/90 transition-all btn-premium font-semibold"
             >
               Send Message
             </button>
@@ -473,18 +530,18 @@ const Index = () => {
             <div className="space-y-6">
               <div>
                 <h3 className="font-bold text-gir-dark-blue mb-2">Location</h3>
-                <p className="text-gray-600">Palwal, Haryana, India</p>
+                <p className="text-gir-dark-gray">Palwal, Haryana, India</p>
               </div>
               <div>
                 <h3 className="font-bold text-gir-dark-blue mb-2">Contact</h3>
-                <p className="text-gray-600">
-                  <a href="tel:+918238902687" className="hover:text-gir-gold">
+                <p className="text-gir-dark-gray">
+                  <a href="tel:+918238902687" className="hover:text-gir-orange">
                     +91-8238902687
                   </a>
                   <br />
                   <a
                     href="mailto:info@girprecast-industries.com"
-                    className="hover:text-gir-gold"
+                    className="hover:text-gir-orange"
                   >
                     info@girprecast-industries.com
                   </a>
@@ -499,3 +556,5 @@ const Index = () => {
 };
 
 export default Index;
+
+

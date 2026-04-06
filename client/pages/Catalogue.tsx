@@ -3,10 +3,11 @@ import { Download } from "lucide-react";
 
 const Catalogue = () => {
   const catalogues = [
-    { name: "General Catalogue", size: "2.4 MB" },
-    { name: "Product Specifications", size: "1.8 MB" },
-    { name: "Installation Guide", size: "3.2 MB" },
-    { name: "Pricing & Terms", size: "0.9 MB" },
+    { name: "Precast Compound Wall Catalogue", size: "3.5 MB" },
+    { name: "Boundary Wall Product Guide", size: "2.1 MB" },
+    { name: "Solar Plant Specialty Walls", size: "1.2 MB" },
+    { name: "Ready Made Wall Solutions", size: "2.8 MB" },
+    { name: "Unit Manufacturing Standards", size: "1.5 MB" },
   ];
 
   return (
@@ -24,9 +25,9 @@ const Catalogue = () => {
             >
               <div>
                 <h3 className="text-lg font-bold text-gir-dark-blue">{catalogue.name}</h3>
-                <p className="text-sm text-gray-600">{catalogue.size}</p>
+                <p className="text-sm text-gir-dark-gray">{catalogue.size}</p>
               </div>
-              <button className="px-6 py-2 bg-gir-gold text-gir-dark-blue rounded-lg font-semibold hover:bg-gir-gold/90 transition-all flex items-center gap-2">
+              <button className="px-6 py-2 bg-gir-orange text-white rounded-lg font-semibold hover:bg-gir-orange/90 transition-all flex items-center gap-2">
                 <Download size={18} />
                 Download
               </button>
@@ -39,3 +40,5 @@ const Catalogue = () => {
 };
 
 export default Catalogue;
+
+

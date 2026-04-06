@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+﻿import { ReactNode } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface SectionWrapperProps {
@@ -54,7 +54,7 @@ const SectionWrapper = ({
               </p>
             )}
             {title && (
-              <div className={`w-16 h-1 bg-gir-gold mx-auto mt-6 rounded-full transition-all duration-700 ${
+              <div className={`w-16 h-1 bg-gir-orange mx-auto mt-6 rounded-full transition-all duration-700 ${
                 isVisible ? "scale-x-100" : "scale-x-0"
               }`} />
             )}
@@ -73,3 +73,4 @@ const SectionWrapper = ({
 };
 
 export default SectionWrapper;
+

@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 const Testimonials = () => {
   const testimonials = [
-    { name: "Arjun Kharol", text: "The owner of GIR Precast, Vivek Patel, is exceptional in his dealings—polite, professional, and trustworthy. Highly recommended!", rating: 5 },
+    { name: "Arjun Kharol", text: "The owner of GIR PRECAST PVT LTD, Vivek Patel, is exceptional in his dealings—polite, professional, and trustworthy. Highly recommended!", rating: 5 },
     { name: "Dishant", text: "I ordered a precast wall in Palwal. The RCC panels are solid and well-constructed. Delivery was prompt.", rating: 5 },
     { name: "R Patel", text: "We ordered a Precast Readymade Boundary Wall. Same day shipping and their installation team was professional.", rating: 5 },
     { name: "Mr. Bhupendra", text: "Good quality and good service and team work", rating: 5 },
@@ -25,7 +25,7 @@ const Testimonials = () => {
           >
             <div className="flex gap-1 mb-4">
               {[...Array(testimonial.rating)].map((_, i) => (
-                <Star key={i} size={20} className="text-gir-gold fill-gir-gold" />
+                <Star key={i} size={20} className="text-gir-orange fill-gir-orange" />
               ))}
             </div>
             <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
@@ -38,3 +38,5 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
+

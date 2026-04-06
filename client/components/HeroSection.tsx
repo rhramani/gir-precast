@@ -9,18 +9,18 @@ const HeroSection = () => {
   const slides = [
     {
       image: "/images/generated/carousel-1.webp",
-      title: "Premium <span className='text-gir-gold'>Precast Solutions</span>",
-      subtitle: "Industry-leading RCC and concrete compound walls engineered for strength and modern design.",
+      title: "Readymade <span className='text-gir-orange'>Compound Wall</span>",
+      subtitle: "Leading manufacturer and supplier of high-quality RCC readymade compound walls in Haryana.",
     },
     {
       image: "/images/generated/carousel-2.webp",
-      title: "Durable <span className='text-gir-gold'>Boundary Walls</span>",
-      subtitle: "High-strength concrete boundary walls for maximum security and aesthetic appeal.",
+      title: "Solar Plant <span className='text-gir-orange'>Boundary Walls</span>",
+      subtitle: "Wholesale supplier of specialized solar plant boundary walls and concrete solutions in Palwal.",
     },
     {
       image: "/images/generated/hero-banner.webp",
-      title: "Advanced <span className='text-gir-gold'>Manufacturing</span>",
-      subtitle: "State-of-the-art facilities delivering consistent quality and precision precast panels.",
+      title: "Advanced <span className='text-gir-orange'>Precast Facility</span>",
+      subtitle: "State-of-the-art manufacturing unit delivering precision-engineered precast panels.",
     },
   ];
 
@@ -82,13 +82,13 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link 
               to="/contact"
-              className="px-10 py-4 bg-gir-gold text-gir-dark-blue rounded-lg font-bold text-lg hover:bg-gir-gold/90 transition-all btn-premium shadow-xl"
+              className="px-10 py-4 bg-gir-orange text-white rounded-lg font-bold text-lg hover:bg-gir-orange/90 transition-all btn-premium shadow-xl font-semibold"
             >
               Get Free Quote
             </Link>
             <Link
               to="/products/compound-wall"
-              className="px-10 py-4 bg-transparent border-2 border-gir-gold text-gir-gold rounded-lg font-bold text-lg hover:bg-gir-gold/20 transition-all"
+              className="px-10 py-4 bg-transparent border-2 border-gir-orange text-gir-orange rounded-lg font-bold text-lg hover:bg-gir-orange/20 transition-all"
             >
               Our Products
             </Link>
@@ -123,7 +123,7 @@ const HeroSection = () => {
               }
             }}
             className={`w-12 h-1.5 rounded-full transition-all duration-300 ${
-              index === currentSlide ? "bg-gir-gold w-16" : "bg-white/30"
+              index === currentSlide ? "bg-gir-orange w-16" : "bg-white/30"
             }`}
           />
         ))}
@@ -133,3 +133,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

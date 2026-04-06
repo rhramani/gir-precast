@@ -58,10 +58,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         // GIR Precast custom colors
-        "gir-dark-blue": "#0F2A3F",
-        "gir-gold": "#C9A14A",
+        "gir-dark-blue": "#182650",
+        "gir-orange": "#f16722",
         "gir-cement": "#E5E5E5",
         "gir-concrete": "#BFBFBF",
+        "gir-dark-gray": "#353535",
       },
       borderRadius: {
         lg: "var(--radius)",

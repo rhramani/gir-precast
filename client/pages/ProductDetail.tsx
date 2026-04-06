@@ -1,38 +1,71 @@
 import { useParams, Link } from "react-router-dom";
 import { productsData } from "@/data/products";
 import SectionWrapper from "@/components/SectionWrapper";
-import { ChevronRight, Phone, Mail, ShoppingCart, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { ChevronRight, Phone, Mail, ShoppingCart, CheckCircle2, MessageSquare } from "lucide-react";
+import { useState, useEffect } from "react";
+import InquiryModal from "@/components/InquiryModal";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const ProductDetail = () => {
   const { slug } = useParams();
   const product = productsData.find((p) => p.slug === slug);
-  const [inquiryType, setInquiryType] = useState("Get Best Price");
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
+  const [quantity, setQuantity] = useState<string>(product?.moq?.match(/\d+/)?.[0] || "500");
+  const [unit, setUnit] = useState<string>("Square Feet");
+  const [activeImage, setActiveImage] = useState<string>(product?.image || "");
+
+  // Update active image if product changes
+  useState(() => {
+    if (product) setActiveImage(product.image);
+  });
 
   if (!product) {
     return (
       <div className="min-h-[600px] flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gir-dark-blue mb-4">Product Not Found</h2>
-          <Link to="/" className="text-gir-gold hover:underline">Return to Home</Link>
+          <Link to="/" className="text-gir-orange hover:underline">Return to Home</Link>
         </div>
       </div>
     );
   }
 
+  const handleEnquiryClick = () => {
+    setIsInquiryModalOpen(true);
+  };
+
   return (
     <div className="bg-white">
+      {/* Inquiry Modal */}
+      <InquiryModal 
+        product={product} 
+        isOpen={isInquiryModalOpen} 
+        onClose={() => setIsInquiryModalOpen(false)} 
+        initialQuantity={quantity}
+        initialUnit={unit}
+      />
+
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <Link to="/" className="hover:text-gir-dark-blue">Home</Link>
+            <Link to="/" className="hover:text-gir-dark-blue font-medium">Home</Link>
             <ChevronRight size={14} />
-            <Link to={`/products/${product.categorySlug}`} className="hover:text-gir-dark-blue">
+            <Link to={`/products/${product.categorySlug}`} className="hover:text-gir-dark-blue font-medium">
               {product.category}
             </Link>
             <ChevronRight size={14} />
-            <span className="text-gir-dark-blue font-medium truncate">{product.name}</span>
+            <span className="text-gir-dark-blue font-black truncate uppercase tracking-tight">{product.name}</span>
           </div>
         </div>
       </div>
@@ -41,68 +74,119 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image Section */}
           <div className="space-y-6">
-            <div className="relative group overflow-hidden rounded-lg border border-gray-100 shadow-lg bg-white p-4">
-              <img
-                src={product.image}
+            <div className="relative group overflow-hidden rounded-lg border border-gray-100 shadow-xl bg-white p-4">
+              <motion.img
+                key={activeImage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                src={activeImage}
                 alt={product.name}
-                className="w-full aspect-[4/3] object-cover rounded shadow transition-transform duration-500 group-hover:scale-105"
+                className="w-full aspect-[4/3] object-contain rounded shadow-inner"
               />
-              <div className="absolute top-4 right-4 bg-gir-gold text-gir-dark-blue text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                Authorized Manufacturer
+              <div className="absolute top-6 right-6 bg-gir-orange text-gir-dark-blue text-[10px] font-black px-4 py-1.5 rounded uppercase tracking-[0.2em] shadow-lg border border-white/20">
+                Authorized Supplier
               </div>
             </div>
             
-            {/* Gallery Mini-thumb placeholder or more images could go here */}
-            <div className="grid grid-cols-4 gap-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="aspect-square bg-gray-50 rounded border border-gray-100 overflow-hidden cursor-pointer hover:border-gir-gold transition-colors">
-                  <img src={product.image} className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-opacity" />
-                </div>
-              ))}
-            </div>
+            {/* Gallery Mini-thumbs */}
+            {product.gallery && product.gallery.length > 0 && (
+              <div className="grid grid-cols-5 gap-3">
+                {product.gallery.map((img, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => setActiveImage(img)}
+                    className={cn(
+                      "aspect-square rounded border-2 overflow-hidden cursor-pointer transition-all p-1 bg-white shadow-sm",
+                      activeImage === img ? "border-gir-orange scale-105" : "border-transparent opacity-60 hover:opacity-100 hover:border-gray-200"
+                    )}
+                  >
+                    <img src={img} className="w-full h-full object-cover rounded-sm" />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Content Section */}
           <div className="space-y-8">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-gir-dark-blue mb-4 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-black text-gir-dark-blue mb-4 leading-[1.1] uppercase tracking-tighter">
                 {product.name}
               </h1>
-              <div className="h-1 w-20 bg-gir-gold mb-6" />
+              <div className="h-1.5 w-24 bg-gir-orange mb-8 rounded-full" />
               
-              {product.price && (
-                <div className="flex items-baseline gap-4 mb-2">
-                  <span className="text-2xl font-bold text-gir-gold">{product.price}</span>
-                  <span className="text-gray-500 text-sm italic">Excluding GST</span>
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 mb-8 shadow-inner">
+                <div className="flex flex-wrap items-center gap-6">
+                  <div>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Estimated Price</p>
+                    <p className="text-3xl font-black text-gir-orange">{product.price || "Contact for Quote"}</p>
+                  </div>
+                  {product.moq && (
+                    <div className="pl-6 border-l border-gray-200">
+                      <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Minimum Order</p>
+                      <p className="text-lg font-bold text-gir-dark-blue">{product.moq}</p>
+                    </div>
+                  )}
                 </div>
-              )}
-              {product.moq && (
-                <p className="text-gray-600 font-medium mb-6">
-                  <span className="text-gir-dark-blue">MOQ:</span> {product.moq}
+              </div>
+
+              {/* Quantity & Unit Selection (Calculation Area) */}
+              <div className="space-y-4 mb-10">
+                <p className="text-sm font-black text-gir-dark-blue uppercase tracking-wider flex items-center gap-2">
+                   <ShoppingCart size={18} className="text-gir-orange" />
+                   Get Best Price for Your Requirement
                 </p>
-              )}
+                <div className="flex flex-wrap gap-4">
+                  <div className="flex-1 min-w-[150px]">
+                    <Input 
+                      type="number"
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      placeholder="Enter Quantity"
+                      className="h-14 border-2 border-gray-200 focus:border-gir-orange font-black text-lg text-gir-dark-blue"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-[150px]">
+                    <Select value={unit} onValueChange={setUnit}>
+                      <SelectTrigger className="h-14 border-2 border-gray-200 focus:border-gir-orange font-black text-gir-dark-blue">
+                        <SelectValue placeholder="Unit" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Feet">Feet</SelectItem>
+                        <SelectItem value="Square Feet">Square Feet</SelectItem>
+                        <SelectItem value="Meters">Meters</SelectItem>
+                        <SelectItem value="Nos">Nos</SelectItem>
+                        <SelectItem value="Running Feet">Running Feet</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
               
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button 
-                  onClick={() => window.location.href = '#enquiry-section'}
-                  className="flex-1 px-8 py-4 bg-gir-gold text-gir-dark-blue font-bold rounded-lg hover:bg-gir-gold/90 transition-all flex items-center justify-center gap-2 shadow-lg"
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  onClick={handleEnquiryClick}
+                  className="flex-[2] h-auto py-5 bg-gir-orange hover:bg-black text-white font-black uppercase tracking-widest italic shadow-xl transition-all active:scale-95 text-base"
                 >
-                  <ShoppingCart size={20} />
                   Get Best Price
-                </button>
-                <button 
-                  className="flex-1 px-8 py-4 border-2 border-gir-dark-blue text-gir-dark-blue font-bold rounded-lg hover:bg-gir-dark-blue hover:text-white transition-all flex items-center justify-center gap-2"
+                </Button>
+                <Button 
+                  onClick={() => {
+                    const el = document.getElementById('enquiry-section');
+                    el?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  variant="outline"
+                  className="flex-1 h-auto py-5 border-2 border-gir-dark-blue text-gir-dark-blue hover:bg-gir-dark-blue hover:text-white font-black uppercase tracking-widest italic transition-all active:scale-95 text-sm"
                 >
-                  <ShoppingCart size={20} />
                   Send Enquiry
-                </button>
+                </Button>
               </div>
             </div>
 
             {/* Specifications Table */}
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
               <h3 className="text-lg font-bold text-gir-dark-blue mb-4 flex items-center gap-2">
-                <CheckCircle2 className="text-gir-gold" size={20} />
+                <CheckCircle2 className="text-gir-orange" size={20} />
                 Product Specifications
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8">
@@ -120,8 +204,8 @@ const ProductDetail = () => {
               <h3 className="text-lg font-bold text-gir-dark-blue mb-4">Key Features</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {product.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-2 text-gray-600">
-                    <div className="w-1.5 h-1.5 bg-gir-gold rounded-full" />
+                  <div key={feature} className="flex items-center gap-2 text-gir-dark-gray">
+                    <div className="w-1.5 h-1.5 bg-gir-orange rounded-full" />
                     <span>{feature}</span>
                   </div>
                 ))}
@@ -135,32 +219,32 @@ const ProductDetail = () => {
           <div className="bg-gir-dark-blue text-white p-8 rounded-t-xl">
             <h2 className="text-2xl font-bold">Product Description</h2>
           </div>
-          <div className="bg-gray-50 p-8 rounded-b-xl border-x border-b border-gray-100 prose prose-lg max-w-none text-gray-600">
+          <div className="bg-gray-50 p-8 rounded-b-xl border-x border-b border-gray-100 prose prose-lg max-w-none text-gir-dark-gray">
             <p className="leading-relaxed mb-6">
               {product.description}
             </p>
             <p>
-              At **GIR Precast Industries**, we focus on providing high-strength, durable, and cost-effective boundary solutions. Our precast technology ensures that every panel and pillar is manufactured under strict quality control, offering you a product that is far superior to traditional brick-and-mortar walls.
+              At **GIR PRECAST PVT LTD**, we focus on providing high-strength, durable, and cost-effective boundary solutions. Our precast technology ensures that every panel and pillar is manufactured under strict quality control, offering you a product that is far superior to traditional brick-and-mortar walls.
             </p>
           </div>
         </div>
 
         {/* Large Inquiry Form (As requested for Dynamic Page Behavior) */}
         <div id="enquiry-section" className="mt-20 bg-concrete-texture rounded-2xl p-8 md:p-12 border border-gray-200 shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gir-gold" />
+          <div className="absolute top-0 left-0 w-full h-2 bg-gir-orange" />
           <div className="max-w-4xl mx-auto text-center mb-10">
             <h2 className="text-3xl font-bold mb-4 italic">Yes! I am interested</h2>
-            <p className="text-gray-600">Submit your requirement and our experts will get back to you with the best quote.</p>
+            <p className="text-gir-dark-gray">Submit your requirement and our experts will get back to you with the best quote.</p>
           </div>
           
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="space-y-4">
-              <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-gold outline-none" required />
-              <input type="email" placeholder="Email Address" className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-gold outline-none" required />
-              <input type="tel" placeholder="Mobile Number" className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-gold outline-none" required />
+              <input type="text" placeholder="Your Name" className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-orange outline-none" required />
+              <input type="email" placeholder="Email Address" className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-orange outline-none" required />
+              <input type="tel" placeholder="Mobile Number" className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-orange outline-none" required />
             </div>
             <div className="space-y-4">
-              <textarea placeholder="Tell us about your requirement..." rows={5} className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-gold outline-none resize-none" required />
+              <textarea placeholder="Tell us about your requirement..." rows={5} className="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:ring-2 focus:ring-gir-orange outline-none resize-none" required />
             </div>
             <div className="md:col-span-2">
               <button 
@@ -175,7 +259,7 @@ const ProductDetail = () => {
       </SectionWrapper>
       
       {/* Contact floating bar (Similar to SK Precast requirement) */}
-      <div className="bg-gir-gold py-6 sticky bottom-0 z-40 hidden md:block">
+      <div className="bg-gir-orange py-6 sticky bottom-0 z-40 hidden md:block">
         <div className="container mx-auto px-4 flex justify-between items-center text-gir-dark-blue font-bold">
           <p>Looking for a custom quote? Call us now!</p>
           <div className="flex gap-8">
@@ -195,3 +279,5 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+

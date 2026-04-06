@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+﻿import { useRef, useEffect, useState } from "react";
 
 export const useScrollAnimation = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,3 +30,4 @@ export const useScrollAnimation = () => {
 
   return { ref, isVisible };
 };
+
