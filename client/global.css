@@ -257,3 +257,72 @@
   100% { transform: translateX(0%); }
 }
 
+
+/* React Phone Input 2 Custom Styles */
+.phone-input-container .react-tel-input .form-control {
+  @apply !w-full !h-11 !text-[15px] !text-gir-dark-blue !bg-white !border-gray-200 !rounded-lg !pl-14 !shadow-sm !transition-all;
+}
+
+.phone-input-container .react-tel-input .form-control:focus {
+  @apply !border-gir-orange !ring-4 !ring-gir-orange/10 !outline-none;
+}
+
+.phone-input-container .react-tel-input .flag-dropdown {
+  @apply !bg-gray-50 !border-gray-200 !border-r-0 !rounded-l-lg !h-11 !transition-colors;
+}
+
+.phone-input-container .react-tel-input .flag-dropdown.open,
+.phone-input-container .react-tel-input .flag-dropdown:hover {
+  @apply !bg-gray-100;
+}
+
+/* Dropdown List */
+.phone-input-container .react-tel-input .country-list {
+  @apply !bg-white !shadow-[0_20px_50px_rgba(0,0,0,0.15)] !rounded-xl !border-gray-100 !mt-2 !pb-2 !px-1 !min-w-[300px] !max-h-[350px];
+  z-index: 10000 !important;
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb transparent;
+}
+
+/* Search Box Wrapper */
+.phone-input-container .react-tel-input .country-list .search {
+  @apply !sticky !top-0 !bg-white/95 !backdrop-blur-sm !z-20 !pt-3 !pb-3 !px-2 !mb-2 !border-b !border-gray-100;
+}
+
+/* Actual Search Input Field */
+.phone-input-container .react-tel-input .search-box {
+  @apply !w-full !h-10 !px-10 !bg-gray-50 !border !border-gray-200 !rounded-lg !text-sm !text-gir-dark-blue !outline-none !transition-all;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='11.35'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 12px center;
+}
+
+.phone-input-container .react-tel-input .search-box:focus {
+  @apply !bg-white !border-gir-orange !ring-4 !ring-gir-orange/5;
+}
+
+/* Country List Items */
+.phone-input-container .react-tel-input .country-list .country {
+  @apply !flex !items-center !gap-3 !py-3 !px-4 !rounded-lg !text-[14px] !text-gray-700 !transition-all !mx-1;
+}
+
+.phone-input-container .react-tel-input .country-list .country:hover {
+  @apply !bg-gray-50 !text-gir-dark-blue;
+}
+
+.phone-input-container .react-tel-input .country-list .country.highlight {
+  @apply !bg-gir-orange/10 !text-gir-orange !font-semibold;
+}
+
+.phone-input-container .react-tel-input .country-list .country .dial-code {
+  @apply !text-gray-400 !ml-auto !font-medium;
+}
+
+.phone-input-container .react-tel-input .country-list .country-name {
+  @apply !text-gir-dark-blue;
+}
+
+.phone-input-container .react-tel-input .country-list .country.highlight .country-name {
+  @apply !text-gir-orange;
+}
+

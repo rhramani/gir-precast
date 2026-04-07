@@ -22,6 +22,8 @@ import Catalogue from "./pages/Catalogue";
 import WallManufacturingUnit from "./pages/WallManufacturingUnit";
 import Sitemap from "./pages/Sitemap";
 import Search from "./pages/Search";
+import AllProducts from "./pages/AllProducts";
+import CurrentJobs from "./pages/CurrentJobs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -48,6 +50,8 @@ const App = () => (
           <Route path="/catalogue" element={<Catalogue />} />
           <Route path="/wall-manufacturing-unit" element={<WallManufacturingUnit />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/current-jobs" element={<CurrentJobs />} />
           <Route path="/search" element={<Search />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

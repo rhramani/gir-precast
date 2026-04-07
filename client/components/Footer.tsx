@@ -67,6 +67,9 @@ const Footer = () => {
               <Link to="/contact" className="text-gray-300 hover:text-gir-orange transition-colors">
                 Contact Us
               </Link>
+              <Link to="/current-jobs" className="text-gray-300 hover:text-gir-orange transition-colors">
+                Current Jobs
+              </Link>
             </div>
           </div>
 

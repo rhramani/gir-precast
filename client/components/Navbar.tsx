@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Facebook, Instagram, Search } from "lucide-react";
 
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +18,16 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const products = [
@@ -28,7 +39,7 @@ const Navbar = () => {
         { name: "Factory Boundary Wall", href: "/product/factory-boundary-wall" },
         { name: "Heavy Readymade Boundary Wall", href: "/product/heavy-readymade-boundary-wall" },
         { name: "Industrial Compound Wall", href: "/product/industrial-compound-wall" },
-        { name: "Panel Build RCC Compound Wall", href: "/product/rcc-compound-wall" },
+        // { name: "Panel Build RCC Compound Wall", href: "/product/panel-build-rcc-compound-wall" },
       ],
     },
     {
@@ -39,8 +50,8 @@ const Navbar = () => {
         { name: "Concrete Prestressed Boundary Walls", href: "/product/concrete-prestressed-boundary-walls" },
         { name: "Precast Boundary Wall", href: "/product/precast-boundary-wall" },
         { name: "RCC Boundary Wall", href: "/product/rcc-boundary-wall" },
-        { name: "Readymade Boundary Wall", href: "/product/readymade-boundary-wall" },
-        { name: "Solar Plant Boundary Wall", href: "/product/solar-plant-boundary-wall" },
+        // { name: "Readymade Boundary Wall", href: "/product/readymade-boundary-wall" },
+        // { name: "Solar Plant Boundary Wall", href: "/product/solar-plant-boundary-wall" },
       ],
     },
     {
@@ -121,44 +132,54 @@ const Navbar = () => {
 
             {/* Products Mega Menu */}
             <div
-              className="relative group"
-              onMouseEnter={() => setOpenDropdown("products")}
-              onMouseLeave={() => setOpenDropdown(null)}
+              className="relative flex items-center h-full"
+              ref={dropdownRef}
             >
-              <button className="flex items-center gap-1 text-gir-dark-blue hover:text-gir-orange transition-colors font-medium">
+              <button 
+                onClick={() => setOpenDropdown(openDropdown === "products" ? null : "products")}
+                className="flex items-center gap-1 text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline focus:outline-none"
+              >
                 Products
-                <ChevronDown size={18} className="group-hover:rotate-180 transition-transform" />
+                <ChevronDown size={18} className={`transition-transform ${openDropdown === "products" ? "rotate-180" : ""}`} />
               </button>
 
               {/* Mega Menu */}
-              <div className="absolute left-0 top-full hidden group-hover:grid grid-cols-4 gap-0 w-[800px] bg-white shadow-2xl rounded-lg p-6 mt-2">
-                {products.map((group) => (
-                  <div key={group.category}>
-                    <h3 className="font-bold text-gir-dark-blue mb-3 text-sm uppercase">
-                      {group.category}
-                    </h3>
-                    <ul className="space-y-2">
-                      {group.items.map((item) => (
-                        <li key={item.name}>
-                          <Link
-                            to={item.href}
-                            className="text-gray-600 hover:text-gir-orange text-sm transition-colors"
-                          >
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div className={`absolute left-1/2 -translate-x-1/2 top-full w-[1000px] mt-2 pt-4 cursor-default ${openDropdown === "products" ? "block" : "hidden"}`}>
+                <div className="bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-10 border border-gray-100 grid grid-cols-4 gap-8 animate-in fade-in slide-in-from-top-4 duration-300">
+                  {products.map((group) => (
+                    <div key={group.category} className="space-y-6">
+                      <h3 className="font-extrabold text-gir-dark-blue text-xs uppercase tracking-[0.2em] border-b border-gray-100 pb-3">
+                        {group.category}
+                      </h3>
+                      <ul className="space-y-3">
+                        {group.items.map((item) => (
+                          <li key={item.name}>
+                            <Link
+                              to={item.href}
+                              onClick={() => setOpenDropdown(null)}
+                              className="group/item flex items-center gap-0 hover:gap-2 text-gray-500 hover:text-gir-orange text-sm font-medium transition-all duration-300"
+                            >
+                              <span className="w-0 overflow-hidden group-hover/item:w-3 text-gir-orange transition-all duration-300 font-bold opacity-0 group-hover/item:opacity-100">
+                                ›
+                              </span>
+                              <span className="transform transition-transform duration-300 group-hover/item:translate-x-1">
+                                {item.name}
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline uppercase tracking-tight text-xs">
+            <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline">
               Catalogue
             </Link>
             
-            <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline uppercase tracking-tight text-xs">
+            <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline">
               Blog
             </Link>
 

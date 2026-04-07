@@ -116,7 +116,7 @@ const Search = () => {
                         className="w-full bg-gir-dark-blue hover:bg-black text-white font-black uppercase tracking-widest text-xs italic py-6 h-auto shadow-md transition-all active:scale-95"
                       >
                         Get Best Price
-                      </Button>
+                      </Button> 
                     </div>
                   </div>
                 ))}

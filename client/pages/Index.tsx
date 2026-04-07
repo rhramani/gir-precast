@@ -4,6 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import ProductCard from "@/components/ProductCard";
 import InquiryModal from "@/components/InquiryModal";
+import PhoneInput from "@/components/ui/phone-input";
 import { productsData, ProductDetail } from "@/data/products";
 import { 
   Star, 
@@ -11,7 +12,9 @@ import {
   Briefcase, 
   TrendingUp, 
   ChevronLeft, 
-  ChevronRight 
+  ChevronRight,
+  PiggyBank,
+  FileText
 } from "lucide-react";
 
 const Index = () => {
@@ -142,10 +145,10 @@ const Index = () => {
                 image: "/images/generated/cat-compound.webp",
                 href: "/products/compound-wall",
                 items: [
-                  "Concrete Folding Compound Wall",
-                  "Concrete Precast Single Panel Wall",
-                  "Factory Boundary Wall",
-                  "Heavy Readymade Boundary Wall",
+                  { name: "Concrete Folding Compound Wall", slug: "concrete-folding-compound-wall" },
+                  { name: "Concrete Precast Single Panel Wall", slug: "concrete-precast-single-panel-wall" },
+                  { name: "Factory Boundary Wall", slug: "factory-boundary-wall" },
+                  { name: "Heavy Readymade Boundary Wall", slug: "heavy-readymade-boundary-wall" },
                 ],
               },
               {
@@ -153,27 +156,30 @@ const Index = () => {
                 image: "/images/generated/cat-boundary.webp",
                 href: "/products/boundary-wall",
                 items: [
-                  "Cement Boundary Wall",
-                  "Concrete Boundary Wall",
-                  "Concrete Prestressed Boundary Walls",
-                  "Precast Boundary Wall",
+                  { name: "Cement Boundary Wall", slug: "cement-boundary-wall" },
+                  { name: "Concrete Boundary Wall", slug: "concrete-boundary-wall" },
+                  { name: "Concrete Prestressed Boundary Walls", slug: "concrete-prestressed-boundary-walls" },
+                  { name: "Precast Boundary Wall", slug: "precast-boundary-wall" },
                 ],
               },
               {
                 name: "Cement Wall",
                 image: "/images/generated/cat-cement.webp",
                 href: "/products/cement-wall",
-                items: ["Pre Fabricated Cement Wall", "RCC Cement Wall"],
+                items: [
+                  { name: "Pre Fabricated Cement Wall", slug: "pre-fabricated-cement-wall" },
+                  { name: "RCC Cement Wall", slug: "rcc-cement-wall" },
+                ],
               },
               {
                 name: "Other Products",
                 image: "/images/generated/product-precast-wall.webp",
                 href: "/products/other-products",
                 items: [
-                  "Precast Wall",
-                  "RCC Folding Wall",
-                  "RCC Wall",
-                  "Readymade Walls",
+                  { name: "Precast Wall", slug: "precast-wall" },
+                  { name: "RCC Folding Wall", slug: "rcc-folding-wall" },
+                  { name: "RCC Wall", slug: "rcc-wall" },
+                  { name: "Readymade Walls", slug: "readymade-walls" },
                 ],
               },
             ].map((category) => (
@@ -196,9 +202,14 @@ const Index = () => {
 
                 <ul className="space-y-3 mb-8 flex-grow">
                   {category.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-gir-dark-gray text-sm leading-snug">
-                      <span className="text-gir-orange mt-1 font-bold">›</span>
-                      <span>{item}</span>
+                    <li key={item.slug} className="flex gap-2 text-sm leading-snug">
+                      <span className="text-gir-orange mt-0.5 font-bold">›</span>
+                      <Link
+                        to={`/product/${item.slug}`}
+                        className="text-gir-dark-gray hover:text-gir-orange transition-colors"
+                      >
+                        {item.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -217,64 +228,47 @@ const Index = () => {
 
       {/* Welcome Section */}
       <SectionWrapper bg="white">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="fade-in-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          {/* Image Side with offset border */}
+          <div className="relative p-4 pl-6 pt-6 fade-in-left">
+            <div className="absolute top-0 left-0 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] border-2 border-gir-orange rounded-lg z-0"></div>
             <img
               src="/images/generated/manufacturing-unit.webp"
               alt="GIR PRECAST PVT LTD"
-              className="rounded-lg shadow-lg"
+              className="relative z-10 rounded-lg shadow-2xl w-full h-auto object-cover"
+              style={{ aspectRatio: "4/3" }}
             />
           </div>
+          
+          {/* Text Side */}
           <div className="fade-in-right">
-            <h2 className="text-4xl font-bold text-gir-dark-blue mb-6 border-b-2 border-gir-orange pb-2 inline-block">
-              Welcome to GIR PRECAST PVT LTD
+            <h2 className="text-3xl font-bold text-gir-dark-blue mb-6">
+              Welcome to our Website
             </h2>
-            <p className="text-lg text-gir-dark-gray mb-6 leading-relaxed">
-              Deeply rooted in Palwal, Haryana, India, **GIR PRECAST PVT LTD** is a well-known manufacturer and supplier of various types of RCC and concrete Compound Walls. 
+            <p className="text-gray-600 mb-8 leading-loose text-sm font-medium">
+              Deeply rooted in Palwal Haryana, India, GIR PRECAST PVT LTD is one of the well-known manufacturers and supplier of various types of RCC and concrete Compound Walls. Newly established in the year 2020 and working under
             </p>
-            <p className="text-lg text-gir-dark-gray mb-6 leading-relaxed">
-              Newly established in the year 2020, our company operates under the visionary leadership of **Mr. Vivek Koladiya**, our supervisor and the driving force behind our innovative precast solutions.
-            </p>
-            <p className="text-lg text-gir-dark-gray mb-8 leading-relaxed">
-              With an advanced approach in this field, we have successfully met the demands of a large number of wholesale dealers and retailers across the nation, establishing ourselves as a reliable name in the precast industry.
-            </p>
+            
             <Link
               to="/about"
-              className="inline-block px-8 py-3 bg-gir-orange text-white rounded-lg font-bold hover:bg-gir-orange/90 transition-all font-semibold"
+              className="inline-block px-8 py-3 bg-gir-orange text-white font-bold rounded hover:bg-gir-dark-blue transition-colors shadow-lg shadow-gir-orange/20 mb-12 text-sm"
             >
-              Learn More About Us
+              View more
             </Link>
-
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-6 mt-12 mb-8">
-              <div className="text-center p-6 bg-gray-50 rounded-lg border-t-2 border-gir-orange">
-                <p className="text-3xl font-bold text-gir-orange mb-1">500+</p>
-                <p className="text-gir-dark-gray text-xs font-bold uppercase tracking-wider">Happy Clients</p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* GST Box */}
+              <div className="border border-gray-100 p-6 flex flex-col items-start bg-gray-50 transition-colors hover:border-gir-orange/30 rounded-xl">
+                <FileText className="text-gray-400 mb-5 stroke-1 group-hover:text-gir-orange transition-colors" size={42} />
+                <h4 className="text-gir-dark-blue font-bold text-[15px] mb-2 tracking-wide">GST No</h4>
+                <p className="text-gray-500 text-xs font-semibold tracking-wide">06AEGFS8126M1ZK</p>
               </div>
-              <div className="text-center p-6 bg-gray-50 rounded-lg border-t-2 border-gir-dark-blue">
-                <p className="text-3xl font-bold text-gir-dark-blue mb-1">1000+</p>
-                <p className="text-gir-dark-gray text-xs font-bold uppercase tracking-wider">Projects Completed</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 bg-concrete-texture rounded-lg border border-gray-100">
-                <h4 className="font-bold text-gir-dark-blue mb-2 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gir-orange rounded-full" />
-                  Our Vision
-                </h4>
-                <p className="text-sm text-gir-dark-gray italic">
-                  "To be the selected supplier of our dealers and spread across the nation as a prominent manufacturer and exporter."
-                </p>
-              </div>
-              <div className="p-6 bg-concrete-texture rounded-lg border border-gray-100">
-                <h4 className="font-bold text-gir-dark-blue mb-2 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-gir-orange rounded-full" />
-                  Our Mission
-                </h4>
-                <p className="text-sm text-gir-dark-gray italic">
-                  "Supply a reliable and high-quality Product & service to the client best proficiently and cost-effectively."
-                </p>
+              
+              {/* Turnover Box */}
+              <div className="border border-gray-100 p-6 flex flex-col items-start bg-gray-50 transition-colors hover:border-gir-orange/30 rounded-xl">
+                <PiggyBank className="text-gray-400 mb-5 stroke-1 group-hover:text-gir-orange transition-colors" size={42} />
+                <h4 className="text-gir-dark-blue font-bold text-[15px] mb-2 tracking-wide">Annual Turnover</h4>
+                <p className="text-gray-500 text-xs font-semibold tracking-wide">More Than Rs. 1 Crore</p>
               </div>
             </div>
           </div>
@@ -486,14 +480,10 @@ const Index = () => {
               <label className="block text-sm font-semibold text-gir-dark-blue mb-2">
                 Phone/Mobile
               </label>
-              <input
-                type="tel"
-                placeholder="Enter your phone number"
+              <PhoneInput
                 value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gir-orange"
+                onChange={(value) => setFormData({ ...formData, phone: value })}
+                className="w-full"
               />
             </div>
 
