@@ -9,7 +9,7 @@ interface InquiryData {
   details: string;
 }
 
-export const sendInquiry = (data: InquiryData) => {
+export const sendInquiry = async (data: InquiryData) => {
   const currentDate = new Date().toLocaleString();
 
   // 1. Format WhatsApp message
@@ -22,33 +22,33 @@ export const sendInquiry = (data: InquiryData) => {
 📝 *Requirement:* ${data.details}
 --------------------------------------
 🕒 *Date:* ${currentDate}
-🌐 Sent from: girprecast-pvtltd.com`;
+🌐 Sent from: girprecast.com`;
 
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMessage)}`;
 
-  // 2. Format Email (mailto fallback)
-  const emailSubject = `New Inquiry from Website - ${data.name}`;
-  const emailBody = `New Inquiry Details:
---------------------------------------
-Name: ${data.name}
-Email: ${data.email}
-Mobile: ${data.mobile}
-Product/Service: ${data.product || "General Inquiry"}
-Requirement: ${data.details}
---------------------------------------
-Date: ${currentDate}
-Sent from: girprecast-pvtltd.com`;
+  // 2. Call Backend API for Automatic Email (Nodemailer)
+  try {
+    // Mapping frontend 'mobile' to backend 'phone'
+    const payload = {
+      ...data,
+      phone: data.mobile 
+    };
 
-  const mailtoUrl = `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    
+    if (!response.ok) {
+        console.error("Backend Email Error:", await response.text());
+    }
+  } catch (error) {
+    console.error("Nodemailer service failed (background):", error);
+  }
 
   // 3. Open WhatsApp in new tab
   window.open(waUrl, '_blank');
-
-  // 4. Open Email (mailto) - optional, or just inform user
-  // Since we want both, we can try to open both, but browser might block multiple popups.
-  // Best practice is to open WhatsApp and maybe redirect to a thank you page or just alert.
-
-  // Note: For a "real" automatic email without user intervention, 
-  // a backend server with nodemailer or a service like EmailJS is required.
-  // I will provide the EmailJS setup instructions in the response.
 };
