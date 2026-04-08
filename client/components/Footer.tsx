@@ -26,9 +26,9 @@ const Footer = () => {
                 <span className="text-gir-orange font-bold text-xs">GST NO :</span>
                 <span className="text-sm">06AEGFS8126M1ZK</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Mail size={18} className="text-gir-orange" />
-                <span className="text-sm">info@skprecast-industries.com</span>
+              <div className="flex items-center gap-3">
+                <Mail size={16} className="text-gir-orange" />
+                <span className="text-sm">info@girprecast-pvtltd.com</span>
               </div>
             </div>
           </div>
@@ -67,9 +67,9 @@ const Footer = () => {
               <Link to="/contact" className="text-gray-300 hover:text-gir-orange transition-colors">
                 Contact Us
               </Link>
-              <Link to="/current-jobs" className="text-gray-300 hover:text-gir-orange transition-colors">
+              {/* <Link to="/current-jobs" className="text-gray-300 hover:text-gir-orange transition-colors">
                 Current Jobs
-              </Link>
+              </Link> */}
             </div>
           </div>
 

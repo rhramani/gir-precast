@@ -15,7 +15,7 @@ const Sitemap = () => {
         { name: "Contact Us", href: "/contact" },
         { name: "Wall Manufacturing Unit", href: "/wall-manufacturing-unit" },
         { name: "Catalogue", href: "/catalogue" },
-        { name: "Current Jobs", href: "/current-jobs" },
+        // { name: "Current Jobs", href: "/current-jobs" },
         { name: "Site Map", href: "/sitemap" },
       ],
     },

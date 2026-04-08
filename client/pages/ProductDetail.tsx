@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import CustomPhoneInput from "@/components/ui/phone-input";
+import { sendInquiry } from "@/lib/inquiry";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -55,6 +56,32 @@ const ProductDetail = () => {
     setIsEditing(true);
     // Focus the quantity input after enabling editing
     setTimeout(() => quantityInputRef.current?.focus(), 50);
+  };
+
+  const [bottomForm, setBottomForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    details: ""
+  });
+
+  const handleBottomSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!bottomForm.phone || bottomForm.phone.length < 10) {
+      alert("Please enter a valid mobile number");
+      return;
+    }
+
+    sendInquiry({
+      name: bottomForm.name || "Valued Customer",
+      email: bottomForm.email || "N/A",
+      mobile: bottomForm.phone,
+      product: product.name,
+      details: `Inquiry for ${product.name}. Quantity: ${quantity} ${unit}. Purpose: ${bottomForm.details || "Not specified"}`
+    });
+
+    alert("Inquiry prepared! Opening WhatsApp...");
+    setBottomForm({ name: "", email: "", phone: "", details: "" });
   };
 
   return (
@@ -269,12 +296,14 @@ const ProductDetail = () => {
                 Looking for "<span className="text-gir-orange">{product.name}</span>" ?
               </h2>
               
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+              <form onSubmit={handleBottomSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
                 {/* Left Side: Basic Info */}
                 <div className="space-y-8">
                   <div className="relative">
                     <Input 
                       placeholder="Name" 
+                      value={bottomForm.name}
+                      onChange={(e) => setBottomForm({...bottomForm, name: e.target.value})}
                       className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20" 
                     />
                     <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Name</div>
@@ -282,14 +311,16 @@ const ProductDetail = () => {
                   <div className="relative">
                     <Input 
                       placeholder="Email" 
+                      value={bottomForm.email}
+                      onChange={(e) => setBottomForm({...bottomForm, email: e.target.value})}
                       className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20" 
                     />
                     <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Email</div>
                   </div>
                   <div className="relative">
                     <CustomPhoneInput
-                      value={""} 
-                      onChange={() => {}} 
+                      value={bottomForm.phone} 
+                      onChange={(val) => setBottomForm({...bottomForm, phone: val})} 
                       className="w-full"
                     />
                     <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Mobile</div>
@@ -301,8 +332,9 @@ const ProductDetail = () => {
                   <div className="flex gap-2 relative">
                     <Input 
                       placeholder="Estimated Quantity"
-                      defaultValue={quantity}
-                      className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 flex-1" 
+                      value={quantity}
+                      readOnly
+                      className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 flex-1 bg-gray-50/50" 
                     />
                     <div className="flex h-12 px-4 items-center justify-center bg-gray-50 border border-gray-200 text-gray-500 text-sm font-medium rounded-lg">
                       {unit}
@@ -328,6 +360,8 @@ const ProductDetail = () => {
                     <textarea 
                       placeholder="I am interested. Kindly send the quotation for the same." 
                       rows={3} 
+                      value={bottomForm.details}
+                      onChange={(e) => setBottomForm({...bottomForm, details: e.target.value})}
                       className="w-full bg-gray-50/50 border border-gray-200 rounded-xl p-4 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 outline-none text-sm placeholder:text-gray-400 resize-none"
                     ></textarea>
                      <div className="absolute left-[-110px] top-4 text-gray-400 text-[10px] uppercase font-bold w-24 text-right hidden lg:block tracking-widest leading-tight">Requirement Details</div>
@@ -337,6 +371,7 @@ const ProductDetail = () => {
                 {/* Submit Button */}
                 <div className="md:col-span-2 flex justify-center mt-6">
                   <Button 
+                    type="submit"
                     className="bg-gir-dark-blue hover:bg-gir-orange text-white px-16 h-14 rounded-xl font-bold text-lg transition-all active:scale-95 shadow-xl"
                   >
                     Send Enquiry Now

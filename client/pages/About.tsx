@@ -132,7 +132,7 @@ const About = () => {
                  <p className="text-gir-dark-blue font-bold mb-3 text-lg">GIR PRECAST PVT LTD</p>
                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">Opp. Adani CNG Pump, Delhi-Mathura Road Near Hanuman Mandir, Palwal, Haryana - 121102, India</p>
                  <p className="text-gray-600 text-sm mb-2"><strong>Mobile:</strong><br/>+91-8238902687</p>
-                 <p className="text-gray-600 text-sm break-words"><strong>E-mail:</strong><br/>info@skprecast-industries.com</p>
+                 <p className="text-gray-600 text-sm break-words"><strong>E-mail:</strong><br/>info@girprecast-pvtltd.com</p>
                </div>
             </div>
           </div>

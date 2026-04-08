@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import InquiryModal from "@/components/InquiryModal";
 import PhoneInput from "@/components/ui/phone-input";
 import { productsData, ProductDetail } from "@/data/products";
+import { sendInquiry } from "@/lib/inquiry";
 import { 
   Star, 
   Users, 
@@ -530,10 +531,10 @@ const Index = () => {
                   </a>
                   <br />
                   <a
-                    href="mailto:info@girprecast-industries.com"
+                    href="mailto:info@girprecast-pvtltd.com"
                     className="hover:text-gir-orange"
                   >
-                    info@girprecast-industries.com
+                    info@girprecast-pvtltd.com
                   </a>
                 </p>
               </div>

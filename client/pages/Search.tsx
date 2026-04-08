@@ -200,9 +200,9 @@ const Search = () => {
                     <Phone size={18} className="text-gir-orange" />
                     +91-8238902687
                   </a>
-                  <a href="mailto:info@girprecast-industries.com" className="flex items-center gap-3 text-[13px] text-gray-600 hover:text-gir-orange transition-colors break-all font-medium">
+                  <a href="mailto:info@girprecast-pvtltd.com" className="flex items-center gap-3 text-[13px] text-gray-600 hover:text-gir-orange transition-colors break-all font-medium">
                     <Mail size={18} className="text-gir-orange" />
-                    info@girprecast-industries.com
+                    info@girprecast-pvtltd.com
                   </a>
                 </div>
               </div>

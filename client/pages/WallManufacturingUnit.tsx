@@ -1,96 +1,154 @@
+import { useState, useEffect } from "react";
 import SectionWrapper from "@/components/SectionWrapper";
-import { Factory, Cpu, ShieldCheck, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ChevronRight, ChevronLeft, X } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
 
 const WallManufacturingUnit = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const images = [
+    "/images/generated/manufacturing-setup-1.webp",
+    "/images/generated/manufacturing-setup-2.webp",
+    "/images/generated/manufacturing-setup-3.webp",
+    "/images/generated/manufacturing-setup-4.webp",
+    "/images/generated/manufacturing-setup-5.webp",
+    "/images/generated/manufacturing-setup-6.webp",
+  ];
+
+
+
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % images.length);
+    }
+  };
+
+  const handlePrev = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex - 1 + images.length) % images.length);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "Escape") setSelectedIndex(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIndex]);
+
   return (
-    <>
-      <div className="relative h-[300px] bg-gir-dark-blue flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40"
-          style={{ backgroundImage: "url('/images/generated/manufacturing-unit.webp')" }}
-        />
-        <h1 className="relative z-10 text-4xl md:text-5xl font-bold text-white text-center">
-          Wall <span className="text-gir-orange">Manufacturing Unit</span>
-        </h1>
+    <div className="bg-white min-h-screen">
+      {/* Breadcrumbs */}
+      <div className="bg-gray-50 border-b border-gray-100">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <Link to="/" className="hover:text-gir-dark-blue transition-colors font-medium">Home</Link>
+            <ChevronRight size={14} />
+            <span className="text-gir-dark-blue font-bold">Wall Manufacturing Unit</span>
+          </div>
+        </div>
       </div>
 
       <SectionWrapper bg="white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-            <div className="fade-in-left">
-              <h2 className="text-3xl font-bold text-gir-dark-blue mb-6">
-                State-of-the-Art <span className="text-gir-orange">Production Facility</span>
-              </h2>
-              <p className="text-gir-dark-gray text-lg mb-6 leading-relaxed">
-                Located in Palwal, Haryana, our manufacturing unit is equipped with advanced machinery and technology to produce high-quality precast compound walls. We follow stringent quality control measures at every stage of production.
-              </p>
-              <p className="text-gir-dark-gray text-lg mb-6 leading-relaxed">
-                Our facility is designed for large-scale production to meet the growing demands of wholesale dealers and retailers across India. With a focus on precision and durability, we use premium-grade raw materials sourced from reliable vendors.
-              </p>
-            </div>
-            <div className="fade-in-right">
-              <img
-                src="/images/generated/manufacturing-unit.webp"
-                alt="GIR PRECAST Manufacturing Unit"
-                className="rounded-lg shadow-2xl w-full object-cover h-[400px]"
-              />
-            </div>
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold text-gir-dark-blue mb-8 border-b-2 border-gir-orange pb-4 inline-block text-center mx-auto block w-fit">
+            Our <span className="text-gir-orange">Manufacturing Setup</span>
+          </h1>
+          
+          <div className="prose max-w-3xl mx-auto text-center text-gir-dark-gray mb-16">
+            <p className="text-lg leading-relaxed">
+              Located in Palwal, Haryana, our manufacturing unit is equipped with advanced machinery and technology to produce high-quality precast compound walls. We follow stringent quality control measures at every stage of production to ensure that our clients receive products that are durable, precise, and aesthetically superior.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {[
-              { 
-                icon: <Factory size={28} />, 
-                title: "Advanced Machinery", 
-                desc: "High-tech equipment for precise casting and finishing of precast panels." 
-              },
-              { 
-                icon: <Cpu size={28} />, 
-                title: "Modern Technology", 
-                desc: "Innovative production methods ensuring structural integrity and strength." 
-              },
-              { 
-                icon: <ShieldCheck size={28} />, 
-                title: "Quality Control", 
-                desc: "Rigorous testing of raw materials and finished products for global standards." 
-              },
-              { 
-                icon: <Zap size={28} />, 
-                title: "Efficient Production", 
-                desc: "Optimised workflows for rapid production and timely delivery across India." 
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="p-8 bg-concrete-texture rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all text-center">
-                <div className="w-16 h-16 bg-gir-orange/10 rounded-full flex items-center justify-center mb-6 mx-auto text-gir-orange">
-                  {item.icon}
+          {/* Gallery Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {images.map((img, i) => (
+              <div 
+                key={i} 
+                className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-xl group cursor-pointer border border-gray-100"
+                onClick={() => setSelectedIndex(i)}
+              >
+                <img 
+                  src={img} 
+                  alt={`Manufacturing Setup ${i + 1}`} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="text-white font-bold border-2 border-white px-6 py-3 text-sm uppercase tracking-widest rounded-sm bg-black/20 backdrop-blur-sm">
+                    View
+                  </span>
                 </div>
-                <h3 className="text-xl font-bold text-gir-dark-blue mb-3">{item.title}</h3>
-                <p className="text-gir-dark-gray text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
-
-          <div className="bg-gir-dark-blue text-white p-12 rounded-2xl shadow-xl">
-            <h2 className="text-3xl font-bold mb-8 text-center">Unit <span className="text-gir-orange">Specifications</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center border-r border-gray-700 last:border-0">
-                <div className="text-4xl font-bold text-gir-orange mb-2">50,000+</div>
-                <div className="text-gray-300">Sq. Ft Area</div>
-              </div>
-              <div className="text-center border-r border-gray-700 last:border-0">
-                <div className="text-4xl font-bold text-gir-orange mb-2">500+</div>
-                <div className="text-gray-300">Daily Production Capacity</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-gir-orange mb-2">24/7</div>
-                <div className="text-gray-300">Quality Monitoring</div>
-              </div>
-            </div>
-          </div>
         </div>
       </SectionWrapper>
-    </>
+
+
+      {/* Lightbox Dialog */}
+      <Dialog open={selectedIndex !== null} onOpenChange={(open) => !open && setSelectedIndex(null)}>
+        <DialogContent className="max-w-[95vw] w-full h-[90vh] p-0 bg-black/95 border-none overflow-hidden flex flex-col items-center justify-center">
+          {selectedIndex !== null && (
+            <div className="relative w-full h-full flex flex-col">
+              {/* Header / Toolbar */}
+              <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent text-white">
+                <div className="flex items-center gap-4 text-sm font-medium">
+                  <span className="bg-white/10 px-3 py-1 rounded-full border border-white/20">
+                    {selectedIndex + 1} / {images.length}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => setSelectedIndex(null)} className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/20 hover:bg-black/50 text-white rounded-full transition-all border border-white/10"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button 
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/20 hover:bg-black/50 text-white rounded-full transition-all border border-white/10"
+              >
+                <ChevronRight size={32} />
+              </button>
+
+              {/* Image Container */}
+              <div className="flex-1 w-full h-full flex items-center justify-center p-4 md:p-12 select-none" onClick={() => setSelectedIndex(null)}>
+                <img 
+                  src={images[selectedIndex]} 
+                  alt={`Setup Image ${selectedIndex + 1}`} 
+                  className="max-w-full max-h-full object-contain shadow-2xl animate-in zoom-in-95 duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 
 export default WallManufacturingUnit;
+

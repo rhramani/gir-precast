@@ -78,8 +78,8 @@ const Navbar = () => {
       <div className={`hidden md:block w-full border-b border-gir-cement transition-colors duration-300 ${isScrolled ? "bg-white" : "bg-white"}`}>
         <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="mailto:info@skprecast-industries.com" className="text-gir-dark-blue hover:text-gir-orange transition-colors">
-              ✉️ info@skprecast-industries.com
+            <a href="mailto:info@girprecast-pvtltd.com" className="text-gir-dark-blue hover:text-gir-orange transition-colors">
+              ✉️ info@girprecast-pvtltd.com
             </a>
             <span className="text-gray-600">GST: 06AEGFS8126M1ZK</span>
           </div>

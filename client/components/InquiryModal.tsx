@@ -12,6 +12,7 @@ import { X, Edit, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import PhoneInput from "@/components/ui/phone-input";
+import { sendInquiry } from "@/lib/inquiry";
 
 interface InquiryModalProps {
   product: ProductDetail | null;
@@ -55,16 +56,26 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!mobile || mobile.length < 10) {
-      toast.error("Please enter a valid 10-digit mobile number");
+      toast.error("Please enter a valid mobile number");
       return;
     }
 
     setIsSubmitting(true);
+    
+    // Trigger redirection / backend call
+    sendInquiry({
+      name: "Valued Customer", // No name field in this modal, using generic
+      email: "N/A",
+      mobile: mobile,
+      product: product.name,
+      details: `Inquiry for ${product.name}. Quantity: ${quantity} ${unit}.`
+    });
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
-      toast.success("Enquiry sent successfully! We will contact you shortly.");
-    }, 1500);
+      toast.success("Enquiry details prepared for WhatsApp!");
+    }, 1000);
   };
 
   const handleEditClick = () => {

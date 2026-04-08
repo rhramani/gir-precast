@@ -1,19 +1,54 @@
+import { useState, useEffect } from "react";
 import SectionWrapper from "@/components/SectionWrapper";
 import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ChevronLeft, X, Maximize2, Play, LayoutGrid } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+} from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 
 const Gallery = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  
   const images = [
-    "/images/generated/carousel-1.webp",
-    "/images/generated/carousel-2.webp",
-    "/images/generated/hero-banner.webp",
-    "/images/generated/manufacturing-unit.webp",
-    "/images/generated/gallery-1.webp",
-    "/images/generated/gallery-2.webp",
+    "/images/generated/product-readymade-compound-v2.webp",
     "/images/generated/product-rcc-compound.webp",
+    "/images/generated/product-heavy-duty-compound.webp",
     "/images/generated/product-boundary-wall.webp",
+    "/images/generated/product-factory-boundary.webp",
     "/images/generated/product-precast-wall.webp",
+    "/images/generated/product-solar-plant-boundary.webp",
+    "/images/generated/product-cement-wall-prefab.webp",
+    "/images/generated/product-panel-build-rcc.webp",
   ];
+
+
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex + 1) % images.length);
+    }
+  };
+
+  const handlePrev = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedIndex !== null) {
+      setSelectedIndex((selectedIndex - 1 + images.length) % images.length);
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === "ArrowRight") handleNext();
+      if (e.key === "ArrowLeft") handlePrev();
+      if (e.key === "Escape") setSelectedIndex(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIndex]);
 
   return (
     <div className="bg-white min-h-screen">
@@ -30,7 +65,7 @@ const Gallery = () => {
 
       <SectionWrapper
         title="Our Gallery"
-        subtitle="A visual showcase of our state-of-the-art manufacturing and recent projects"
+        subtitle="A visual showcase of our premium precast wall projects across India"
         bg="white"
       >
         <div className="space-y-16">
@@ -39,7 +74,11 @@ const Gallery = () => {
             <h3 className="text-2xl font-bold text-gir-dark-blue mb-8 border-l-4 border-gir-orange pl-4">Compound Wall Projects</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {images.slice(0, 3).map((img, i) => (
-                <div key={i} className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer shadow-lg">
+                <div 
+                  key={i} 
+                  className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer shadow-lg"
+                  onClick={() => setSelectedIndex(i)}
+                >
                   <img src={img} alt={`Compound Wall Project ${i + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="text-white font-bold border-2 border-white px-4 py-2">View Project</span>
@@ -54,7 +93,11 @@ const Gallery = () => {
             <h3 className="text-2xl font-bold text-gir-dark-blue mb-8 border-l-4 border-gir-orange pl-4">Boundary Wall Installations</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {images.slice(3, 6).map((img, i) => (
-                <div key={i} className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer shadow-lg">
+                <div 
+                  key={i + 3} 
+                  className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer shadow-lg"
+                  onClick={() => setSelectedIndex(i + 3)}
+                >
                   <img src={img} alt={`Boundary Wall Project ${i + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <span className="text-white font-bold border-2 border-white px-4 py-2">View Project</span>
@@ -64,15 +107,19 @@ const Gallery = () => {
             </div>
           </div>
 
-          {/* Manufacturing Gallery */}
+          {/* Industrial Gallery */}
           <div>
-            <h3 className="text-2xl font-bold text-gir-dark-blue mb-8 border-l-4 border-gir-orange pl-4">Our Manufacturing Unit</h3>
+            <h3 className="text-2xl font-bold text-gir-dark-blue mb-8 border-l-4 border-gir-orange pl-4">Industrial & Custom Projects</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {images.slice(6, 9).map((img, i) => (
-                <div key={i} className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer shadow-lg">
-                  <img src={img} alt={`Manufacturing ${i + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div 
+                  key={i + 6} 
+                  className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer shadow-lg"
+                  onClick={() => setSelectedIndex(i + 6)}
+                >
+                  <img src={img} alt={`Industrial Project ${i + 1}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="text-white font-bold border-2 border-white px-4 py-2">View Process</span>
+                    <span className="text-white font-bold border-2 border-white px-4 py-2">View Project</span>
                   </div>
                 </div>
               ))}
@@ -93,11 +140,63 @@ const Gallery = () => {
             Start Your Project
           </Link>
         </div>
+
       </SectionWrapper>
+
+      {/* Lightbox Dialog */}
+      <Dialog open={selectedIndex !== null} onOpenChange={(open) => !open && setSelectedIndex(null)}>
+        <DialogContent className="max-w-[95vw] w-full h-[90vh] p-0 bg-black/95 border-none overflow-hidden flex flex-col items-center justify-center">
+          {selectedIndex !== null && (
+            <div className="relative w-full h-full flex flex-col">
+              {/* Header / Toolbar */}
+              <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent text-white">
+                <div className="flex items-center gap-4 text-sm font-medium">
+                  <span className="bg-white/10 px-3 py-1 rounded-full border border-white/20">
+                    {selectedIndex + 1} / {images.length}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => setSelectedIndex(null)} className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/20 hover:bg-black/50 text-white rounded-full transition-all border border-white/10"
+              >
+                <ChevronLeft size={32} />
+              </button>
+              <button 
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-black/20 hover:bg-black/50 text-white rounded-full transition-all border border-white/10"
+              >
+                <ChevronRight size={32} />
+              </button>
+
+              {/* Image Container */}
+              <div className="flex-1 w-full h-full flex items-center justify-center p-4 md:p-12 select-none" onClick={() => setSelectedIndex(null)}>
+                <img 
+                  src={images[selectedIndex]} 
+                  alt={`Gallery Image ${selectedIndex + 1}`} 
+                  className="max-w-full max-h-full object-contain shadow-2xl animate-in zoom-in-95 duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleNext();
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
 
 export default Gallery;
+
 
 
