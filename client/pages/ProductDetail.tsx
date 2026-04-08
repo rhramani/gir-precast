@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import CustomPhoneInput from "@/components/ui/phone-input";
 import { sendInquiry } from "@/lib/inquiry";
+import { toast } from "sonner";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -58,6 +59,7 @@ const ProductDetail = () => {
     setTimeout(() => quantityInputRef.current?.focus(), 50);
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [bottomForm, setBottomForm] = useState({
     name: "",
     email: "",
@@ -65,23 +67,40 @@ const ProductDetail = () => {
     details: ""
   });
 
-  const handleBottomSubmit = (e: React.FormEvent) => {
+  const handleBottomSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!bottomForm.phone || bottomForm.phone.length < 10) {
-      alert("Please enter a valid mobile number");
+      toast.error("Please enter a valid mobile number");
       return;
     }
 
-    sendInquiry({
-      name: bottomForm.name || "Valued Customer",
-      email: bottomForm.email || "N/A",
-      mobile: bottomForm.phone,
-      product: product.name,
-      details: `Inquiry for ${product.name}. Quantity: ${quantity} ${unit}. Purpose: ${bottomForm.details || "Not specified"}`
-    });
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'enquiry',
+          name: bottomForm.name || "Valued Customer",
+          email: bottomForm.email || "N/A",
+          phone: bottomForm.phone,
+          product: product.name,
+          message: `Inquiry for ${product.name}. Quantity: ${quantity} ${unit}. Purpose: ${bottomForm.details || "Not specified"}`
+        })
+      });
 
-    alert("Inquiry prepared! Opening WhatsApp...");
-    setBottomForm({ name: "", email: "", phone: "", details: "" });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast.success("Enquiry sent successfully!");
+        setBottomForm({ name: "", email: "", phone: "", details: "" });
+      } else {
+        toast.error(data.message || "Failed to send enquiry.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please make sure the backend server is running.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -375,9 +394,10 @@ const ProductDetail = () => {
                 <div className="md:col-span-2 flex justify-center mt-6">
                   <Button 
                     type="submit"
-                    className="bg-gir-dark-blue hover:bg-gir-orange text-white px-16 h-14 rounded-xl font-bold text-lg transition-all active:scale-95 shadow-xl"
+                    disabled={isSubmitting}
+                    className="bg-gir-dark-blue hover:bg-gir-orange text-white px-16 h-14 rounded-xl font-bold text-lg transition-all active:scale-95 shadow-xl disabled:opacity-50"
                   >
-                    Send Enquiry Now
+                    {isSubmitting ? "Sending Enquiry..." : "Send Enquiry Now"}
                   </Button>
                 </div>
               </form>

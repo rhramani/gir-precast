@@ -66,20 +66,20 @@ const HeroSection = () => {
       ))}
 
       {/* Content Layer (Universal content or per-slide content) */}
-      <div className="relative h-full container mx-auto px-4 flex items-center justify-center">
-        <div className="text-center text-white max-w-4xl">
+      <div className="relative h-full container mx-auto px-4 flex items-center justify-center pb-20 md:pb-0">
+        <div className="text-center text-white max-w-4xl animate-in fade-in zoom-in duration-700">
           <div className="overflow-hidden">
             <h1 
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight transition-all duration-700 drop-shadow-2xl text-white"
+              className="text-4xl md:text-7xl font-bold mb-4 md:mb-6 leading-tight transition-all duration-700 drop-shadow-2xl text-white"
               dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}
             />
           </div>
           
-          <p className="text-xl md:text-2xl text-white/90 mb-10 max-w-2xl mx-auto transition-all duration-700 font-medium drop-shadow-md">
+          <p className="text-lg md:text-2xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto transition-all duration-700 font-medium drop-shadow-md px-4">
             {slides[currentSlide].subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
             <Link 
               to="/contact"
               className="px-10 py-4 bg-gir-orange text-white rounded-lg font-bold text-lg hover:bg-gir-orange/90 transition-all btn-premium shadow-xl font-semibold"
@@ -111,7 +111,7 @@ const HeroSection = () => {
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3">
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}

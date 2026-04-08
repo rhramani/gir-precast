@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "ts-node-dev --respawn --transpile-only server/index.ts",
     "build": "vite build",
     "test": "vitest --run",
     "format.fix": "prettier --write .",

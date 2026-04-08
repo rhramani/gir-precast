@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import SectionWrapper from "@/components/SectionWrapper";
 import { Mail, Phone, MapPin, User, Globe, ChevronRight } from "lucide-react";
 import PhoneInput from "@/components/ui/phone-input";
-import { sendInquiry } from "@/lib/inquiry";
+import { toast } from "sonner";
 
 const Contact = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     product: "",
     name: "",
@@ -14,19 +15,36 @@ const Contact = () => {
     details: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
-    sendInquiry({
-      name: formData.name,
-      email: formData.email,
-      mobile: formData.mobile,
-      product: formData.product,
-      details: formData.details
-    });
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.mobile,
+          product: formData.product,
+          message: formData.details
+        })
+      });
 
-    alert("Thank you! Opening WhatsApp to share your requirement. You can also send us an email at info@girprecast.com");
-    setFormData({ product: "", name: "", email: "", mobile: "", details: "" });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast.success("Message sent successfully!");
+        setFormData({ product: "", name: "", email: "", mobile: "", details: "" });
+      } else {
+        toast.error(data.message || "Failed to send message.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please make sure the backend server is running.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
 
@@ -213,9 +231,10 @@ const Contact = () => {
               <div className="flex gap-4 pt-2">
                 <button
                   type="submit"
-                  className="px-8 py-2.5 bg-gir-orange text-white rounded font-bold hover:bg-gir-dark-blue transition-colors text-sm shadow-sm"
+                  disabled={isSubmitting}
+                  className="px-8 py-2.5 bg-gir-orange text-white rounded font-bold hover:bg-gir-dark-blue transition-colors text-sm shadow-sm disabled:opacity-50"
                 >
-                  Submit
+                  {isSubmitting ? "Sending..." : "Submit"}
                 </button>
                 <button
                   type="button"

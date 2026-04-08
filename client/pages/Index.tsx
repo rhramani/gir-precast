@@ -7,6 +7,7 @@ import InquiryModal from "@/components/InquiryModal";
 import PhoneInput from "@/components/ui/phone-input";
 import { productsData, ProductDetail } from "@/data/products";
 import { sendInquiry } from "@/lib/inquiry";
+import { toast } from "sonner";
 import {
   Star,
   Users,
@@ -109,12 +110,33 @@ const Index = () => {
     { icon: Star, label: "Rating", value: "4.9/5" },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission
-    alert("Thank you for your inquiry! We'll contact you shortly.");
-    setFormData({ name: "", email: "", phone: "", product: "", message: "" });
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'enquiry',
+          ...formData
+        })
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast.success("Enquiry sent successfully!");
+        setFormData({ name: "", email: "", phone: "", product: "", message: "" });
+      } else {
+        toast.error(data.message || "Failed to send enquiry.");
+      }
+    } catch (error) {
+      toast.error("Network error. Please make sure the backend server is running.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -505,9 +527,10 @@ const Index = () => {
 
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-gir-orange text-white rounded-lg font-bold hover:bg-gir-orange/90 transition-all btn-premium font-semibold"
+              disabled={isSubmitting}
+              className="w-full px-6 py-3 bg-gir-orange text-white rounded-lg font-bold hover:bg-gir-orange/90 transition-all btn-premium font-semibold disabled:opacity-50"
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
 

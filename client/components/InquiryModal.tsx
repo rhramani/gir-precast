@@ -53,7 +53,7 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
     : "₹ 60.00 - 120.00 / Square Feet";
   const moqText = product.moq || "1000 Square Feet";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!mobile || mobile.length < 10) {
       toast.error("Please enter a valid mobile number");
@@ -62,20 +62,37 @@ const InquiryModal: React.FC<InquiryModalProps> = ({
 
     setIsSubmitting(true);
     
-    // Trigger redirection / backend call
-    sendInquiry({
-      name: "Valued Customer", // No name field in this modal, using generic
-      email: "N/A",
-      mobile: mobile,
-      product: product.name,
-      details: `Inquiry for ${product.name}. Quantity: ${quantity} ${unit}.`
-    });
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'enquiry',
+          name: "Valued Customer",
+          email: "N/A",
+          phone: mobile,
+          product: product.name,
+          message: `Inquiry for ${product.name}. Quantity: ${quantity} ${unit}.`
+        })
+      });
 
-    setTimeout(() => {
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        setIsSuccess(true);
+        toast.success("Enquiry sent successfully!");
+      } else {
+        toast.error(data.message || "Failed to send enquiry.");
+      }
+    } catch (error) {
+      console.log("Submission Error:", error);
+      toast.error("Network error. Please make sure the backend server is running.");
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      toast.success("Enquiry details prepared for WhatsApp!");
-    }, 1000);
+    }
   };
 
   const handleEditClick = () => {

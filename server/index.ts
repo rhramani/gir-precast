@@ -18,7 +18,8 @@ app.use(express.json());
 
 // Main Email Route
 app.post('/api/send-email', async (req, res) => {
-  const { name, email, phone, product, details } = req.body;
+  console.log('Incoming Email Request:', req.body.type, 'from', req.body.email);
+  const { type, name, email, phone, ...details } = req.body;
 
   // Create Transporter
   const transporter = nodemailer.createTransport({
@@ -29,69 +30,123 @@ app.post('/api/send-email', async (req, res) => {
     },
   });
 
-  const mailOptions = {
-    from: `"GIR Precast Enquiry" <${process.env.EMAIL_USER}>`,
-    to: process.env.EMAIL_RECEIVER || 'info@girprecast.com',
-    subject: `New Enquiry for ${product || 'General Inquiry'} - ${name}`,
-    html: `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <style>
-          .email-container { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #0f2a3f; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; }
-          .header { background-color: #0f2a3f; padding: 25px; text-align: center; }
-          .logo-text { color: #f97316; font-size: 22px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-          .content { padding: 35px 25px; background-color: #ffffff; }
-          .badge { display: inline-block; background-color: #fff7ed; color: #f97316; padding: 4px 12px; border-radius: 99px; font-size: 11px; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; }
-          .info-card { background-color: #f8fafc; border-radius: 8px; padding: 18px; margin-bottom: 25px; border-left: 4px solid #f97316; }
-          .info-item { margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
-          .label { font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: bold; display: block; }
-          .value { font-size: 14px; font-weight: 600; color: #0f2a3f; }
-          .requirement-box { background-color: #ffffff; border: 1px dashed #cbd5e1; padding: 18px; border-radius: 8px; font-style: italic; color: #334155; }
-          .footer { background-color: #f1f5f9; padding: 20px; text-align: center; font-size: 11px; color: #64748b; }
-          .cta-text { color: #f97316; font-weight: bold; text-decoration: none; }
-        </style>
-      </head>
-      <body>
-        <div class="email-container">
-          <div class="header"><h1 class="logo-text">GIR PRECAST PVT LTD</h1></div>
-          <div class="content">
-            <div class="badge">New Enquiry</div>
-            <h2 style="margin-top: 0; color: #0f2a3f; font-size: 20px;">Website Inquiry Received</h2>
-            <div class="info-card">
-              <div class="info-item"><span class="label">Customer Name</span><span class="value">${name}</span></div>
-              <div class="info-item"><span class="label">Product / Service</span><span class="value" style="color: #f97316;">${product || 'General Inquiry'}</span></div>
-              <div class="info-item"><span class="label">Mobile Number</span><span class="value">${phone}</span></div>
-              <div class="info-item"><span class="label">Email Address</span><span class="value">${email}</span></div>
-            </div>
-            <span class="label" style="margin-bottom: 8px;">Customer's Message:</span>
-            <div class="requirement-box">${details}</div>
-            <p style="margin-top: 25px; font-size: 13px;">
-              Quick Actions: <a href="mailto:${email}" class="cta-text">Reply via Email</a> | <a href="https://wa.me/${phone.replace(/[^0-9]/g, '')}" class="cta-text">Contact via WhatsApp</a>
-            </p>
+  // Dynamic Email Configuration based on Form Type
+  const isJob = type === 'job';
+  const isEnquiry = type === 'enquiry';
+  const subject = isJob 
+    ? `New Job Application: ${details.functionalArea || 'Position'} - ${name}` 
+    : isEnquiry
+      ? `New Enquiry for ${details.product || 'General'} - ${name}`
+      : `Contact Message from ${name}`;
+
+  const html = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <style>
+        .body { background-color: #f3f4f6; padding: 40px 10px; margin: 0; }
+        .email-container { font-family: 'Poppins', 'Inter', Arial, sans-serif; line-height: 1.6; color: #182650; max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .header { background-color: #182650; padding: 40px 20px; text-align: center; }
+        .header h1 { color: #f16722; font-size: 24px; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: 3px; }
+        .content { padding: 40px 30px; }
+        .badge { display: inline-block; background-color: #fff7ed; color: #f16722; padding: 6px 16px; border-radius: 100px; font-size: 12px; font-weight: 900; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title { font-size: 14px; font-weight: 900; color: #182650; text-transform: uppercase; margin-bottom: 15px; border-bottom: 2px solid #f16722; display: inline-block; }
+        .info-grid { display: grid; grid-template-cols: 1fr; gap: 15px; margin-bottom: 30px; }
+        .info-item { background-color: #f8fafc; border-radius: 12px; padding: 15px; border-left: 4px solid #f16722; }
+        .label { font-size: 10px; color: #64748b; text-transform: uppercase; font-weight: 800; display: block; margin-bottom: 4px; }
+        .value { font-size: 15px; font-weight: 700; color: #182650; }
+        .footer { background-color: #f8fafc; padding: 30px; text-align: center; font-size: 12px; color: #64748b; font-weight: 600; }
+        .cta-button { display: inline-block; background-color: #f16722; color: #ffffff !important; padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: 800; margin-top: 20px; }
+      </style>
+    </head>
+    <body class="body">
+      <div class="email-container">
+        <div class="header">
+          <h1>GIR PRECAST PVT LTD</h1>
+        </div>
+        <div class="content">
+          <div class="badge">${isJob ? 'Job Application' : isEnquiry ? 'Product Enquiry' : 'General Contact'}</div>
+          
+          <div class="section-title">Personal Details</div>
+          <div class="info-grid" style="margin-bottom: 25px;">
+            <div class="info-item"><span class="label">Name</span><span class="value">${name}</span></div>
+            <div class="info-item"><span class="label">Email</span><span class="value">${email}</span></div>
+            <div class="info-item"><span class="label">Phone</span><span class="value">${phone}</span></div>
+            ${details.gender ? `<div class="info-item"><span class="label">Gender</span><span class="value">${details.gender}</span></div>` : ''}
+            ${details.city ? `<div class="info-item"><span class="label">Location</span><span class="value">${details.city}, ${details.country || 'India'}</span></div>` : ''}
           </div>
-          <div class="footer">
-            <p>© ${new Date().getFullYear()} GIR PRECAST PVT LTD | Palwal, Haryana</p>
-            <p>Sent via <a href="https://girprecast.com" style="color: #64748b;">GIR Precast Official Portal</a></p>
+
+          ${isJob ? `
+            <div class="section-title">Professional Profile</div>
+            <div class="info-grid">
+              <div class="info-item"><span class="label">Applied For</span><span class="value" style="color: #f16722;">${details.functionalArea}</span></div>
+              <div class="info-item"><span class="label">Qualification</span><span class="value">${details.qualification}</span></div>
+              <div class="info-item"><span class="label">Experience</span><span class="value">${details.expYears}y ${details.expMonths}m</span></div>
+              <div class="info-item"><span class="label">Current Salary</span><span class="value">₹${details.salLakhs}L ${details.salThousands}K</span></div>
+              <div class="info-item"><span class="label">Notice Period</span><span class="value">${details.noticePeriod}</span></div>
+            </div>
+            <div class="info-item" style="margin-top: 20px;">
+              <span class="label">Key Skills</span><span class="value">${details.skills || 'N/A'}</span>
+            </div>
+          ` : `
+            <div class="section-title">Enquiry Details</div>
+            <div class="info-item">
+              <span class="label">Product / Service</span><span class="value">${details.product || 'General Inquiry'}</span>
+            </div>
+            <div class="info-item" style="margin-top: 15px;">
+              <span class="label">Message</span><span class="value">${details.message || details.details || 'No message provided.'}</span>
+            </div>
+          `}
+
+          <div style="text-align: center; margin-top: 30px;">
+            <a href="mailto:${email}" class="cta-button">Reply to ${name}</a>
           </div>
         </div>
-      </body>
-      </html>
-    `,
+        <div class="footer">
+          <p>© ${new Date().getFullYear()} GIR PRECAST PVT LTD | Palwal, Haryana</p>
+          <p>This is an automated message from your official portal.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  const mailOptions = {
+    from: `"GIR Precast Portal" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_RECEIVER || 'info@girprecast.com',
+    subject: subject,
+    html: html,
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ success: true, message: 'Email sent successfully!' });
+    res.status(200).json({ success: true, message: 'Form submitted successfully!' });
   } catch (error) {
     console.error('Nodemailer Error:', error);
-    res.status(500).json({ success: false, message: 'Failed to send email.' });
+    res.status(500).json({ success: false, message: 'Submission failed. Please try again later.' });
   }
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  const server = app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    
+    // Verify transporter on startup
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+    
+    transporter.verify((error) => {
+      if (error) {
+        console.error('❌ Email Transporter Error:', error.message);
+      } else {
+        console.log('✅ Email Transporter is ready to send messages');
+      }
+    });
   });
 }
 
