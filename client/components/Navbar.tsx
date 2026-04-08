@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Facebook, Instagram, Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,7 +10,15 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close mobile menu and dropdowns on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setOpenDropdown(null);
+    setIsSearchOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +42,7 @@ const Navbar = () => {
   const products = [
     {
       category: "COMPOUND WALL",
+      href: "/products/compound-wall",
       items: [
         { name: "Concrete Folding Compound Wall", href: "/product/concrete-folding-compound-wall" },
         { name: "Concrete Precast Single Panel Wall", href: "/product/concrete-precast-single-panel-wall" },
@@ -44,6 +54,7 @@ const Navbar = () => {
     },
     {
       category: "BOUNDARY WALL",
+      href: "/products/boundary-wall",
       items: [
         { name: "Cement Boundary Wall", href: "/product/cement-boundary-wall" },
         { name: "Concrete Boundary Wall", href: "/product/concrete-boundary-wall" },
@@ -56,6 +67,7 @@ const Navbar = () => {
     },
     {
       category: "CEMENT WALL",
+      href: "/products/cement-wall",
       items: [
         { name: "Pre Fabricated Cement Wall", href: "/product/pre-fabricated-cement-wall" },
         { name: "RCC Cement Wall", href: "/product/rcc-cement-wall" },
@@ -63,6 +75,7 @@ const Navbar = () => {
     },
     {
       category: "OTHER PRODUCTS",
+      href: "/products/other-products",
       items: [
         { name: "Precast Wall", href: "/product/precast-wall" },
         { name: "RCC Folding Wall", href: "/product/rcc-folding-wall" },
@@ -78,25 +91,25 @@ const Navbar = () => {
       <div className={`hidden md:block w-full border-b border-gir-cement transition-colors duration-300 ${isScrolled ? "bg-white" : "bg-white"}`}>
         <div className="container mx-auto px-4 py-2 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="mailto:info@girprecast-pvtltd.com" className="text-gir-dark-blue hover:text-gir-orange transition-colors">
-              ✉️ info@girprecast-pvtltd.com
+            <a href="mailto:info@girprecast.com" className="text-gir-dark-blue hover:text-gir-orange transition-colors">
+              ✉️ info@girprecast.com
             </a>
-            <span className="text-gray-600">GST: 06AEGFS8126M1ZK</span>
+            {/* <span className="text-gray-600">GST: 06AEGFS8126M1ZK</span> */}
           </div>
           <div className="flex items-center gap-4">
             <span className="text-gray-600 font-medium">Follow Us:</span>
             <div className="flex items-center gap-2">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
+              <a
+                href="https://facebook.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-7 h-7 flex items-center justify-center bg-[#1877F2] rounded-md hover:opacity-90 transition-all shadow-sm group"
               >
                 <Facebook size={16} className="text-white fill-white transition-transform group-hover:scale-110" />
               </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/gir.precastpvtltd?igsh=MWswaTk4cDhoZDY3dg%3D%3D&utm_source=qr"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-7 h-7 flex items-center justify-center bg-gradient-to-tr from-[#FFB700] via-[#FF0000] to-[#800080] rounded-md hover:opacity-90 transition-all shadow-sm group"
               >
@@ -109,11 +122,10 @@ const Navbar = () => {
 
       {/* Main navbar */}
       <nav
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          isScrolled
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled
             ? "bg-white shadow-lg"
             : "bg-white/95 backdrop-blur"
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           {/* Logo */}
@@ -135,7 +147,7 @@ const Navbar = () => {
               className="relative flex items-center h-full"
               ref={dropdownRef}
             >
-              <button 
+              <button
                 onClick={() => setOpenDropdown(openDropdown === "products" ? null : "products")}
                 className="flex items-center gap-1 text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline focus:outline-none"
               >
@@ -144,13 +156,16 @@ const Navbar = () => {
               </button>
 
               {/* Mega Menu */}
-              <div className={`absolute left-1/2 -translate-x-1/2 top-full w-[1000px] mt-2 pt-4 cursor-default ${openDropdown === "products" ? "block" : "hidden"}`}>
-                <div className="bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-10 border border-gray-100 grid grid-cols-4 gap-8 animate-in fade-in slide-in-from-top-4 duration-300">
+              <div className={`absolute left-1/2 -translate-x-1/2 top-full w-screen max-w-[95vw] lg:max-w-6xl mt-2 pt-4 cursor-default ${openDropdown === "products" ? "block" : "hidden"}`}>
+                <div className="bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)] rounded-2xl p-8 lg:p-12 border border-gray-100 grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10 animate-in fade-in slide-in-from-top-4 duration-300">
                   {products.map((group) => (
                     <div key={group.category} className="space-y-6">
-                      <h3 className="font-extrabold text-gir-dark-blue text-xs uppercase tracking-[0.2em] border-b border-gray-100 pb-3">
+                      <Link
+                        to={group.href}
+                        className="block font-extrabold text-gir-dark-blue text-xs uppercase tracking-[0.2em] border-b border-gray-100 pb-3 hover:text-gir-orange transition-colors"
+                      >
                         {group.category}
-                      </h3>
+                      </Link>
                       <ul className="space-y-3">
                         {group.items.map((item) => (
                           <li key={item.name}>
@@ -178,7 +193,7 @@ const Navbar = () => {
             <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline">
               Catalogue
             </Link>
-            
+
             <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange transition-colors font-medium orange-underline">
               Blog
             </Link>
@@ -202,26 +217,26 @@ const Navbar = () => {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       onKeyDown={(e) => {
-                          if (e.key === "Enter" && searchQuery.trim()) {
-                              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-                              setIsSearchOpen(false);
-                          }
+                        if (e.key === "Enter" && searchQuery.trim()) {
+                          navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                          setIsSearchOpen(false);
+                        }
                       }}
                       className="bg-transparent text-white px-4 py-2.5 text-sm outline-none w-full italic font-sans"
                       autoFocus
                     />
-                    <button 
+                    <button
                       onClick={() => {
-                          if (searchQuery.trim()) {
-                              navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-                              setIsSearchOpen(false);
-                          }
+                        if (searchQuery.trim()) {
+                          navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                          setIsSearchOpen(false);
+                        }
                       }}
                       className="bg-gir-orange hover:bg-gir-orange/90 text-white px-4 py-2.5 text-xs font-bold uppercase transition-colors whitespace-nowrap"
                     >
                       GO
                     </button>
-                    <button 
+                    <button
                       onClick={() => setIsSearchOpen(false)}
                       className="text-gray-500 hover:text-white px-3 transition-colors border-l border-gray-800"
                     >
@@ -246,90 +261,119 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="lg:hidden bg-white border-t border-gir-cement">
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              <Link to="/" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
-                Home
-              </Link>
-              <Link to="/about" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
-                About Us
-              </Link>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="lg:hidden bg-white border-t border-gir-cement overflow-hidden shadow-2xl"
+            >
+              <div className="container mx-auto px-4 py-8 flex flex-col gap-1">
+                <Link to="/" className="text-gir-dark-blue hover:text-gir-orange font-bold py-4 border-b border-gray-50 flex items-center justify-between group">
+                  Home
+                  <span className="text-gray-300 group-hover:text-gir-orange transition-colors font-bold tracking-widest">›</span>
+                </Link>
+                <Link to="/about" className="text-gir-dark-blue hover:text-gir-orange font-bold py-4 border-b border-gray-50 flex items-center justify-between group">
+                  About Us
+                  <span className="text-gray-300 group-hover:text-gir-orange transition-colors font-bold tracking-widest">›</span>
+                </Link>
 
-              {/* Mobile Products Dropdown */}
-              <div>
-                <button
-                  onClick={() => setOpenDropdown(openDropdown === "products" ? null : "products")}
-                  className="flex items-center gap-2 text-gir-dark-blue hover:text-gir-orange font-medium py-2 w-full"
-                >
-                  Products
-                  <ChevronDown size={18} className={openDropdown === "products" ? "rotate-180" : ""} />
-                </button>
-                {openDropdown === "products" && (
-                  <div className="pl-4 space-y-2 bg-gray-50 py-2 rounded">
-                    {products.map((group) => (
-                      <div key={group.category}>
-                        <p className="font-semibold text-gir-dark-blue text-sm mt-2">{group.category}</p>
-                        <ul className="space-y-1 text-sm">
-                          {group.items.map((item) => (
-                            <li key={item.name}>
-                              <Link
-                                to={item.href}
-                                className="text-gray-600 hover:text-gir-orange"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                {item.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                {/* Mobile Products Dropdown */}
+                <div className="py-2 border-b border-gray-50">
+                  <button
+                    onClick={() => setOpenDropdown(openDropdown === "products" ? null : "products")}
+                    className="flex items-center justify-between text-gir-dark-blue hover:text-gir-orange font-bold py-4 w-full focus:outline-none"
+                  >
+                    <span>Products</span>
+                    <ChevronDown size={20} className={`transition-transform duration-300 ${openDropdown === "products" ? "rotate-180 text-gir-orange" : "text-gray-400"}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {openDropdown === "products" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="pl-2 space-y-8 bg-gray-50/50 py-8 rounded-2xl mt-2 border border-blue-50/50"
+                      >
+                        {products.map((group) => (
+                          <div key={group.category} className="px-5">
+                            <Link
+                              to={group.href}
+                              className="font-extrabold text-gir-orange text-[11px] uppercase tracking-[0.2em] block mb-5"
+                            >
+                              {group.category}
+                            </Link>
+                            <ul className="space-y-4">
+                              {group.items.map((item) => (
+                                <li key={item.name}>
+                                  <Link
+                                    to={item.href}
+                                    className="text-gir-dark-blue/80 hover:text-gir-orange block text-sm font-semibold border-l-2 border-transparent hover:border-gir-orange pl-4 transition-all"
+                                  >
+                                    {item.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange font-bold py-4 border-b border-gray-50 flex items-center justify-between group">
+                  Catalogue
+                  <span className="text-gray-300 group-hover:text-gir-orange transition-colors font-bold tracking-widest">›</span>
+                </Link>
+                <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange font-bold py-4 border-b border-gray-50 flex items-center justify-between group">
+                  Blog
+                  <span className="text-gray-300 group-hover:text-gir-orange transition-colors font-bold tracking-widest">›</span>
+                </Link>
+
+                {/* Mobile Search Input */}
+                <div className="mt-8">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Find precast products..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && searchQuery.trim()) {
+                          navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                        }
+                      }}
+                      className="w-full bg-gray-100 border-none rounded-2xl px-6 py-5 text-sm outline-none focus:ring-4 focus:ring-gir-orange/10 transition-all font-medium pr-16 shadow-inner"
+                    />
+                    <button
+                      onClick={() => {
+                        if (searchQuery.trim()) {
+                          navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+                        }
+                      }}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 bg-gir-orange text-white p-3 rounded-xl shadow-lg shadow-gir-orange/30 active:scale-95 transition-all"
+                    >
+                      <Search size={22} />
+                    </button>
                   </div>
-                )}
-              </div>
+                </div>
 
-              {/* Mobile Search */}
-              <div className="flex items-center bg-[#1a1a1a] rounded mt-2 px-3 py-2">
-                <input
-                  type="text"
-                  placeholder="Search text here..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && searchQuery.trim()) {
-                        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-                        setIsOpen(false);
-                    }
-                  }}
-                  className="bg-transparent text-white text-sm outline-none w-full italic"
-                />
-                <button 
-                  onClick={() => {
-                    if (searchQuery.trim()) {
-                        navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-                        setIsOpen(false);
-                    }
-                  }}
-                  className="bg-gir-orange hover:bg-gir-orange/90 text-white px-3 py-1 rounded text-xs font-bold font-sans ml-2"
-                >
-                  GO
-                </button>
-              </div>
+                <Link to="/contact" className="mt-10 px-8 py-5 bg-gir-dark-blue text-white rounded-2xl font-bold text-center shadow-xl shadow-gir-dark-blue/20 active:scale-[0.98] transition-all text-lg tracking-wide uppercase">
+                  Contact Us
+                </Link>
 
-              <Link to="/catalogue" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
-                Catalogue
-              </Link>
-              <Link to="/blog" className="text-gir-dark-blue hover:text-gir-orange font-medium py-2" onClick={() => setIsOpen(false)}>
-                Blog
-              </Link>
-              <Link to="/contact" className="px-6 py-2 bg-gir-orange text-white rounded-lg font-semibold text-center" onClick={() => setIsOpen(false)}>
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        )}
+                <div className="flex items-center justify-center gap-10 mt-10 pt-10 border-t border-gray-100">
+                  <a href="#" className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white transition-all shadow-sm"><Facebook size={22} /></a>
+                  <a href="https://www.instagram.com/gir.precastpvtltd?igsh=MWswaTk4cDhoZDY3dg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-[#E4405F] hover:bg-[#E4405F] hover:text-white transition-all shadow-sm"><Instagram size={22} /></a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );

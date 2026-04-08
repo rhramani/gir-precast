@@ -40,7 +40,11 @@ const About = () => {
           {/* Main Content (Left) */}
           <div className="lg:col-span-3 pr-0 lg:pr-8">
             <h2 className="text-3xl font-bold text-gir-dark-blue mb-6">About Us</h2>
-            
+
+            <div className="mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-100">
+              <img src="/images/generated/about-us.webp" alt="GIR Precast Facility" className="w-full h-[400px] object-cover" />
+            </div>
+
             <p className="text-gray-600 mb-6 leading-relaxed text-[15px]">
               Deeply rooted in Palwal Haryana, India, <strong>GIR PRECAST PVT LTD</strong> is one of the well-known manufacturers and supplier of various types of RCC and concrete Compound Walls.
             </p>
@@ -96,7 +100,7 @@ const About = () => {
                           {category.name}
                         </Link>
                       </div>
-                      <button 
+                      <button
                         onClick={() => toggleCategory(category.slug)}
                         className="text-gray-400 hover:text-gir-orange transition-colors p-1"
                         aria-label="Toggle category"
@@ -106,34 +110,34 @@ const About = () => {
                     </div>
                     {openCategories[category.slug] && (
                       <ul className="pl-4 space-y-2 mt-2 border-l border-gray-200 ml-1">
-                         {productsData.filter(p => p.categorySlug === category.slug).map(prod => (
-                           <li key={prod.slug} className="relative before:content-[''] before:absolute before:w-2 before:h-px before:bg-gray-300 before:left-0 before:top-2.5">
-                             <Link
-                               to={`/product/${prod.slug}`}
-                               className="text-gray-500 hover:text-gir-orange transition-colors text-sm block pl-3"
-                             >
-                                {prod.name}
-                             </Link>
-                           </li>
-                         ))}
+                        {productsData.filter(p => p.categorySlug === category.slug).map(prod => (
+                          <li key={prod.slug} className="relative before:content-[''] before:absolute before:w-2 before:h-px before:bg-gray-300 before:left-0 before:top-2.5">
+                            <Link
+                              to={`/product/${prod.slug}`}
+                              className="text-gray-500 hover:text-gir-orange transition-colors text-sm block pl-3"
+                            >
+                              {prod.name}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     )}
                   </li>
                 ))}
               </ul>
             </div>
-            
+
             {/* Contact Box in Sidebar */}
             <div className="mt-8 border border-gray-200">
-               <h3 className="text-lg font-bold text-white bg-gir-dark-blue px-4 py-3 border-l-4 border-gir-orange">
-                 Contact Us
-               </h3>
-               <div className="p-5 bg-gray-50/50">
-                 <p className="text-gir-dark-blue font-bold mb-3 text-lg">GIR PRECAST PVT LTD</p>
-                 <p className="text-gray-600 text-sm mb-4 leading-relaxed">Opp. Adani CNG Pump, Delhi-Mathura Road Near Hanuman Mandir, Palwal, Haryana - 121102, India</p>
-                 <p className="text-gray-600 text-sm mb-2"><strong>Mobile:</strong><br/>+91-8238902687</p>
-                 <p className="text-gray-600 text-sm break-words"><strong>E-mail:</strong><br/>info@girprecast-pvtltd.com</p>
-               </div>
+              <h3 className="text-lg font-bold text-white bg-gir-dark-blue px-4 py-3 border-l-4 border-gir-orange">
+                Contact Us
+              </h3>
+              <div className="p-5 bg-gray-50/50">
+                <p className="text-gir-dark-blue font-bold mb-3 text-lg">GIR PRECAST PVT LTD</p>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">Opp. Adani CNG Pump, Delhi-Mathura Road Near Hanuman Mandir, Palwal, Haryana - 121102, India</p>
+                <p className="text-gray-600 text-sm mb-2"><strong>Mobile:</strong><br />+91-9992908099</p>
+                <p className="text-gray-600 text-sm break-words"><strong>E-mail:</strong><br />info@girprecast.com</p>
+              </div>
             </div>
           </div>
         </div>

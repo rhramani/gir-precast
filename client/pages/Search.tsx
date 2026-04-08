@@ -14,7 +14,7 @@ const Search = () => {
   const [selectedInquiryProduct, setSelectedInquiryProduct] = useState<ProductDetail | null>(null);
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
 
-  const filteredProducts = useMemo(() => 
+  const filteredProducts = useMemo(() =>
     productsData.filter((product) =>
       product.name.toLowerCase().includes(query.toLowerCase()) ||
       product.description.toLowerCase().includes(query.toLowerCase()) ||
@@ -22,7 +22,7 @@ const Search = () => {
     ), [query]);
 
   const toggleCategory = (slug: string) => {
-    setExpandedCategories(prev => 
+    setExpandedCategories(prev =>
       prev.includes(slug) ? prev.filter(s => s !== slug) : [...prev, slug]
     );
   };
@@ -55,7 +55,7 @@ const Search = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Inquiry Modal */}
-      <InquiryModal 
+      <InquiryModal
         product={selectedInquiryProduct}
         isOpen={isInquiryModalOpen}
         onClose={() => setIsInquiryModalOpen(false)}
@@ -89,9 +89,9 @@ const Search = () => {
                   <div key={product.slug} className="flex flex-col gap-4 p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow group bg-white">
                     <div className="flex flex-col sm:flex-row gap-4">
                       <div className="w-full sm:w-1/3 aspect-[4/3] relative overflow-hidden rounded bg-gray-50 shadow-inner">
-                        <img 
-                          src={product.image} 
-                          alt={product.name} 
+                        <img
+                          src={product.image}
+                          alt={product.name}
                           className="w-full h-full object-cover transition-transform group-hover:scale-105"
                         />
                       </div>
@@ -109,14 +109,14 @@ const Search = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="mt-auto pt-4 border-t border-gray-50">
-                      <Button 
+                      <Button
                         onClick={() => handleEnquiryClick(product)}
                         className="w-full bg-gir-dark-blue hover:bg-black text-white font-black uppercase tracking-widest text-xs italic py-6 h-auto shadow-md transition-all active:scale-95"
                       >
                         Get Best Price
-                      </Button> 
+                      </Button>
                     </div>
                   </div>
                 ))}
@@ -144,11 +144,11 @@ const Search = () => {
                   <div className="w-6 h-[3px] bg-gir-orange" />
                 </div>
               </div>
-              
+
               <div className="divide-y divide-white/5">
                 {categories.map((cat) => (
                   <div key={cat.slug} className="group">
-                    <button 
+                    <button
                       onClick={() => toggleCategory(cat.slug)}
                       className="w-full px-5 py-4 flex justify-between items-center hover:bg-white/[0.05] transition-colors text-left"
                     >
@@ -161,11 +161,11 @@ const Search = () => {
                         <Plus size={16} className="text-white" strokeWidth={3} />
                       )}
                     </button>
-                    
+
                     {expandedCategories.includes(cat.slug) && (
                       <div className="bg-black/40 py-3 border-t border-white/5">
                         {cat.products.map((p) => (
-                          <Link 
+                          <Link
                             key={p.slug}
                             to={`/product/${p.slug}`}
                             className="flex items-start gap-3 px-6 py-2.5 text-[13px] text-gray-300 hover:text-gir-orange hover:bg-white/[0.03] transition-all group/item"
@@ -196,13 +196,13 @@ const Search = () => {
                   </p>
                 </div>
                 <div className="space-y-3 pt-2">
-                  <a href="tel:+918238902687" className="flex items-center gap-3 text-[13px] text-gray-600 hover:text-gir-orange transition-colors font-medium">
+                  <a href="tel:+919992908099" className="flex items-center gap-3 text-[13px] text-gray-600 hover:text-gir-orange transition-colors font-medium">
                     <Phone size={18} className="text-gir-orange" />
-                    +91-8238902687
+                    +91-9992908099
                   </a>
-                  <a href="mailto:info@girprecast-pvtltd.com" className="flex items-center gap-3 text-[13px] text-gray-600 hover:text-gir-orange transition-colors break-all font-medium">
+                  <a href="mailto:info@girprecast.com" className="flex items-center gap-3 text-[13px] text-gray-600 hover:text-gir-orange transition-colors break-all font-medium">
                     <Mail size={18} className="text-gir-orange" />
-                    info@girprecast-pvtltd.com
+                    info@girprecast.com
                   </a>
                 </div>
               </div>

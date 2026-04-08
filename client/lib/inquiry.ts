@@ -1,5 +1,5 @@
-export const WHATSAPP_NUMBER = "918238902687";
-export const INQUIRY_EMAIL = "info@girprecast-pvtltd.com";
+export const WHATSAPP_NUMBER = "919992908099";
+export const INQUIRY_EMAIL = "info@girprecast.com";
 
 interface InquiryData {
   name: string;
@@ -11,7 +11,7 @@ interface InquiryData {
 
 export const sendInquiry = (data: InquiryData) => {
   const currentDate = new Date().toLocaleString();
-  
+
   // 1. Format WhatsApp message
   const waMessage = `🌟 *NEW INQUIRY - GIR PRECAST* 🌟
 --------------------------------------
@@ -47,7 +47,7 @@ Sent from: girprecast-pvtltd.com`;
   // 4. Open Email (mailto) - optional, or just inform user
   // Since we want both, we can try to open both, but browser might block multiple popups.
   // Best practice is to open WhatsApp and maybe redirect to a thank you page or just alert.
-  
+
   // Note: For a "real" automatic email without user intervention, 
   // a backend server with nodemailer or a service like EmailJS is required.
   // I will provide the EmailJS setup instructions in the response.

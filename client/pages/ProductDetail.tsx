@@ -153,60 +153,61 @@ const ProductDetail = () => {
               </div>
 
               {/* Quantity / Unit / Edit Row — Interactive like reference site */}
-              <div className="flex flex-wrap items-end gap-4 mb-8">
-                {/* Quantity Field */}
-                <div className="relative">
-                  <div className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1.5">Quantity</div>
-                  {isEditing ? (
-                    <input
-                      ref={quantityInputRef}
-                      type="text"
-                      value={quantity}
-                      onChange={(e) => {
-                        // Only allow numbers
-                        const val = e.target.value.replace(/[^0-9]/g, "");
-                        setQuantity(val);
-                      }}
-                      className="h-11 w-28 border border-gray-300 rounded-md text-center font-bold text-gir-dark-blue bg-white outline-none focus:border-gir-orange focus:ring-2 focus:ring-gir-orange/20 transition-all"
-                    />
-                  ) : (
-                    <div className="h-11 w-28 border border-gray-200 rounded-md flex items-center justify-center font-bold text-gir-dark-blue bg-gray-50/50">
-                      {quantity}
-                    </div>
+              <div className="flex flex-col sm:flex-row sm:items-end gap-4 mb-8">
+                <div className="flex items-end gap-3">
+                  {/* Quantity Field */}
+                  <div className="relative">
+                    <div className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1.5">Quantity</div>
+                    {isEditing ? (
+                      <input
+                        ref={quantityInputRef}
+                        type="text"
+                        value={quantity}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/[^0-9]/g, "");
+                          setQuantity(val);
+                        }}
+                        className="h-11 w-24 sm:w-28 border border-gray-300 rounded-md text-center font-bold text-gir-dark-blue bg-white outline-none focus:border-gir-orange focus:ring-2 focus:ring-gir-orange/20 transition-all font-sans"
+                      />
+                    ) : (
+                      <div className="h-11 w-24 sm:w-28 border border-gray-200 rounded-md flex items-center justify-center font-bold text-gir-dark-blue bg-gray-50/50">
+                        {quantity}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Unit Field */}
+                  <div className="relative">
+                    <div className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1.5">Unit</div>
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        value={unit}
+                        onChange={(e) => setUnit(e.target.value)}
+                        className="h-11 w-28 sm:w-32 border border-gray-300 rounded-md text-center font-bold text-gir-dark-blue bg-white outline-none focus:border-gir-orange focus:ring-2 focus:ring-gir-orange/20 transition-all font-sans"
+                      />
+                    ) : (
+                      <div className="h-11 border border-gray-200 rounded-md flex items-center justify-center text-gir-dark-blue bg-gray-50/50 px-3 sm:px-4 font-bold text-xs sm:text-sm min-w-[100px] sm:min-w-[120px]">
+                        {unit}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Edit Button — disappears once editing */}
+                  {!isEditing && (
+                    <button 
+                      onClick={handleEditClick}
+                      className="flex items-center gap-1.5 text-gir-orange text-xs font-bold hover:underline underline-offset-4 ml-1 transition-all active:scale-95 mb-2 h-7"
+                    >
+                      <Edit size={14} />
+                      Edit
+                    </button>
                   )}
                 </div>
-
-                {/* Unit Field */}
-                <div className="relative">
-                  <div className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1.5">Unit</div>
-                  {isEditing ? (
-                    <input
-                      type="text"
-                      value={unit}
-                      onChange={(e) => setUnit(e.target.value)}
-                      className="h-11 w-32 border border-gray-300 rounded-md text-center font-bold text-gir-dark-blue bg-white outline-none focus:border-gir-orange focus:ring-2 focus:ring-gir-orange/20 transition-all"
-                    />
-                  ) : (
-                    <div className="h-11 border border-gray-200 rounded-md flex items-center justify-center text-gir-dark-blue bg-gray-50/50 px-4 font-bold text-sm min-w-[120px]">
-                      {unit}
-                    </div>
-                  )}
-                </div>
-
-                {/* Edit Button — disappears once editing */}
-                {!isEditing && (
-                  <button 
-                    onClick={handleEditClick}
-                    className="flex items-center gap-1.5 text-gir-orange text-xs font-bold hover:underline underline-offset-4 ml-1 transition-all active:scale-95 mb-2"
-                  >
-                    <Edit size={14} />
-                    Edit
-                  </button>
-                )}
 
                 {/* Get Best Price Button */}
                 <Button 
-                  className="ml-auto bg-gir-orange hover:bg-gir-dark-blue text-white font-bold px-8 h-11 rounded-lg transition-all shadow-md active:scale-95"
+                  className="w-full sm:w-auto sm:ml-auto bg-gir-orange hover:bg-gir-dark-blue text-white font-bold px-8 h-11 rounded-lg transition-all shadow-md active:scale-95"
                   onClick={handleEnquiryClick}
                 >
                   Get Best Price
@@ -234,15 +235,15 @@ const ProductDetail = () => {
               {/* Action Buttons Row */}
               <div className="flex flex-col sm:flex-row gap-4 mt-auto">
                 <a 
-                  href="tel:+918238902687"
-                  className="flex-1 flex items-center justify-center gap-2 bg-transparent border-2 border-gir-dark-blue text-gir-dark-blue hover:bg-gir-dark-blue hover:text-white font-bold py-4 rounded-xl transition-all active:scale-95"
+                  href="tel:+919992908099"
+                  className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-transparent border-2 border-gir-dark-blue text-gir-dark-blue hover:bg-gir-dark-blue hover:text-white font-bold py-4 rounded-xl transition-all active:scale-95"
                 >
                   <Phone size={20} />
                   Request to Call
                 </a>
                 <Button 
                   onClick={handleEnquiryClick}
-                  className="flex-[1.5] flex items-center justify-center gap-2 bg-gir-dark-blue hover:bg-gir-orange text-white font-bold py-4 h-auto rounded-xl transition-all active:scale-95 shadow-lg"
+                  className="w-full sm:flex-[1.5] flex items-center justify-center gap-2 bg-gir-dark-blue hover:bg-gir-orange text-white font-bold py-4 h-auto rounded-xl transition-all active:scale-95 shadow-lg"
                 >
                   <Mail size={20} />
                   Send Enquiry
@@ -296,75 +297,77 @@ const ProductDetail = () => {
                 Looking for "<span className="text-gir-orange">{product.name}</span>" ?
               </h2>
               
-              <form onSubmit={handleBottomSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+              <form onSubmit={handleBottomSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
                 {/* Left Side: Basic Info */}
-                <div className="space-y-8">
-                  <div className="relative">
+                <div className="space-y-6">
+                  <div>
+                    <label className="text-gray-400 text-[10px] uppercase font-extrabold tracking-[0.2em] mb-2 block">Name</label>
                     <Input 
-                      placeholder="Name" 
+                      placeholder="Enter your name" 
                       value={bottomForm.name}
                       onChange={(e) => setBottomForm({...bottomForm, name: e.target.value})}
                       className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20" 
                     />
-                    <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Name</div>
                   </div>
-                  <div className="relative">
+                  <div>
+                    <label className="text-gray-400 text-[10px] uppercase font-extrabold tracking-[0.2em] mb-2 block">Email Address</label>
                     <Input 
-                      placeholder="Email" 
+                      placeholder="Enter your email" 
                       value={bottomForm.email}
                       onChange={(e) => setBottomForm({...bottomForm, email: e.target.value})}
                       className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20" 
                     />
-                    <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Email</div>
                   </div>
-                  <div className="relative">
+                  <div>
+                    <label className="text-gray-400 text-[10px] uppercase font-extrabold tracking-[0.2em] mb-2 block">Mobile Number</label>
                     <CustomPhoneInput
                       value={bottomForm.phone} 
                       onChange={(val) => setBottomForm({...bottomForm, phone: val})} 
                       className="w-full"
                     />
-                    <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Mobile</div>
                   </div>
                 </div>
 
                 {/* Right Side: Quantity & Details */}
-                <div className="space-y-8">
-                  <div className="flex gap-2 relative">
-                    <Input 
-                      placeholder="Estimated Quantity"
-                      value={quantity}
-                      readOnly
-                      className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 flex-1 bg-gray-50/50" 
-                    />
-                    <div className="flex h-12 px-4 items-center justify-center bg-gray-50 border border-gray-200 text-gray-500 text-sm font-medium rounded-lg">
-                      {unit}
+                <div className="space-y-6">
+                  <div>
+                    <label className="text-gray-400 text-[10px] uppercase font-extrabold tracking-[0.2em] mb-2 block">Estimated Quantity</label>
+                    <div className="flex gap-2">
+                      <Input 
+                        placeholder="Quantity"
+                        value={quantity}
+                        readOnly
+                        className="h-12 border-gray-200 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 flex-1 bg-gray-50/50" 
+                      />
+                      <div className="flex h-12 px-4 items-center justify-center bg-gray-50 border border-gray-200 text-gray-500 text-sm font-medium rounded-lg whitespace-nowrap">
+                        {unit}
+                      </div>
                     </div>
-                    <div className="absolute left-[-80px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-16 text-right hidden lg:block tracking-widest">Quantity</div>
                   </div>
 
-                  <div className="relative">
-                    <div className="flex gap-8 items-center h-12 ml-2">
-                      <label className="flex items-center gap-2 text-gir-dark-blue text-sm cursor-pointer font-medium group">
+                  <div>
+                    <label className="text-gray-400 text-[10px] uppercase font-extrabold tracking-[0.2em] mb-2 block">Purpose of Requirement</label>
+                    <div className="flex gap-8 items-center h-12">
+                      <label className="flex items-center gap-2 text-gir-dark-blue text-sm cursor-pointer font-bold group">
                         <input type="radio" name="purpose" className="w-4 h-4 accent-gir-orange" />
                         Reselling
                       </label>
-                      <label className="flex items-center gap-2 text-gir-dark-blue text-sm cursor-pointer font-medium group">
+                      <label className="flex items-center gap-2 text-gir-dark-blue text-sm cursor-pointer font-bold group">
                         <input type="radio" name="purpose" className="w-4 h-4 accent-gir-orange" />
                         End Use
                       </label>
                     </div>
-                    <div className="absolute left-[-110px] top-1/2 -translate-y-1/2 text-gray-400 text-[10px] uppercase font-bold w-24 text-right hidden lg:block tracking-widest leading-tight">Purpose of Requirement</div>
                   </div>
 
-                  <div className="relative">
+                  <div>
+                    <label className="text-gray-400 text-[10px] uppercase font-extrabold tracking-[0.2em] mb-2 block">Requirement Details</label>
                     <textarea 
                       placeholder="I am interested. Kindly send the quotation for the same." 
                       rows={3} 
                       value={bottomForm.details}
                       onChange={(e) => setBottomForm({...bottomForm, details: e.target.value})}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-xl p-4 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 outline-none text-sm placeholder:text-gray-400 resize-none"
+                      className="w-full bg-white border border-gray-200 rounded-xl p-4 text-gir-dark-blue focus:border-gir-orange focus:ring-1 focus:ring-gir-orange/20 outline-none text-sm placeholder:text-gray-400 resize-none shadow-inner"
                     ></textarea>
-                     <div className="absolute left-[-110px] top-4 text-gray-400 text-[10px] uppercase font-bold w-24 text-right hidden lg:block tracking-widest leading-tight">Requirement Details</div>
                   </div>
                 </div>
 

@@ -26,11 +26,11 @@ const FloatingActions = () => {
   };
 
   const openWhatsApp = () => {
-    window.open("https://wa.me/918238902687", "_blank");
+    window.open("https://wa.me/919992908099", "_blank");
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 sm:gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] flex flex-col items-end gap-2 sm:gap-3">
       {/* WhatsApp Button */}
       <button
         onClick={openWhatsApp}

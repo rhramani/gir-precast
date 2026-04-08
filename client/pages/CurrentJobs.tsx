@@ -76,7 +76,7 @@ const CurrentJobs = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:info@girprecast-pvtltd.com?subject=Job Application - GIR Precast"
+                href="mailto:info@girprecast.com?subject=Job Application - GIR Precast"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-gir-orange text-white font-bold rounded-xl hover:bg-gir-dark-blue transition-colors shadow-lg"
               >
                 <Mail size={20} />
@@ -100,14 +100,14 @@ const CurrentJobs = () => {
                 <Mail className="text-gir-orange mt-1 shrink-0" size={20} />
                 <div>
                   <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">Email</p>
-                  <p className="font-medium">info@girprecast-pvtltd.com</p>
+                  <p className="font-medium">info@girprecast.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="text-gir-orange mt-1 shrink-0" size={20} />
                 <div>
                   <p className="text-gray-400 text-xs uppercase tracking-widest mb-1">Phone</p>
-                  <p className="font-medium">+91-8238902687</p>
+                  <p className="font-medium">+91-9992908099</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">

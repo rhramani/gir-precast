@@ -25,7 +25,7 @@ const Contact = () => {
       details: formData.details
     });
 
-    alert("Thank you! Opening WhatsApp to share your requirement. You can also send us an email at info@girprecast-pvtltd.com");
+    alert("Thank you! Opening WhatsApp to share your requirement. You can also send us an email at info@girprecast.com");
     setFormData({ product: "", name: "", email: "", mobile: "", details: "" });
   };
 
@@ -83,8 +83,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Call Us</h4>
                   <p className="text-gray-600 text-sm">
-                    <a href="tel:+918238902687" className="hover:text-gir-orange transition-colors">+91-8238902687</a>,{' '}
-                    {/* <a href="tel:+919896908099" className="hover:text-gir-orange transition-colors">+91-9896908099</a> */}
+                    <a href="tel:+919992908099" className="hover:text-gir-orange transition-colors">+91-9992908099</a>,{' '}
                   </p>
                 </div>
               </div>
@@ -96,7 +95,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Email</h4>
                   <p className="text-gray-600 text-sm">
-                    <a href="mailto:info@girprecast-pvtltd.com" className="hover:text-gir-orange transition-colors">info@girprecast-pvtltd.com</a>
+                    <a href="mailto:info@girprecast.com" className="hover:text-gir-orange transition-colors">info@girprecast.com</a>
                   </p>
                 </div>
               </div>
@@ -128,7 +127,7 @@ const Contact = () => {
 
             {/* <div className="mt-8">
               <a
-                href="https://wa.me/918238902687"
+                href="https://wa.me/919992908099"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full px-6 py-3 bg-[#25D366] text-white rounded font-bold hover:bg-[#1ebe57] transition-all justify-center items-center gap-2 shadow-sm"
@@ -142,7 +141,7 @@ const Contact = () => {
           </div>
 
           {/* Right Column - Form */}
-          <div className="bg-white p-8 lg:p-12">
+          <div className="bg-white p-5 sm:p-8 lg:p-12">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-bold text-gir-dark-blue mb-2">

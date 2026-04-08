@@ -7,12 +7,12 @@ import InquiryModal from "@/components/InquiryModal";
 import PhoneInput from "@/components/ui/phone-input";
 import { productsData, ProductDetail } from "@/data/products";
 import { sendInquiry } from "@/lib/inquiry";
-import { 
-  Star, 
-  Users, 
-  Briefcase, 
-  TrendingUp, 
-  ChevronLeft, 
+import {
+  Star,
+  Users,
+  Briefcase,
+  TrendingUp,
+  ChevronLeft,
   ChevronRight,
   PiggyBank,
   FileText
@@ -120,7 +120,7 @@ const Index = () => {
   return (
     <>
       {/* Inquiry Modal */}
-      <InquiryModal 
+      <InquiryModal
         product={selectedInquiryProduct}
         isOpen={isInquiryModalOpen}
         onClose={() => setIsInquiryModalOpen(false)}
@@ -240,7 +240,7 @@ const Index = () => {
               style={{ aspectRatio: "4/3" }}
             />
           </div>
-          
+
           {/* Text Side */}
           <div className="fade-in-right">
             <h2 className="text-3xl font-bold text-gir-dark-blue mb-6">
@@ -249,22 +249,22 @@ const Index = () => {
             <p className="text-gray-600 mb-8 leading-loose text-sm font-medium">
               Deeply rooted in Palwal Haryana, India, GIR PRECAST PVT LTD is one of the well-known manufacturers and supplier of various types of RCC and concrete Compound Walls. Newly established in the year 2020 and working under
             </p>
-            
+
             <Link
               to="/about"
               className="inline-block px-8 py-3 bg-gir-orange text-white font-bold rounded hover:bg-gir-dark-blue transition-colors shadow-lg shadow-gir-orange/20 mb-12 text-sm"
             >
               View more
             </Link>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* GST Box */}
-              <div className="border border-gray-100 p-6 flex flex-col items-start bg-gray-50 transition-colors hover:border-gir-orange/30 rounded-xl">
+              {/* <div className="border border-gray-100 p-6 flex flex-col items-start bg-gray-50 transition-colors hover:border-gir-orange/30 rounded-xl">
                 <FileText className="text-gray-400 mb-5 stroke-1 group-hover:text-gir-orange transition-colors" size={42} />
                 <h4 className="text-gir-dark-blue font-bold text-[15px] mb-2 tracking-wide">GST No</h4>
                 <p className="text-gray-500 text-xs font-semibold tracking-wide">06AEGFS8126M1ZK</p>
-              </div>
-              
+              </div> */}
+
               {/* Turnover Box */}
               <div className="border border-gray-100 p-6 flex flex-col items-start bg-gray-50 transition-colors hover:border-gir-orange/30 rounded-xl">
                 <PiggyBank className="text-gray-400 mb-5 stroke-1 group-hover:text-gir-orange transition-colors" size={42} />
@@ -338,7 +338,7 @@ const Index = () => {
         {/* Infinite Scrolling Marquee - Contained Version */}
         <div className="container mx-auto px-4 relative group/marquee">
           <div className="relative flex overflow-hidden rounded-xl border border-gray-100 bg-white shadow-inner p-2">
-            
+
             {/* Navigation Arrows - Match Reference Image */}
             <button className="absolute left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-gir-dark-blue flex items-center justify-center text-white hover:bg-gir-dark-blue/90 transition-all shadow-xl opacity-0 group-hover/marquee:opacity-100">
               <ChevronLeft size={24} />
@@ -526,15 +526,15 @@ const Index = () => {
               <div>
                 <h3 className="font-bold text-gir-dark-blue mb-2">Contact</h3>
                 <p className="text-gir-dark-gray">
-                  <a href="tel:+918238902687" className="hover:text-gir-orange">
-                    +91-8238902687
+                  <a href="tel:+919992908099" className="hover:text-gir-orange">
+                    +91-9992908099
                   </a>
                   <br />
                   <a
-                    href="mailto:info@girprecast-pvtltd.com"
+                    href="mailto:info@girprecast.com"
                     className="hover:text-gir-orange"
                   >
-                    info@girprecast-pvtltd.com
+                    info@girprecast.com
                   </a>
                 </p>
               </div>

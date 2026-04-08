@@ -20,15 +20,15 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={18} className="text-gir-orange" />
-                <span className="text-sm">+91-8238902687</span>
+                <span className="text-sm">+91-9992908099</span>
               </div>
-              <div className="flex items-center gap-2">
+              {/* <div className="flex items-center gap-2">
                 <span className="text-gir-orange font-bold text-xs">GST NO :</span>
                 <span className="text-sm">06AEGFS8126M1ZK</span>
-              </div>
+              </div> */}
               <div className="flex items-center gap-3">
                 <Mail size={16} className="text-gir-orange" />
-                <span className="text-sm">info@girprecast-pvtltd.com</span>
+                <span className="text-sm">info@girprecast.com</span>
               </div>
             </div>
           </div>
@@ -104,17 +104,17 @@ const Footer = () => {
           <div className="col-span-1">
             <h4 className="text-lg font-bold text-gir-orange mb-4">Follow Us :</h4>
             <div className="flex gap-3">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
+              <a
+                href="https://facebook.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center bg-[#1877F2] rounded-md hover:bg-[#1877F2]/90 transition-all shadow-md group"
               >
                 <Facebook size={24} className="text-white fill-white transition-transform group-hover:scale-110" />
               </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/gir.precastpvtltd?igsh=MWswaTk4cDhoZDY3dg%3D%3D&utm_source=qr"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center bg-gradient-to-tr from-[#FFB700] via-[#FF0000] to-[#800080] rounded-md hover:opacity-90 transition-all shadow-md group"
               >
