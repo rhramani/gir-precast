@@ -1,4 +1,4 @@
-﻿import { ReactNode } from "react";
+import { ReactNode } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 interface SectionWrapperProps {
@@ -33,9 +33,7 @@ const SectionWrapper = ({
     <section
       ref={ref}
       id={id}
-      className={`py-16 md:py-24 ${bgClass} ${className} transition-all duration-700 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      className={`py-16 md:py-24 ${bgClass} ${className}`}
     >
       <div className="container mx-auto px-4">
         {/* Section Header */}

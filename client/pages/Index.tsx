@@ -44,42 +44,42 @@ const Index = () => {
     {
       slug: "concrete-folding-compound-wall",
       name: "RCC Compound Wall",
-      image: "/images/generated/product-rcc-compound.webp",
+      image: "/images/compound-wall/compound-wall-12.webp",
       description: "Premium RCC readymade compound walls for residential and industrial properties",
       href: "/product/concrete-folding-compound-wall",
     },
     {
       slug: "concrete-boundary-wall",
       name: "Boundary Wall",
-      image: "/images/generated/product-boundary-wall.webp",
+      image: "/images/compound-wall/compound-wall-10.webp",
       description: "Durable concrete boundary walls engineered for maximum strength",
       href: "/product/concrete-boundary-wall",
     },
     {
       slug: "precast-boundary-wall",
       name: "Precast Wall",
-      image: "/images/generated/product-precast-wall.webp",
+      image: "/images/compound-wall/compound-wall-11.webp",
       description: "Modern precast wall panels with quick installation",
       href: "/product/precast-boundary-wall",
     },
     {
       slug: "rcc-industrial-one-piece-compound-wall",
       name: "RCC Wall",
-      image: "/images/generated/product-rcc-compound.webp",
+      image: "/images/compound-wall/compound-wall-15.webp",
       description: "High-strength RCC walls for commercial and industrial applications",
       href: "/product/rcc-industrial-one-piece-compound-wall",
     },
     {
       slug: "pre-fabricated-cement-wall",
       name: "Cement Wall",
-      image: "/images/generated/cat-cement.webp",
+      image: "/images/compound-wall/compound-wall-16.webp",
       description: "Prefabricated cement walls offering excellent durability",
       href: "/product/pre-fabricated-cement-wall",
     },
     {
       slug: "readymade-compound-wall",
       name: "Readymade Walls",
-      image: "/images/generated/product-precast-wall.webp",
+      image: "/images/compound-wall/compound-wall-17.webp",
       description: "Complete ready-to-install wall solutions for faster projects",
       href: "/product/readymade-compound-wall",
     },
@@ -170,7 +170,7 @@ const Index = () => {
             {[
               {
                 name: "Compound Wall",
-                image: "/images/generated/cat-compound.webp",
+                image: "/images/compound-wall/compound-wall-1.webp",
                 href: "/products/compound-wall",
                 items: [
                   { name: "Concrete Folding Compound Wall", slug: "concrete-folding-compound-wall" },
@@ -181,7 +181,7 @@ const Index = () => {
               },
               {
                 name: "Boundary Wall",
-                image: "/images/generated/cat-boundary.webp",
+                image: "/images/compound-wall/compound-wall-19.webp",
                 href: "/products/boundary-wall",
                 items: [
                   { name: "Cement Boundary Wall", slug: "cement-boundary-wall" },
@@ -192,7 +192,7 @@ const Index = () => {
               },
               {
                 name: "Cement Wall",
-                image: "/images/generated/cat-cement.webp",
+                image: "/images/compound-wall/compound-wall-20.webp",
                 href: "/products/cement-wall",
                 items: [
                   { name: "Pre Fabricated Cement Wall", slug: "pre-fabricated-cement-wall" },
@@ -201,7 +201,7 @@ const Index = () => {
               },
               {
                 name: "Other Products",
-                image: "/images/generated/product-precast-wall.webp",
+                image: "/images/compound-wall/compound-wall-21.webp",
                 href: "/products/other-products",
                 items: [
                   { name: "Precast Wall", slug: "precast-wall" },
@@ -261,7 +261,7 @@ const Index = () => {
           <div className="relative p-4 pl-6 pt-6 fade-in-left">
             <div className="absolute top-0 left-0 w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)] border-2 border-gir-orange rounded-lg z-0"></div>
             <img
-              src="/images/generated/manufacturing-unit.webp"
+              src="/images/compound-wall/compound-wall-4.webp"
               alt="GIR PRECAST PVT LTD"
               className="relative z-10 rounded-lg shadow-2xl w-full h-auto object-cover"
               style={{ aspectRatio: "4/3" }}
@@ -309,7 +309,7 @@ const Index = () => {
         subtitle="Industry-leading quality and service standards"
         bg="concrete"
       >
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { label: "Massive distribution network across the country", icon: TrendingUp },
             { label: "Large-scale high-tech warehouse facilities", icon: Briefcase },
@@ -376,14 +376,14 @@ const Index = () => {
 
             <div className="flex animate-marquee whitespace-nowrap gap-4 py-4">
               {[
-                "/images/generated/manufacturing-unit.webp",
-                "/images/generated/hero-banner.webp",
-                "/images/generated/gallery-1.webp",
-                "/images/generated/gallery-2.webp",
-                "/images/generated/manufacturing-unit.webp",
-                "/images/generated/hero-banner.webp",
-                "/images/generated/gallery-1.webp",
-                "/images/generated/gallery-2.webp",
+                "/images/compound-wall/compound-wall-6.webp",
+                "/images/compound-wall/compound-wall-7.webp",
+                "/images/compound-wall/compound-wall-8.webp",
+                "/images/compound-wall/compound-wall-9.webp",
+                "/images/compound-wall/compound-wall-10.webp",
+                "/images/compound-wall/compound-wall-11.webp",
+                "/images/compound-wall/compound-wall-12.webp",
+                "/images/compound-wall/compound-wall-13.webp",
               ].map((img, i) => (
                 <div
                   key={i}
@@ -401,14 +401,14 @@ const Index = () => {
             {/* Duplicated set for seamless loop */}
             <div className="flex absolute top-2 animate-marquee2 whitespace-nowrap gap-4 py-4 ml-4">
               {[
-                "/images/generated/manufacturing-unit.webp",
-                "/images/generated/hero-banner.webp",
-                "/images/generated/gallery-1.webp",
-                "/images/generated/gallery-2.webp",
-                "/images/generated/manufacturing-unit.webp",
-                "/images/generated/hero-banner.webp",
-                "/images/generated/gallery-1.webp",
-                "/images/generated/gallery-2.webp",
+                "/images/compound-wall/compound-wall-6.webp",
+                "/images/compound-wall/compound-wall-7.webp",
+                "/images/compound-wall/compound-wall-8.webp",
+                "/images/compound-wall/compound-wall-9.webp",
+                "/images/compound-wall/compound-wall-10.webp",
+                "/images/compound-wall/compound-wall-11.webp",
+                "/images/compound-wall/compound-wall-12.webp",
+                "/images/compound-wall/compound-wall-13.webp",
               ].map((img, i) => (
                 <div
                   key={`dup-${i}`}
@@ -542,7 +542,7 @@ const Index = () => {
           {/* Info */}
           <div className="flex flex-col justify-center">
             <img
-              src="/images/generated/contact-us.webp"
+              src="/images/compound-wall/compound-wall-5.webp"
               alt="Contact Us"
               className="rounded-lg shadow-lg mb-8"
             />

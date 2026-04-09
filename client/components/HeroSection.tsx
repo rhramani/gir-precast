@@ -8,17 +8,17 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: "/images/generated/carousel-1.webp",
+      image: "/images/compound-wall/compound-wall-19.webp",
       title: "Readymade <span className='text-gir-orange'>Compound Wall</span>",
       subtitle: "Leading manufacturer and supplier of high-quality RCC readymade compound walls in Haryana.",
     },
     {
-      image: "/images/generated/carousel-2.webp",
+      image: "/images/compound-wall/compound-wall-20.webp",
       title: "Solar Plant <span className='text-gir-orange'>Boundary Walls</span>",
       subtitle: "Wholesale supplier of specialized solar plant boundary walls and concrete solutions in Palwal.",
     },
     {
-      image: "/images/generated/hero-banner.webp",
+      image: "/images/compound-wall/compound-wall-21.webp",
       title: "Advanced <span className='text-gir-orange'>Precast Facility</span>",
       subtitle: "State-of-the-art manufacturing unit delivering precision-engineered precast panels.",
     },
@@ -59,7 +59,7 @@ const HeroSection = () => {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `linear-gradient(135deg, rgba(15, 42, 63, 0.85) 0%, rgba(15, 42, 63, 0.6) 100%), url(${slide.image})`,
+              backgroundImage: `linear-gradient(rgba(10, 31, 47, 0.7), rgba(10, 31, 47, 0.7)), url(${slide.image})`,
             }}
           />
         </div>

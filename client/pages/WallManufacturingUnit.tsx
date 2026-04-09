@@ -11,12 +11,12 @@ const WallManufacturingUnit = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const images = [
-    "/images/generated/manufacturing-setup-1.webp",
-    "/images/generated/manufacturing-setup-2.webp",
-    "/images/generated/manufacturing-setup-3.webp",
-    "/images/generated/manufacturing-setup-4.webp",
-    "/images/generated/manufacturing-setup-5.webp",
-    "/images/generated/manufacturing-setup-6.webp",
+    "/images/compound-wall/compound-wall-6.webp",
+    "/images/compound-wall/compound-wall-7.webp",
+    "/images/compound-wall/compound-wall-8.webp",
+    "/images/compound-wall/compound-wall-9.webp",
+    "/images/compound-wall/compound-wall-10.webp",
+    "/images/compound-wall/compound-wall-11.webp",
   ];
 
 

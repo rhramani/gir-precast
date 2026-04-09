@@ -22,7 +22,7 @@ export const blogsData: BlogPost[] = [
     author: "Admin",
     category: "Precast Boundary Wall Supplier",
     excerpt: "Learn how precast boundary walls are revolutionizing property security with unmatched strength, durability, and rapid installation.",
-    image: "/images/generated/blog-security-walls.webp",
+    image: "/images/compound-wall/compound-wall-21.webp",
     sections: [
       { type: 'p', text: "Saving your land is a huge thing, be it a large industrial parcel or it is your own home. For years, the same people were happy with ordinary bricks, yet it is time to be honest, this material requires an enormous amount of time to be constructed, and it almost always cracks. This is exactly why so many owners are now moving toward modern methods to save time and serious cash." },
       { type: 'p', text: "Finding a reliable precast boundary wall supplier is the first real move toward making sure your perimeter actually stays solid. Since these walls are made in a factory, the quality is miles ahead of what you get with manual labor on a messy, outdoor construction site." },
@@ -50,7 +50,7 @@ export const blogsData: BlogPost[] = [
     author: "Admin",
     category: "Precast Heavy Duty Wall Manufacturer",
     excerpt: "Discover the technical engineering behind industrial-grade heavy-duty walls designed for maximum load distribution and longevity.",
-    image: "/images/generated/blog-heavy-duty-walls.webp",
+    image: "/images/compound-wall/compound-wall-12.webp",
     sections: [
       { type: 'p', text: "Constructing the long-lasting walls requires more than wet concrete being poured into a trench and hoping it can remain strong. It requires understanding weight load, ground movement, and weather stress. Today, many projects focus on speed, but for security and boundary protection, strength matters most. Precast technology allows engineers to create solid barriers inside a controlled factory." },
       { type: 'p', text: "This avoids the problems of rain, mud, and uneven site conditions that often weaken on-site construction work over long periods. Finding a reliable Precast Heavy Duty Wall Manufacturer is the first move for any industrial or residential project that needs a wall capable of surviving extreme wind, pressure, and the test of time." },

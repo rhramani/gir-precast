@@ -12,15 +12,15 @@ const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   
   const images = [
-    "/images/generated/product-readymade-compound-v2.webp",
-    "/images/generated/product-rcc-compound.webp",
-    "/images/generated/product-heavy-duty-compound.webp",
-    "/images/generated/product-boundary-wall.webp",
-    "/images/generated/product-factory-boundary.webp",
-    "/images/generated/product-precast-wall.webp",
-    "/images/generated/product-solar-plant-boundary.webp",
-    "/images/generated/product-cement-wall-prefab.webp",
-    "/images/generated/product-panel-build-rcc.webp",
+    "/images/compound-wall/compound-wall-12.webp",
+    "/images/compound-wall/compound-wall-1.webp",
+    "/images/compound-wall/compound-wall-2.webp",
+    "/images/compound-wall/compound-wall-15.webp",
+    "/images/compound-wall/compound-wall-16.webp",
+    "/images/compound-wall/compound-wall-17.webp",
+    "/images/compound-wall/compound-wall-3.webp",
+    "/images/compound-wall/compound-wall-19.webp",
+    "/images/compound-wall/compound-wall-20.webp",
   ];
 
 

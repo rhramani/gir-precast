@@ -47,7 +47,7 @@ const About = () => {
             <h2 className="text-3xl font-bold text-gir-dark-blue mb-6">About Us</h2>
 
             <div className="mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-100">
-              <img src="/images/generated/about-us.webp" alt="GIR Precast Facility" className="w-full h-[400px] object-cover" />
+              <img src="/images/compound-wall/compound-wall-15.webp" alt="GIR Precast Facility" className="w-full h-[450px] object-cover" />
             </div>
 
             <p className="text-gray-600 mb-6 leading-relaxed text-[15px]">
