@@ -16,7 +16,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start gap-2">
                 <MapPin size={18} className="text-gir-orange mt-1 flex-shrink-0" />
-                <span className="text-sm">Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102 (HR.)</span>
+                <span className="text-sm">Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102, Haryana</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={18} className="text-gir-orange" />

@@ -134,7 +134,7 @@ const About = () => {
               </h3>
               <div className="p-5 bg-gray-50/50">
                 <p className="text-gir-dark-blue font-bold mb-3 text-lg">GIR PRECAST PVT LTD</p>
-                <p className="text-gray-600 text-sm mb-4 leading-relaxed">Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102 (HR.)</p>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102, Haryana</p>
                 <p className="text-gray-600 text-sm mb-2"><strong>Mobile:</strong><br />+91-9992908099</p>
                 <p className="text-gray-600 text-sm break-words"><strong>E-mail:</strong><br />info@girprecast.com</p>
               </div>

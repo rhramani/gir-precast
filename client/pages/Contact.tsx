@@ -89,7 +89,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Address</h4>
                   <p className="text-gray-600 text-sm leading-relaxed pr-4">
-                    Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102 (HR.)
+                    Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102, Haryana
                   </p>
                 </div>
               </div>
