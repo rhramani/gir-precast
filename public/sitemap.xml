@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Main Pages -->
+  <url>
+    <loc>https://girprecast.com/</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://girprecast.com/images/og-image.webp</image:loc>
+      <image:title>GIR Precast - Leading Compound Wall Manufacturer</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://girprecast.com/about</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://girprecast.com/contact</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://girprecast.com/products</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://girprecast.com/gallery</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Categories -->
+  <url>
+    <loc>https://girprecast.com/products?category=compound-wall</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://girprecast.com/products?category=boundary-wall</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Products -->
+  <url>
+    <loc>https://girprecast.com/products/readymade-compound-wall</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://girprecast.com/images/generated/product-readymade-compound-v2.webp</image:loc>
+      <image:title>Readymade Compound Wall Manufacturer Palwal</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://girprecast.com/products/precast-heavy-duty-compound-wall</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://girprecast.com/images/generated/product-heavy-duty-compound.webp</image:loc>
+      <image:title>Precast Heavy Duty Compound Wall</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://girprecast.com/products/rcc-boundary-wall</loc>
+    <lastmod>2026-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://girprecast.com/images/generated/product-boundary-wall.webp</image:loc>
+      <image:title>RCC Boundary Wall Supplier Haryana</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://girprecast.com/blog</loc>
+    <lastmod>2024-04-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://girprecast.com/contact</loc>
+    <lastmod>2024-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

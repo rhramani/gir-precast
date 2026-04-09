@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { ChevronRight, Plus, Minus } from "lucide-react";
 import { productsData } from "@/data/products";
 
@@ -24,6 +25,10 @@ const About = () => {
 
   return (
     <div className="bg-white">
+      <SEO 
+        title="About Us" 
+        description="Learn more about GIR Precast, a premier manufacturer of high-quality precast and RCC compound walls in Haryana with over 4 years of industry excellence."
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SectionWrapper from "@/components/SectionWrapper";
 import ProductCard from "@/components/ProductCard";
+import SEO from "@/components/SEO";
 import InquiryModal from "@/components/InquiryModal";
 import PhoneInput from "@/components/ui/phone-input";
 import { productsData, ProductDetail } from "@/data/products";
@@ -141,6 +142,10 @@ const Index = () => {
 
   return (
     <>
+      <SEO 
+        title="Leading Precast Concrete Solutions" 
+        description="GIR Precast is a leading manufacturer of high-quality precast boundary walls, RCC compound walls, and cement wall solutions in Palwal, Haryana."
+      />
       {/* Inquiry Modal */}
       <InquiryModal
         product={selectedInquiryProduct}

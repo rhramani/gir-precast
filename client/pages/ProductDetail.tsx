@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { productsData } from "@/data/products";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { ChevronRight, Phone, Mail, Share2, Edit, Send } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import InquiryModal from "@/components/InquiryModal";
@@ -105,6 +106,11 @@ const ProductDetail = () => {
 
   return (
     <div className="bg-[#fcfcfc] min-h-screen pb-20">
+      <SEO 
+        title={product.name} 
+        description={`High-quality ${product.name} manufactured by GIR Precast. Durable, reliable, and cost-effective solutions for your project needs.`}
+        ogImage={product.image}
+      />
       {/* Inquiry Modal */}
       <InquiryModal 
         product={product} 

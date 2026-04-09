@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { Mail, Phone, MapPin, User, Globe, ChevronRight } from "lucide-react";
 import PhoneInput from "@/components/ui/phone-input";
 import { toast } from "sonner";
@@ -50,6 +51,10 @@ const Contact = () => {
 
   return (
     <div className="bg-white">
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with GIR Precast for all your precast concrete needs. We are located in Palwal, Haryana and serve clients nationwide."
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">
