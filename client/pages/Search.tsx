@@ -192,7 +192,7 @@ const Search = () => {
                   <h4 className="font-bold text-gir-dark-blue text-xs uppercase mb-3 tracking-wider">GIR PRECAST PVT LTD</h4>
                   <p className="text-gray-500 text-[13px] leading-relaxed flex gap-3">
                     <MapPin size={18} className="text-gir-orange flex-shrink-0" />
-                    Opp. Adani CNG Pump, Delhi-Mathura Road Near Hanuman Mandir, Palwal, Haryana - 121102, India
+                    Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102 (HR.)
                   </p>
                 </div>
                 <div className="space-y-3 pt-2">

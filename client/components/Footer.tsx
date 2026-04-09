@@ -14,9 +14,9 @@ const Footer = () => {
               Premium precast wall solutions for modern construction.
             </p>
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <MapPin size={18} className="text-gir-orange" />
-                <span className="text-sm">Opp. Adani CNG Pump, Delhi-Mathura Road Near Hanuman Mandir, Palwal, Haryana</span>
+              <div className="flex items-start gap-2">
+                <MapPin size={18} className="text-gir-orange mt-1 flex-shrink-0" />
+                <span className="text-sm">Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102 (HR.)</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={18} className="text-gir-orange" />
@@ -128,7 +128,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 pt-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="text-center md:text-left text-gray-400 text-sm">
-              <p>&copy; 2024 GIR PRECAST PVT LTD. All Rights Reserved.</p>
+              <p>&copy; 2026 GIR PRECAST PVT LTD. All Rights Reserved.</p>
             </div>
             <div className="text-center md:text-right text-gray-400 text-sm">
             </div>

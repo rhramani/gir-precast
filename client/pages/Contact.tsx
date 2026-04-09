@@ -89,7 +89,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Address</h4>
                   <p className="text-gray-600 text-sm leading-relaxed pr-4">
-                    Opp. Adani CNG Pump, Delhi-Mathura Road Near Hanuman Mandir, Palwal, Haryana, India - 121102
+                    Khasra No. 234, Kila No.12/1. Sec.12, Opp. Piyush City Hathin Road, Palwal-121102 (HR.)
                   </p>
                 </div>
               </div>
@@ -125,7 +125,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Alt. Email</h4>
                   <p className="text-gray-600 text-sm">
-                    <a href="mailto:girprecastpvtltd@gmail.com" className="hover:text-gir-orange transition-colors">girprecastpvtltd@gmail.com</a>
+                    <a href="mailto:girprecast@gmail.com" className="hover:text-gir-orange transition-colors">girprecast@gmail.com</a>
                   </p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Web Address</h4>
                   <p className="text-gray-600 text-sm">
-                    <a href="https://www.girprecast-pvtltd.com" target="_blank" rel="noopener noreferrer" className="hover:text-gir-orange transition-colors break-all">https://www.girprecast-pvtltd.com</a>
+                    <a href="https://girprecast.com" target="_blank" rel="noopener noreferrer" className="hover:text-gir-orange transition-colors break-all">https://girprecast.com</a>
                   </p>
                 </div>
               </div>
