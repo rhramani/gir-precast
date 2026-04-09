@@ -101,7 +101,7 @@ const Contact = () => {
                 <div>
                   <h4 className="font-bold text-gir-dark-blue mb-1 text-[15px]">Call Us</h4>
                   <p className="text-gray-600 text-sm">
-                    <a href="tel:+919992908099" className="hover:text-gir-orange transition-colors">+91-9992908099</a>,{' '}
+                    <a href="tel:+919992908099" className="hover:text-gir-orange transition-colors">+91-9992908099</a>{' '}
                   </p>
                 </div>
               </div>
@@ -118,7 +118,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4 py-4 border-b border-dotted border-gray-300">
+              {/* <div className="flex gap-4 py-4 border-b border-dotted border-gray-300">
                 <div className="w-10 h-10 rounded-full bg-gir-orange text-white flex items-center justify-center flex-shrink-0 shadow-sm">
                   <Mail size={18} />
                 </div>
@@ -128,7 +128,7 @@ const Contact = () => {
                     <a href="mailto:girprecast@gmail.com" className="hover:text-gir-orange transition-colors">girprecast@gmail.com</a>
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex gap-4 py-4 border-b border-dotted border-gray-300">
                 <div className="w-10 h-10 rounded-full bg-gir-orange text-white flex items-center justify-center flex-shrink-0 shadow-sm">

@@ -131,6 +131,7 @@ const Footer = () => {
               <p>&copy; 2026 GIR PRECAST PVT LTD. All Rights Reserved.</p>
             </div>
             <div className="text-center md:text-right text-gray-400 text-sm">
+              <p>Developed & Managed By <a href="https://kurminfotech.in" target="_blank" rel="noopener noreferrer" className="text-gir-orange font-bold hover:underline">Kurm Infotech</a></p>
             </div>
           </div>
         </div>
