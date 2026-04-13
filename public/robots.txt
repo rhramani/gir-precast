@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://girprecast.com/sitemap.xml
+# Disallow admin/internal pages
+Disallow: /search
+Disallow: /sitemap
+
+# Crawl-delay (optional, courteous setting)
+Crawl-delay: 1
+
+Sitemap: https://www.girprecast.com/sitemap.xml

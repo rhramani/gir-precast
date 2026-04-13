@@ -26,8 +26,10 @@ const About = () => {
   return (
     <div className="bg-white">
       <SEO 
-        title="About Us" 
-        description="Learn more about GIR Precast, a premier manufacturer of high-quality precast and RCC compound walls in Haryana with over 4 years of industry excellence."
+        title="About Us - GIR Precast Industries Palwal Haryana" 
+        description="Learn about GIR Precast Industries, a leading precast compound wall manufacturer based in Palwal, Haryana. Established in 2020, we manufacture RCC compound walls, boundary walls, and cement walls with a vision to serve across India."
+        keywords="about GIR Precast, precast wall manufacturer Palwal, compound wall company Haryana, RCC wall manufacturer history, Vivek Koladiya GIR Precast, precast wall supplier India"
+        canonical="https://www.girprecast.com/about"
       />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">

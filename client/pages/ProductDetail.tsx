@@ -107,9 +107,11 @@ const ProductDetail = () => {
   return (
     <div className="bg-[#fcfcfc] min-h-screen pb-20">
       <SEO 
-        title={product.name} 
-        description={`High-quality ${product.name} manufactured by GIR Precast. Durable, reliable, and cost-effective solutions for your project needs.`}
-        ogImage={product.image}
+        title={`${product.name} - Manufacturer & Supplier Palwal`} 
+        description={`Buy ${product.name} from GIR Precast Industries, a leading manufacturer and supplier in Palwal, Haryana. High quality, durable, and competitively priced. Get best quote now. Call +91-9992908099.`}
+        keywords={`${product.name}, ${product.name} manufacturer, ${product.name} supplier Palwal, ${product.name} price India, buy ${product.name} Haryana, GIR Precast ${product.name}`}
+        canonical={`https://www.girprecast.com/product/${product.slug}`}
+        ogImage={product.image?.startsWith('http') ? product.image : `https://www.girprecast.com${product.image}`}
       />
       {/* Inquiry Modal */}
       <InquiryModal 

@@ -7,6 +7,8 @@ import {
   DialogContent,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import SEO from "@/components/SEO";
+
 
 const Gallery = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -22,7 +24,6 @@ const Gallery = () => {
     "/images/compound-wall/compound-wall-19.webp",
     "/images/compound-wall/compound-wall-20.webp",
   ];
-
 
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -52,6 +53,12 @@ const Gallery = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Gallery - Precast Wall Projects & Installations"
+        description="Browse our gallery of precast compound wall, boundary wall, and RCC wall installation projects across Haryana, Delhi NCR, Noida and India. Quality precast concrete work by GIR Precast."
+        keywords="precast wall gallery, compound wall photos, RCC boundary wall pictures, precast installation Haryana, GIR Precast gallery, concrete wall projects India"
+        canonical="https://www.girprecast.com/gallery"
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

@@ -3,6 +3,7 @@ import SectionWrapper from "@/components/SectionWrapper";
 import ProductCard from "@/components/ProductCard";
 import { productsData } from "@/data/products";
 import { ChevronRight } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const AllProducts = () => {
   // Group products by category
@@ -19,6 +20,12 @@ const AllProducts = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="All Products - Precast Compound Wall & Boundary Wall"
+        description="Explore GIR Precast's complete range of precast compound walls, RCC boundary walls, cement walls and other precast concrete solutions. Quality manufacturer in Palwal, Haryana."
+        keywords="all precast products, compound wall, boundary wall, cement wall, RCC wall, precast manufacturer India, GIR Precast product catalog"
+        canonical="https://www.girprecast.com/products"
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

@@ -3,11 +3,20 @@ import { Calendar, User, ChevronRight, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogsData } from "@/data/blogs";
 import { motion } from "framer-motion";
+import SEO from "@/components/SEO";
+
 
 const Blog = () => {
   return (
     <div className="bg-white min-h-screen">
+      <SEO 
+        title="Blog - Precast Concrete Insights & Industry Updates"
+        description="Read expert insights on precast compound walls, RCC boundary walls, and concrete construction. Tips, trends, and updates from GIR Precast Industries, Palwal Haryana."
+        keywords="precast concrete blog, RCC wall construction tips, compound wall installation, boundary wall cost India, precast wall manufacturer blog, GIR Precast news"
+        canonical="https://www.girprecast.com/blog"
+      />
       {/* Breadcrumbs */}
+
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2 text-sm text-gray-500">

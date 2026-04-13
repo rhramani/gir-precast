@@ -4,6 +4,7 @@ import { ChevronRight, Phone } from "lucide-react";
 import InquiryModal from "@/components/InquiryModal";
 import { useState } from "react";
 import { ProductDetail } from "@/data/products";
+import SEO from "@/components/SEO";
 
 const categoryMeta: Record<string, { title: string; intro: string }> = {
   "compound-wall": {
@@ -43,8 +44,21 @@ const Products = () => {
     setExpandedDescriptions(prev => ({ ...prev, [slug]: !prev[slug] }));
   };
 
+  const seoKeywords: Record<string, string> = {
+    "compound-wall": "compound wall manufacturer Palwal, RCC compound wall, precast compound wall Haryana, concrete folding compound wall, readymade compound wall supplier",
+    "boundary-wall": "boundary wall manufacturer Palwal, RCC boundary wall, precast boundary wall Haryana, cement boundary wall supplier, solar plant boundary wall",
+    "cement-wall": "cement wall manufacturer Haryana, RCC cement wall, pre fabricated cement wall, precast cement wall Palwal",
+    "other-products": "precast wall manufacturer India, RCC folding wall, readymade walls Haryana, RCC wall supplier Palwal",
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen">
+      <SEO
+        title={`${meta.title} - Precast Manufacturer Palwal`}
+        description={`${meta.intro.substring(0, 160)}...`}
+        keywords={seoKeywords[category || ""] || "precast wall manufacturer, RCC compound wall, boundary wall Palwal Haryana"}
+        canonical={`https://www.girprecast.com/products/${category}`}
+      />
       {/* Inquiry Modal */}
       <InquiryModal
         product={selectedProduct}

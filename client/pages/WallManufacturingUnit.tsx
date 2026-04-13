@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogContent,
 } from "@/components/ui/dialog";
+import SEO from "@/components/SEO";
 
 const WallManufacturingUnit = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -49,6 +50,12 @@ const WallManufacturingUnit = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Wall Manufacturing Unit - Precast Concrete Facility Palwal"
+        description="Explore GIR Precast's state-of-the-art wall manufacturing unit in Palwal, Haryana. Advanced machinery for producing high-quality RCC compound walls and precast concrete products."
+        keywords="precast wall manufacturing unit, RCC wall factory Palwal, compound wall production facility, precast concrete manufacturing Haryana, GIR Precast factory"
+        canonical="https://www.girprecast.com/wall-manufacturing-unit"
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

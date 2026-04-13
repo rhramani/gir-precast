@@ -52,8 +52,10 @@ const Contact = () => {
   return (
     <div className="bg-white">
       <SEO 
-        title="Contact Us" 
-        description="Get in touch with GIR Precast for all your precast concrete needs. We are located in Palwal, Haryana and serve clients nationwide."
+        title="Contact Us - GIR Precast Industries Palwal Haryana" 
+        description="Contact GIR Precast Industries for precast compound wall and RCC boundary wall inquiries. Located in Palwal, Haryana. Call +91-9992908099 or email info@girprecast.com."
+        keywords="contact GIR Precast, precast wall inquiry Palwal, compound wall manufacturer contact Haryana, RCC wall supplier contact, precast wall price inquiry India, GIR Precast phone email"
+        canonical="https://www.girprecast.com/contact"
       />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">

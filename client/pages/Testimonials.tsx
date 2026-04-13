@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { 
   ChevronRight, 
   Star, 
@@ -131,6 +132,12 @@ const Testimonials = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Client Testimonials - Reviews of GIR Precast"
+        description="Read genuine reviews and testimonials from our satisfied clients across Haryana, Delhi NCR, and India. Trusted precast compound wall manufacturer since 2020."
+        keywords="GIR Precast reviews, precast wall testimonials, compound wall customer feedback, RCC boundary wall reviews Haryana, precast manufacturer reviews India"
+        canonical="https://www.girprecast.com/testimonials"
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

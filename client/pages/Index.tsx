@@ -143,8 +143,10 @@ const Index = () => {
   return (
     <>
       <SEO 
-        title="Leading Precast Concrete Solutions" 
-        description="GIR Precast is a leading manufacturer of high-quality precast boundary walls, RCC compound walls, and cement wall solutions in Palwal, Haryana."
+        title="Leading Precast Compound Wall Manufacturer Palwal Haryana" 
+        description="GIR Precast Industries - Leading manufacturer of precast compound walls, RCC boundary walls, and readymade concrete wall solutions in Palwal, Haryana. 500+ happy clients, 1000+ projects completed since 2020."
+        keywords="precast compound wall manufacturer Palwal, RCC boundary wall Haryana, readymade compound wall supplier, compound wall price India, GIR Precast Industries, precast wall manufacturer near me, RCC wall manufacturer Delhi NCR, boundary wall manufacturer Haryana"
+        canonical="https://www.girprecast.com/"
       />
       {/* Inquiry Modal */}
       <InquiryModal
