@@ -23,12 +23,17 @@ const SEO: React.FC<SEOProps> = ({
   ogType = "website",
   ogImage = `${BASE_URL}/images/og-image.webp`,
   twitterHandle = "@girprecast",
-  keywords = "precast compound wall, RCC compound wall, readymade compound wall, boundary wall manufacturer, precast wall Palwal, GIR Precast, Haryana precast manufacturer, RCC boundary wall, cement compound wall",
+  keywords,
   author = "GIR PRECAST PVT LTD",
   noIndex = false,
   publishedTime,
 }) => {
   const siteName = "GIR Precast Industries";
+  const defaultKeywords = "precast compound wall, RCC compound wall, readymade compound wall, boundary wall manufacturer, precast wall Palwal, GIR Precast, Haryana precast manufacturer, RCC boundary wall, cement compound wall, precast concrete, precast manufacturer India, top precast company";
+  
+  // Combine page-specific keywords with our highly ranked default precast keywords
+  const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
+  
   const fullTitle = title ? `${title} | ${siteName}` : `${siteName} | Precast Compound Wall Manufacturer Palwal`;
   const canonicalUrl = canonical || (typeof window !== 'undefined' ? `${BASE_URL}${window.location.pathname}` : BASE_URL);
   const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`;
@@ -38,7 +43,7 @@ const SEO: React.FC<SEOProps> = ({
       {/* Standard metadata tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
+      <meta name="keywords" content={finalKeywords} />
       <meta name="author" content={author} />
       <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />
       <link rel="canonical" href={canonicalUrl} />
