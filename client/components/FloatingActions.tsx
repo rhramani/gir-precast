@@ -80,11 +80,16 @@ const FloatingActions = () => {
 
             {/* Widget Content */}
             <div className="p-5 bg-[#F0F2F5]">
-              <div className="bg-white p-3 rounded-lg rounded-tl-none shadow-sm mb-4 relative max-w-[90%]">
-                <p className="text-sm text-gray-700">
+              <div className="bg-white p-2 rounded-lg rounded-tl-none shadow-sm mb-4 relative max-w-[95%]">
+                <img 
+                  src="/images/compound-wall/compound-wall-11.webp" 
+                  alt="GIR Precast Wall" 
+                  className="w-full h-32 object-cover rounded mb-2"
+                />
+                <p className="text-sm text-gray-700 px-1">
                   Hello! How can we help you today? Please feel free to ask any questions about our precast solutions.
                 </p>
-                <span className="text-[10px] text-gray-400 block mt-1 text-right">09:30 AM</span>
+                <span className="text-[10px] text-gray-400 block mt-1 text-right px-1">09:30 AM</span>
                 {/* Message Tail */}
                 <div className="absolute top-0 -left-2 w-0 h-0 border-t-[10px] border-t-white border-l-[10px] border-l-transparent"></div>
               </div>

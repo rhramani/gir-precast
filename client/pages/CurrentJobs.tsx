@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import PhoneInput from "@/components/ui/phone-input";
 import { 
   ChevronRight, 
@@ -160,6 +161,12 @@ const CurrentJobs = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Career Opportunities at GIR Precast"
+        description="Explore career opportunities at GIR PRECAST PVT LTD. Join our team of construction and precast wall manufacturing professionals in Palwal, Haryana."
+        canonical="https://www.girprecast.com/current-jobs"
+        keywords="GIR Precast jobs, precast wall manufacturing jobs, construction careers Palwal, Haryana jobs"
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

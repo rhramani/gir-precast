@@ -1,6 +1,7 @@
 import { useSearchParams, Link } from "react-router-dom";
 import { productsData, ProductDetail } from "@/data/products";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { ChevronRight, Phone, Mail, MapPin, ChevronDown, ChevronUp, Minus, Plus, MessageSquare } from "lucide-react";
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
@@ -54,6 +55,11 @@ const Search = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title="Search Results"
+        description="Search for precast compound walls, boundary walls, and cement wall products from GIR Precast Industries."
+        noIndex={true}
+      />
       {/* Inquiry Modal */}
       <InquiryModal
         product={selectedInquiryProduct}

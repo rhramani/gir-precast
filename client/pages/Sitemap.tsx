@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { productsData } from "@/data/products";
 import { ChevronRight, ExternalLink, Package, LayoutGrid } from "lucide-react";
 
@@ -26,6 +27,11 @@ const Sitemap = () => {
 
   return (
     <div className="bg-white">
+      <SEO
+        title="Site Map"
+        description="Browse the complete site map of GIR Precast Industries website."
+        noIndex={true}
+      />
       {/* Breadcrumbs */}
       <div className="bg-gray-50 border-b border-gray-100">
         <div className="container mx-auto px-4 py-4">

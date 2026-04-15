@@ -4,7 +4,7 @@
   <!-- ===== CORE PAGES ===== -->
   <url>
     <loc>https://www.girprecast.com/</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -337,4 +337,28 @@
     </image:image>
   </url>
 
+  <!-- ===== BLOG POSTS ===== -->
+  <url>
+    <loc>https://www.girprecast.com/blog/precast-boundary-wall-supplier-for-strong-and-durable-security-walls</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.girprecast.com/images/compound-wall/compound-wall-21.webp</image:loc>
+      <image:title>Precast Boundary Wall Supplier For Strong And Durable Security Walls</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.girprecast.com/blog/precast-heavy-duty-wall-manufacturer-focused-on-strength-and-durability</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.girprecast.com/images/compound-wall/compound-wall-12.webp</image:loc>
+      <image:title>Precast Heavy Duty Wall Manufacturer Focused On Strength And Durability</image:title>
+    </image:image>
+  </url>
+
 </urlset>
+

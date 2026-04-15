@@ -113,6 +113,41 @@ const ProductDetail = () => {
         canonical={`https://www.girprecast.com/product/${product.slug}`}
         ogImage={product.image?.startsWith('http') ? product.image : `https://www.girprecast.com${product.image}`}
       />
+      {/* Product Structured Data for Rich Results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": product.name,
+            "description": `Buy ${product.name} from GIR Precast Industries. High quality precast wall solution manufactured in Palwal, Haryana.`,
+            "image": product.image?.startsWith('http') ? product.image : `https://www.girprecast.com${product.image}`,
+            "brand": {
+              "@type": "Brand",
+              "name": "GIR Precast Industries"
+            },
+            "manufacturer": {
+              "@type": "Organization",
+              "name": "GIR PRECAST PVT LTD",
+              "url": "https://www.girprecast.com/"
+            },
+            "offers": {
+              "@type": "AggregateOffer",
+              "priceCurrency": "INR",
+              "lowPrice": product.priceRange?.min || "60",
+              "highPrice": product.priceRange?.max || "120",
+              "offerCount": "1",
+              "availability": "https://schema.org/InStock",
+              "seller": {
+                "@type": "Organization",
+                "name": "GIR PRECAST PVT LTD"
+              }
+            },
+            "url": `https://www.girprecast.com/product/${product.slug}`
+          })
+        }}
+      />
       {/* Inquiry Modal */}
       <InquiryModal 
         product={product} 

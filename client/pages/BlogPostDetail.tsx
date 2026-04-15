@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { blogsData } from "@/data/blogs";
 import SectionWrapper from "@/components/SectionWrapper";
+import SEO from "@/components/SEO";
 import { 
   Calendar, 
   User, 
@@ -40,6 +41,15 @@ const BlogPostDetail = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        canonical={`https://www.girprecast.com/blog/${post.slug}`}
+        ogType="article"
+        ogImage={post.image.startsWith('http') ? post.image : `https://www.girprecast.com${post.image}`}
+        keywords={`${post.category}, precast wall blog, GIR Precast, compound wall guide, boundary wall article`}
+        publishedTime={post.date}
+      />
       {/* Article Header (Breadcrumbs & Back) */}
       <div className="bg-gray-50 border-b border-gray-100 py-6">
         <div className="container mx-auto px-4">
