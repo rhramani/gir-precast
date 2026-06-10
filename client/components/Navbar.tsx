@@ -127,10 +127,10 @@ const Navbar = () => {
             : "bg-white/95 backdrop-blur"
           }`}
       >
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-4 py-2 md:py-2 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src="/logo.webp" alt="GIR PRECAST PVT LTD" className="h-20 w-auto" />
+            <img src="/logo.svg" alt="GIR PRECAST PVT LTD" className="h-14 md:h-[4.5rem] lg:h-24 w-auto" />
           </Link>
 
           {/* Desktop Menu */}
